@@ -771,10 +771,6 @@ button {
   cursor: pointer;
   background: transparent;
 }
-mark {
-  border-radius: 5px;
-  padding: 1px;
-}
 .btn {
   display: inline-block;
   position: relative;
@@ -796,6 +792,10 @@ mark {
 .btn:hover {
   color: var(--background-color);
   background: var(--primary-color);
+}
+mark {
+  border-radius: 5px;
+  padding: 1px;
 }
 .flex-center {
   display: flex;
@@ -825,10 +825,10 @@ mark {
   padding: 5px 5px 5px 10px;
 }
 .markdown-body p {
-  line-height: 1.5;
+  line-height: 1.8;
   color: var(--default-text-color);
   margin-bottom: 1rem;
-  margin-top: 0;
+  margin-top: 1rem;
 }
 .markdown-body a {
   position: relative;
@@ -1592,7 +1592,8 @@ pre .deletion {
   border-radius: 18px;
   padding-top: 40px;
   padding-left: 5px;
-  margin: 10px 0;
+  margin-top: 10px;
+  margin-bottom: 1rem;
   position: relative;
 }
 .highlight-container[data-rel] figcaption {

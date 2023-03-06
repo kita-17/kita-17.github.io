@@ -1,104 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>包装类</title>
-    <url>/2022/10/07/JavaSE/%E5%8C%85%E8%A3%85%E7%B1%BB/</url>
-    <content><![CDATA[<p>什么是包装类？ 包装类是针对八种基本数据类型相对应的引用类型, 有类的特点, 可以调用类里的方法</p>
-<table>
-<thead>
-<tr>
-<th>基本数据类型</th>
-<th>包装类</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>boolean</td>
-<td>Boolean</td>
-</tr>
-<tr>
-<td>char</td>
-<td>Character</td>
-</tr>
-<tr>
-<td>byte</td>
-<td>Byte</td>
-</tr>
-<tr>
-<td>short</td>
-<td>Short</td>
-</tr>
-<tr>
-<td>int</td>
-<td>Integer</td>
-</tr>
-<tr>
-<td>long</td>
-<td>Long</td>
-</tr>
-<tr>
-<td>float</td>
-<td>Float</td>
-</tr>
-<tr>
-<td>double</td>
-<td>Double</td>
-</tr>
-</tbody></table>
-<h2 id="包装类跟基本数据类型的转换"><a href="#包装类跟基本数据类型的转换" class="headerlink" title="包装类跟基本数据类型的转换"></a>包装类跟基本数据类型的转换</h2><ol>
-<li>JDK5 之前的手动装箱与拆箱方式<ul>
-<li>装箱: 基本数据类型到包装类型</li>
-<li>拆箱: 包装类型到基本数据类型</li>
-</ul>
-</li>
-<li>JDK5(含jdk5) 以后实现了自动装箱与拆箱</li>
-<li>自动装箱底层调用了valueOf方法</li>
-</ol>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//以int为例</span></span><br><span class="line"><span class="comment">//int 与 Integer 的装箱与拆箱</span></span><br><span class="line"><span class="comment">//手动装箱</span></span><br><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">Integer</span> <span class="variable">b1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(a);</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">b2</span> <span class="operator">=</span> Integer.valueOf(a);</span><br><span class="line"></span><br><span class="line"><span class="comment">//手动拆箱</span></span><br><span class="line"><span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> b1.intValue();</span><br><span class="line"></span><br><span class="line"><span class="comment">//jdk5后</span></span><br><span class="line"><span class="type">int</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="comment">//自动装箱 int -&gt; Integer</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">e1</span> <span class="operator">=</span> d; <span class="comment">//底层使用Integer.valueOf(d)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//自动拆箱 Integer -&gt; int</span></span><br><span class="line"><span class="type">int</span> <span class="variable">d1</span> <span class="operator">=</span> e1; <span class="comment">//底层使用的是e1.intValue();</span></span><br></pre></td></tr></table></figure></div>
-
-
-<h2 id="包装类型与String相互转换"><a href="#包装类型与String相互转换" class="headerlink" title="包装类型与String相互转换"></a>包装类型与String相互转换</h2><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//以Integer转String为例</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Integer -&gt; String</span></span><br><span class="line"></span><br><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> i + <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> i.toString();</span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> String.valueOf(i);</span><br><span class="line"></span><br><span class="line"><span class="comment">//String -&gt; Integer</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> <span class="string">&quot;123&quot;</span>;</span><br><span class="line"><span class="type">Integer</span> <span class="variable">i2</span> <span class="operator">=</span> Integer.parseInt(s4);</span><br><span class="line"><span class="type">Integer</span> <span class="variable">i3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(s4);</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h2><h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><ol>
-<li>String 对象用于保存字符串, 也就是一组字符序列</li>
-<li>字符串常量是用双引号括起来的字符序列, 如: <mark style="background: #BBFABBA6;">“123”</mark> <mark style="background: #BBFABBA6;">“hello”</mark> <mark style="background: #BBFABBA6;">“你好”</mark> 等</li>
-<li>字符串的字符使用Unicode编码, 一个字符(不区分英文中文)占两字节</li>
-<li>String是final类无法被其他继承</li>
-<li>String有属性 <mark style="background: #FFB86CA6;">private final char[] value;</mark> 用于存放字符串内容,</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>单例设计模式</title>
-    <url>/2022/10/07/JavaSE/%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>在程序运行中, 通过某些方法, 使某个类只能存在一个实例</p>
-<h3 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h3><ol>
-<li>让构造器私有化, 防止直接 <em>new</em> 的形式构造对象</li>
-<li>在类的内部创建对象</li>
-<li>对外公开一个静态方法 getInstance</li>
-</ol>
-<h2 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h2><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**  </span></span><br><span class="line"><span class="comment"> * 饿汉式</span></span><br><span class="line"><span class="comment"> * 在程序启动或单例模式类被加载的时候,单例模式的实例就会被创建。</span></span><br><span class="line"><span class="comment">**/</span> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SingleInstance</span> &#123;</span><br><span class="line">	<span class="comment">//类被加载时就创建实例</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">SingleInstance</span> <span class="variable">instance</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SingleInstance</span>();</span><br><span class="line">       </span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">SingleInstance</span><span class="params">()</span> &#123;  </span><br><span class="line">    </span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SingleInstance <span class="title function_">getInstance</span><span class="params">()</span> &#123;  </span><br><span class="line">        <span class="keyword">return</span> instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**  </span></span><br><span class="line"><span class="comment"> * 懒汉式  </span></span><br><span class="line"><span class="comment"> * 当第一次访问单例模式的类时才会创建实例  </span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SingleInstance</span> &#123;</span><br><span class="line">	</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">SingleInstance</span> <span class="variable">instance</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">SingleInstance</span><span class="params">()</span> &#123;   </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//第一次访问该方法再创建实例</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SingleInstance <span class="title function_">getInstance</span><span class="params">()</span> &#123;  </span><br><span class="line">        <span class="keyword">synchronized</span> (instance) &#123;<span class="comment">//保证线程安全</span></span><br><span class="line">            <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;  </span><br><span class="line">                instance = <span class="keyword">new</span> <span class="title class_">SingleInstance</span>();  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">return</span> instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h2><ol>
-<li>饿汉式与懒汉式的主要区别在于创建对象的时机不同, 饿汉式是在类加载的时候创建对象, 而懒汉式是在使用时才创建</li>
-<li>饿汉式不存在线程安全问题, 懒汉式存在线程安全问题, 需要上锁</li>
-<li>饿汉式存在资源浪费的可能, 懒汉式则没有这个问题</li>
-<li>JavaSE标准类中, java.lang.Runtime就是经典的单例模式</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaWEB笔记-过滤器</title>
-    <url>/2022/10/06/JavaWeb/JavaWeb-Filter%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
+    <url>/JavaWeb/JavaWeb-Filter%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
     <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
 <li>Filter过滤器,是JavaWeb三大组件之一(Servlet, Filter, Listener)</li>
 <li>过滤器可以把资源拦截下来,从而实现一些需求</li>
@@ -123,7 +27,17 @@
 <h3 id="过滤器链"><a href="#过滤器链" class="headerlink" title="过滤器链"></a>过滤器链</h3><p>可以配置多个过滤器, 串成一个过滤器链</p>
 <p>执行顺序: 多个过滤器以过滤器类名自然排序, 例如: AFilter1 BFilter3 Filter2</p>
 <p>放行逻辑执行顺序: <strong>如下图所示,请求先从左到右执行放行前逻辑直到访问资源, 再从右到左访问放行后逻辑</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/06/hmliEUCpJzsDn6F.png"
+                      alt="filter-note-1.png"
+                ></p>
 ]]></content>
+      <categories>
+        <category>note</category>
+        <category>JavaWeb</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
@@ -131,47 +45,42 @@
       </tags>
   </entry>
   <entry>
-    <title>容易忽视的知识</title>
-    <url>/2022/12/04/JavaSE/%E5%AE%B9%E6%98%93%E5%BF%BD%E8%A7%86%E7%9A%84%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h2 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h2><p>问: 以下语句输出什么?</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">o1</span> <span class="operator">=</span> <span class="literal">true</span> ? <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">1</span>) : <span class="keyword">new</span> <span class="title class_">Double</span>(<span class="number">2.0</span>);</span><br><span class="line">System.out.println(o1);</span><br></pre></td></tr></table></figure></div>
-<p>答: 将输出 1.0</p>
-<ol>
-<li>三目运算符只能使用基本数据类型，所以编译自动拆箱为int、double</li>
-<li>三目运算符要求数据类型一致，所以编译int自动提升为double</li>
-</ol>
-<h2 id="Integer的创建机制"><a href="#Integer的创建机制" class="headerlink" title="Integer的创建机制"></a>Integer的创建机制</h2><ul>
-<li>Integer类里有个内部类IntegerCache</li>
-<li>IntegerCache定义了一个大小范围用作Integer的缓存 [-128, 127] 最高值默认127, 可通过jvm参数 <em>-XX:AutoBoxCacheMax</em> 修改</li>
-<li>当使用Integer.valueOf(number)获取Integer实例时, 如果number的值在这个缓存区间里, 将会直接返回对应实例, 如果不在这个区间, 则会返回一个新的Integer对象</li>
+    <title>JavaWEB笔记-HTTP</title>
+    <url>/JavaWeb/JavaWeb-HTTP/</url>
+    <content><![CDATA[<h2 id="请求的数据格式"><a href="#请求的数据格式" class="headerlink" title="请求的数据格式"></a>请求的数据格式</h2><p>数据分为三部分</p>
+<ul>
+<li>请求行: 请求数据第一行, GET&#x2F;POST 表示请求方式 &#x2F; 表示请求路径 HTTP&#x2F;1.1表示协议版本</li>
+<li>请求头: 键值对数据</li>
+<li>请求体: POST请求的最后一部分, 存放请求参数</li>
 </ul>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 以下为Integer.valueOf() 源码</span></span><br><span class="line"><span class="comment"> * if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)&#123;</span></span><br><span class="line"><span class="comment"> *     return IntegerCache.cache[i + (-IntegerCache.low)]; </span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> * return new Integer(i);</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="type">Integer</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">Integer</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">System.out.println(a == b); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="type">Integer</span> <span class="variable">a1</span> <span class="operator">=</span> <span class="number">128</span>;</span><br><span class="line"><span class="type">Integer</span> <span class="variable">b1</span> <span class="operator">=</span> <span class="number">128</span>;</span><br><span class="line">System.out.println(a1 == b1); <span class="comment">// false</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>例子:</p>
+<div class="highlight-container" data-rel="Http"><figure class="iseeu highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line">浏览器能够接受的资源类型</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line">浏览器可以支持的压缩类型</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate, br</span><br><span class="line">浏览器偏好语言</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=0</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">Cookie</span>:</span><br><span class="line">请求主机名</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.baidu.com </span><br><span class="line"><span class="attribute">Sec-Fetch-Dest</span><span class="punctuation">: </span>document</span><br><span class="line"><span class="attribute">Sec-Fetch-Mode</span><span class="punctuation">: </span>navigate</span><br><span class="line"><span class="attribute">Sec-Fetch-Site</span><span class="punctuation">: </span>none</span><br><span class="line"><span class="attribute">Sec-Fetch-User</span><span class="punctuation">: </span>?1</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line">浏览器版本</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36</span><br><span class="line"><span class="attribute">sec-ch-ua</span><span class="punctuation">: </span>&quot;Chromium&quot;;v=&quot;106&quot;, &quot;Google Chrome&quot;;v=&quot;106&quot;, &quot;Not;A=Brand&quot;;v=&quot;99&quot;</span><br><span class="line"><span class="attribute">sec-ch-ua-mobile</span><span class="punctuation">: </span>?0</span><br><span class="line"><span class="attribute">sec-ch-ua-platform</span><span class="punctuation">: </span>&quot;Windows&quot;</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="final-关键字"><a href="#final-关键字" class="headerlink" title="final 关键字"></a>final 关键字</h2><ol>
-<li>当final关键字被使用在类上时, 该类就无法被其他类继承<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line">      </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//如果尝试继承MyClass编译器就会报错</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Class2</span> <span class="keyword">extends</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line">      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
-<li>当final关键字被使用在方法上时, 该方法就无法被重写<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyCar</span> &#123;  </span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">testM</span><span class="params">()</span> &#123;  </span><br><span class="line">        System.out.println(<span class="string">&quot;mmmmm&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyTrunk</span> <span class="keyword">extends</span> <span class="title class_">MyCar</span> &#123;</span><br><span class="line">    <span class="comment">//尝试重写, 编译器报错</span></span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testM</span><span class="params">()</span> &#123;</span><br><span class="line">	    System.out.println(<span class="string">&quot;EEEEE&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div></li>
-<li>当final关键字被使用在属性字段上时, 该属性字段一旦被赋值, 就无法被修改。需要注意的是, 这里的不可修改指的是: 无法修改该属性字段的地址值, 但数据本身是可以修改的<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="comment">//可以修改数组里的值</span></span><br><span class="line">arr[<span class="number">0</span>] = <span class="number">100</span>;</span><br><span class="line"><span class="comment">//但不能重新指向新的数组, 不可以修改arr的地址</span></span><br><span class="line">arr = <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;&#125;;</span><br></pre></td></tr></table></figure></div></li>
-</ol>
+<p><strong>GET请求参数在请求行中.没有请求体</strong></p>
+<p><strong>POST请求参数在请求体中</strong></p>
+<p><strong>GET请求有参数大小限制.POST没有</strong></p>
+<h2 id="响应的数据格式"><a href="#响应的数据格式" class="headerlink" title="响应的数据格式"></a>响应的数据格式</h2><p>数据分为三部分</p>
+<ul>
+<li>响应行: 响应数据第一行, HTTP&#x2F;1.1表示协议版本 200 代表响应代码 OK 表示状态描述</li>
+<li>响应头: 键值对数据</li>
+<li>响应体: 最后一部分, 存放响应数据</li>
+</ul>
+<div class="highlight-container" data-rel="Http"><figure class="iseeu highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Bdpagetype</span><span class="punctuation">: </span>2</span><br><span class="line"><span class="attribute">Bdqid</span><span class="punctuation">: </span>0xeaa6d46b0000e982</span><br><span class="line">客户端如何缓存, 设置 max-age=300 表示最多缓存300秒</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>private</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line">响应的压缩算法</span><br><span class="line"><span class="attribute">Content-Encoding</span><span class="punctuation">: </span>gzip</span><br><span class="line">响应内容的类型</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html;charset=utf-8</span><br><span class="line">响应内容长度(字节数)</span><br><span class="line"><span class="attribute">Content-Lenght</span><span class="punctuation">: </span>100</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>BWS/1.1</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>BDSVRTM=318; path=/</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>BD_HOME=1; path=/</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>H_PS_PSSID=37375_36551_37359_36884_37402_37396_37406_36786_37499_26350_37448_37370_37449; path=/; domain=.baidu.com</span><br><span class="line"><span class="attribute">Strict-Transport-Security</span><span class="punctuation">: </span>max-age=172800</span><br><span class="line"><span class="attribute">Traceid</span><span class="punctuation">: </span>1665032548061897473016908435407035754882</span><br><span class="line"><span class="attribute">X-Frame-Options</span><span class="punctuation">: </span>sameorigin</span><br><span class="line"><span class="attribute">X-Ua-Compatible</span><span class="punctuation">: </span>IE=Edge,chrome=1</span><br><span class="line"><span class="attribute">Transfer-Encoding</span><span class="punctuation">: </span>chunked</span><br></pre></td></tr></table></figure></div>
+
 ]]></content>
-      <tags>
-        <tag>reids</tag>
-        <tag>jedis</tag>
-        <tag>Spring-data-redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>线程</title>
-    <url>/2022/10/07/JavaSE/%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<p>测试文本<br>测试内容</p>
-]]></content>
+      <categories>
+        <category>note</category>
+        <category>JavaWeb</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
+        <tag>HTTP</tag>
       </tags>
   </entry>
   <entry>
     <title>JavaWEB笔记-Servlet</title>
-    <url>/2022/10/06/JavaWeb/JavaWeb-Tomcat/</url>
+    <url>/JavaWeb/JavaWeb-Tomcat/</url>
     <content><![CDATA[<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><p>创建web项目,导入servlet坐标</p>
 <div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Tomcat 10 使用这个--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jakarta.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jakarta.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
 
@@ -196,92 +105,19 @@
 <h2 id="xml配置Servlet"><a href="#xml配置Servlet" class="headerlink" title="xml配置Servlet"></a>xml配置Servlet</h2><p>需要在web.xml中配置, 例子如下, Servlet类与注解方式一样，只是不需要写注解@WebServlet</p>
 <div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- servlet名字 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>test<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- servlet类的路径 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.eoezora.controller.TestController<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- servlet名字 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>test<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- servlet访问路径 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/test<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
 ]]></content>
+      <categories>
+        <category>note</category>
+        <category>JavaWeb</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
         <tag>HTTP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaWEB笔记-HTTP</title>
-    <url>/2022/10/06/JavaWeb/JavaWeb-HTTP/</url>
-    <content><![CDATA[<h2 id="请求的数据格式"><a href="#请求的数据格式" class="headerlink" title="请求的数据格式"></a>请求的数据格式</h2><p>数据分为三部分</p>
-<ul>
-<li>请求行: 请求数据第一行, GET&#x2F;POST 表示请求方式 &#x2F; 表示请求路径 HTTP&#x2F;1.1表示协议版本</li>
-<li>请求头: 键值对数据</li>
-<li>请求体: POST请求的最后一部分, 存放请求参数</li>
-</ul>
-<p>例子:</p>
-<div class="highlight-container" data-rel="Http"><figure class="iseeu highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line">浏览器能够接受的资源类型</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line">浏览器可以支持的压缩类型</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate, br</span><br><span class="line">浏览器偏好语言</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=0</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">Cookie</span>:</span><br><span class="line">请求主机名</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.baidu.com </span><br><span class="line"><span class="attribute">Sec-Fetch-Dest</span><span class="punctuation">: </span>document</span><br><span class="line"><span class="attribute">Sec-Fetch-Mode</span><span class="punctuation">: </span>navigate</span><br><span class="line"><span class="attribute">Sec-Fetch-Site</span><span class="punctuation">: </span>none</span><br><span class="line"><span class="attribute">Sec-Fetch-User</span><span class="punctuation">: </span>?1</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line">浏览器版本</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36</span><br><span class="line"><span class="attribute">sec-ch-ua</span><span class="punctuation">: </span>&quot;Chromium&quot;;v=&quot;106&quot;, &quot;Google Chrome&quot;;v=&quot;106&quot;, &quot;Not;A=Brand&quot;;v=&quot;99&quot;</span><br><span class="line"><span class="attribute">sec-ch-ua-mobile</span><span class="punctuation">: </span>?0</span><br><span class="line"><span class="attribute">sec-ch-ua-platform</span><span class="punctuation">: </span>&quot;Windows&quot;</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>GET请求参数在请求行中.没有请求体</strong></p>
-<p><strong>POST请求参数在请求体中</strong></p>
-<p><strong>GET请求有参数大小限制.POST没有</strong></p>
-<h2 id="响应的数据格式"><a href="#响应的数据格式" class="headerlink" title="响应的数据格式"></a>响应的数据格式</h2><p>数据分为三部分</p>
-<ul>
-<li>响应行: 响应数据第一行, HTTP&#x2F;1.1表示协议版本 200 代表响应代码 OK 表示状态描述</li>
-<li>响应头: 键值对数据</li>
-<li>响应体: 最后一部分, 存放响应数据</li>
-</ul>
-<div class="highlight-container" data-rel="Http"><figure class="iseeu highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Bdpagetype</span><span class="punctuation">: </span>2</span><br><span class="line"><span class="attribute">Bdqid</span><span class="punctuation">: </span>0xeaa6d46b0000e982</span><br><span class="line">客户端如何缓存, 设置 max-age=300 表示最多缓存300秒</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>private</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line">响应的压缩算法</span><br><span class="line"><span class="attribute">Content-Encoding</span><span class="punctuation">: </span>gzip</span><br><span class="line">响应内容的类型</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html;charset=utf-8</span><br><span class="line">响应内容长度(字节数)</span><br><span class="line"><span class="attribute">Content-Lenght</span><span class="punctuation">: </span>100</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>BWS/1.1</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>BDSVRTM=318; path=/</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>BD_HOME=1; path=/</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>H_PS_PSSID=37375_36551_37359_36884_37402_37396_37406_36786_37499_26350_37448_37370_37449; path=/; domain=.baidu.com</span><br><span class="line"><span class="attribute">Strict-Transport-Security</span><span class="punctuation">: </span>max-age=172800</span><br><span class="line"><span class="attribute">Traceid</span><span class="punctuation">: </span>1665032548061897473016908435407035754882</span><br><span class="line"><span class="attribute">X-Frame-Options</span><span class="punctuation">: </span>sameorigin</span><br><span class="line"><span class="attribute">X-Ua-Compatible</span><span class="punctuation">: </span>IE=Edge,chrome=1</span><br><span class="line"><span class="attribute">Transfer-Encoding</span><span class="punctuation">: </span>chunked</span><br></pre></td></tr></table></figure></div>
-
-]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>note</tag>
-        <tag>HTTP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaWEB笔记-请求和响应</title>
-    <url>/2022/10/05/JavaWeb/JavaWeb-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/</url>
-    <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
-<li>Request: 获取请求数据</li>
-<li>Response: 设置响应数据</li>
-</ul>
-<h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><h3 id="获取请求数据"><a href="#获取请求数据" class="headerlink" title="获取请求数据"></a>获取请求数据</h3><p>一些需要了解的方法</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    <span class="comment">// http://localhost:8080/EoeWebDemo_war/test?username=aas&amp;password=1234567</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 请求行的数据</span></span><br><span class="line">    req.getMethod(); <span class="comment">// GET  提交方法</span></span><br><span class="line">    req.getContextPath(); <span class="comment">// EoeWebDemo_war  虚拟路径</span></span><br><span class="line">    req.getRequestURL(); <span class="comment">// http://localhost:8080/EoeWebDemo_war/test</span></span><br><span class="line">    req.getRequestURI(); <span class="comment">// /EoeWebDemo_war/test</span></span><br><span class="line">    req.getQueryString();  <span class="comment">// username=aas&amp;password=1234567</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//请求头的数据, 根据请求头名称获取值</span></span><br><span class="line">    req.getHeader(<span class="string">&quot;User-Agent&quot;</span>);</span><br><span class="line">    <span class="comment">//Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    <span class="comment">//获取POST请求体的数据</span></span><br><span class="line">    <span class="comment">//获取流对象</span></span><br><span class="line">    <span class="comment">// BufferedReader getReader()：获取字符输入流 只能操作字符数据</span></span><br><span class="line">    <span class="comment">// ServletInputStream getInputStream()：获取字节输入流 可以操作所有类型数据</span></span><br><span class="line">    req.getInputStream();</span><br><span class="line">    req.getReader();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>Reuqest提供的获取参数的方法,不管是get还是post都通用</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取所有参数</span></span><br><span class="line">Map&lt;String, String[]&gt; stringMap = req.getParameterMap();</span><br><span class="line"><span class="comment">//获取指定参数名的多个值</span></span><br><span class="line">String[] pars = req.getParameterValues(<span class="string">&quot;某个参数名&quot;</span>);</span><br><span class="line"><span class="comment">//获取指定参数的单个值</span></span><br><span class="line"><span class="type">String</span> <span class="variable">par</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;某个参数名&quot;</span>);</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="中文参数乱码解决方式"><a href="#中文参数乱码解决方式" class="headerlink" title="中文参数乱码解决方式"></a>中文参数乱码解决方式</h3><p>浏览器对url中的中文会进行URL编码,而Tomcat在解码时使用的字符集是<strong>ISO-8859-1</strong>, 会导致中文乱码.</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//POST请求直接使用这个方法设置即可</span></span><br><span class="line">req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line"><span class="comment">//GET请求需要我们手动对字符串进行编码解码操作</span></span><br><span class="line"><span class="comment">//把收到的字符串转为二进制</span></span><br><span class="line"><span class="type">byte</span>[] bytes = req.getParameter(<span class="string">&quot;参数名&quot;</span>).getBytes();</span><br><span class="line"><span class="comment">//在用utf8字符集把二进制数据转成String</span></span><br><span class="line"><span class="type">String</span> <span class="variable">newParame</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(bytes, StandardCharsets.UTF_8);</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3><p>一种服务器内部资源跳转方式</p>
-<p>特点</p>
-<ul>
-<li>浏览器地址栏不会发生变化</li>
-<li>转发只能转到服务器内部资源</li>
-<li>转发是一次请求,可以使用request共享数据</li>
-</ul>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//转发资源间共享数据方式</span></span><br><span class="line">request.setAttribute(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line">request.getAttribute(<span class="string">&quot;key&quot;</span>);</span><br><span class="line">request.removeAttribute(<span class="string">&quot;key&quot;</span>);</span><br><span class="line"><span class="comment">//请求转发</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">&quot;其他资源的访问路径&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h2><p>一些方法</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    <span class="comment">//设置响应代码</span></span><br><span class="line">    response.setStatus(<span class="number">200</span>);</span><br><span class="line">    <span class="comment">//设置响应头</span></span><br><span class="line">    response.setHeader(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line">    <span class="comment">//获取字符输出流</span></span><br><span class="line">    response.getWriter();</span><br><span class="line">    <span class="comment">//获取字节输出流</span></span><br><span class="line">    response.getOutputStream();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="Response重定向"><a href="#Response重定向" class="headerlink" title="Response重定向"></a>Response重定向</h3><p>介绍：一种资源跳转方式</p>
-<p>特点</p>
-<ul>
-<li>地址栏路径发生变化</li>
-<li>可以重定向到任意位置资源, 服务器内部, 外部都可</li>
-<li>两次请求,不能在多个资源共享数据</li>
-</ul>
-<p>实现方式</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置重定向代码</span></span><br><span class="line">response.setStatus(<span class="number">302</span>);</span><br><span class="line"><span class="comment">//设置重定向路径</span></span><br><span class="line"><span class="comment">//需要添加request.getContextPath()虚拟目录</span></span><br><span class="line">response.setHeader(<span class="string">&quot;Location&quot;</span>, request.getContextPath() + <span class="string">&quot;/ts&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//简化方式, 使用这个</span></span><br><span class="line">response.sendRedirect(request.getContextPath() + <span class="string">&quot;/ts&quot;</span>);</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="响应字符数据"><a href="#响应字符数据" class="headerlink" title="响应字符数据"></a>响应字符数据</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//response.setHeader(&quot;Content-Type&quot;,&quot;text/html&quot;);</span></span><br><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br><span class="line"><span class="type">PrintWriter</span> <span class="variable">pw</span> <span class="operator">=</span> response.getWriter();</span><br><span class="line">pw.write(<span class="string">&quot;aaaaa&quot;</span>);</span><br><span class="line">pw.write(<span class="string">&quot;&lt;h1&gt;aaaaa&lt;/h1&gt;&quot;</span>);</span><br><span class="line"><span class="comment">//响应完成后, response 会被销毁, PrintWriter会被服务器关闭</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//响应字节流数据</span></span><br><span class="line"><span class="type">FileInputStream</span> <span class="variable">fileInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;/bg.jpg&quot;</span>);</span><br><span class="line"><span class="type">ServletOutputStream</span> <span class="variable">out</span> <span class="operator">=</span> response.getOutputStream();</span><br><span class="line"><span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="keyword">while</span> ((lenght = fileInputStream.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">    out.write(buffer,<span class="number">0</span>,lenght);</span><br><span class="line">&#125;</span><br><span class="line">fileInputStream.close();</span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>note</tag>
-        <tag>Resquest</tag>
-        <tag>Response</tag>
       </tags>
   </entry>
   <entry>
     <title>JavaWEB笔记-会话跟踪技术</title>
-    <url>/2022/10/07/JavaWeb/JavaWeb-%E4%BC%9A%E8%AF%9D%E8%B7%9F%E8%B8%AA%E6%8A%80%E6%9C%AF/</url>
+    <url>/JavaWeb/JavaWeb-%E4%BC%9A%E8%AF%9D%E8%B7%9F%E8%B8%AA%E6%8A%80%E6%9C%AF/</url>
     <content><![CDATA[<h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><ul>
 <li>会话:客户端跟服务端的连接,会话建立后直到一方断开连接才会结束.在一次会话中可以包含多次请求和响应</li>
 <li>会话跟踪:服务端会识别多个请求是否来自同一个客户端,以便在同次会话的多次请求间共享数据</li>
@@ -327,14 +163,90 @@
 <li>性能影响: cookie不占用服务器资源, session占用服务器资源</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>note</category>
+        <category>JavaWeb</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
       </tags>
   </entry>
   <entry>
+    <title>JavaWEB笔记-请求和响应</title>
+    <url>/JavaWeb/JavaWeb-%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94/</url>
+    <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li>Request: 获取请求数据</li>
+<li>Response: 设置响应数据</li>
+</ul>
+<h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><h3 id="获取请求数据"><a href="#获取请求数据" class="headerlink" title="获取请求数据"></a>获取请求数据</h3><p>一些需要了解的方法</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    <span class="comment">// http://localhost:8080/EoeWebDemo_war/test?username=aas&amp;password=1234567</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 请求行的数据</span></span><br><span class="line">    req.getMethod(); <span class="comment">// GET  提交方法</span></span><br><span class="line">    req.getContextPath(); <span class="comment">// EoeWebDemo_war  虚拟路径</span></span><br><span class="line">    req.getRequestURL(); <span class="comment">// http://localhost:8080/EoeWebDemo_war/test</span></span><br><span class="line">    req.getRequestURI(); <span class="comment">// /EoeWebDemo_war/test</span></span><br><span class="line">    req.getQueryString();  <span class="comment">// username=aas&amp;password=1234567</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//请求头的数据, 根据请求头名称获取值</span></span><br><span class="line">    req.getHeader(<span class="string">&quot;User-Agent&quot;</span>);</span><br><span class="line">    <span class="comment">//Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    <span class="comment">//获取POST请求体的数据</span></span><br><span class="line">    <span class="comment">//获取流对象</span></span><br><span class="line">    <span class="comment">// BufferedReader getReader()：获取字符输入流 只能操作字符数据</span></span><br><span class="line">    <span class="comment">// ServletInputStream getInputStream()：获取字节输入流 可以操作所有类型数据</span></span><br><span class="line">    req.getInputStream();</span><br><span class="line">    req.getReader();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>Reuqest提供的获取参数的方法,不管是get还是post都通用</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取所有参数</span></span><br><span class="line">Map&lt;String, String[]&gt; stringMap = req.getParameterMap();</span><br><span class="line"><span class="comment">//获取指定参数名的多个值</span></span><br><span class="line">String[] pars = req.getParameterValues(<span class="string">&quot;某个参数名&quot;</span>);</span><br><span class="line"><span class="comment">//获取指定参数的单个值</span></span><br><span class="line"><span class="type">String</span> <span class="variable">par</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;某个参数名&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="中文参数乱码解决方式"><a href="#中文参数乱码解决方式" class="headerlink" title="中文参数乱码解决方式"></a>中文参数乱码解决方式</h3><p>浏览器对url中的中文会进行URL编码,而Tomcat在解码时使用的字符集是<strong>ISO-8859-1</strong>, 会导致中文乱码.</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//POST请求直接使用这个方法设置即可</span></span><br><span class="line">req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line"><span class="comment">//GET请求需要我们手动对字符串进行编码解码操作</span></span><br><span class="line"><span class="comment">//把收到的字符串转为二进制</span></span><br><span class="line"><span class="type">byte</span>[] bytes = req.getParameter(<span class="string">&quot;参数名&quot;</span>).getBytes();</span><br><span class="line"><span class="comment">//在用utf8字符集把二进制数据转成String</span></span><br><span class="line"><span class="type">String</span> <span class="variable">newParame</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(bytes, StandardCharsets.UTF_8);</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3><p>一种服务器内部资源跳转方式</p>
+<p>特点</p>
+<ul>
+<li>浏览器地址栏不会发生变化</li>
+<li>转发只能转到服务器内部资源</li>
+<li>转发是一次请求,可以使用request共享数据</li>
+</ul>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//转发资源间共享数据方式</span></span><br><span class="line">request.setAttribute(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line">request.getAttribute(<span class="string">&quot;key&quot;</span>);</span><br><span class="line">request.removeAttribute(<span class="string">&quot;key&quot;</span>);</span><br><span class="line"><span class="comment">//请求转发</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">&quot;其他资源的访问路径&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h2><p>一些方法</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    <span class="comment">//设置响应代码</span></span><br><span class="line">    response.setStatus(<span class="number">200</span>);</span><br><span class="line">    <span class="comment">//设置响应头</span></span><br><span class="line">    response.setHeader(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line">    <span class="comment">//获取字符输出流</span></span><br><span class="line">    response.getWriter();</span><br><span class="line">    <span class="comment">//获取字节输出流</span></span><br><span class="line">    response.getOutputStream();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Response重定向"><a href="#Response重定向" class="headerlink" title="Response重定向"></a>Response重定向</h3><p>介绍：一种资源跳转方式</p>
+<p>特点</p>
+<ul>
+<li>地址栏路径发生变化</li>
+<li>可以重定向到任意位置资源, 服务器内部, 外部都可</li>
+<li>两次请求,不能在多个资源共享数据</li>
+</ul>
+<p>实现方式</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置重定向代码</span></span><br><span class="line">response.setStatus(<span class="number">302</span>);</span><br><span class="line"><span class="comment">//设置重定向路径</span></span><br><span class="line"><span class="comment">//需要添加request.getContextPath()虚拟目录</span></span><br><span class="line">response.setHeader(<span class="string">&quot;Location&quot;</span>, request.getContextPath() + <span class="string">&quot;/ts&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//简化方式, 使用这个</span></span><br><span class="line">response.sendRedirect(request.getContextPath() + <span class="string">&quot;/ts&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="响应字符数据"><a href="#响应字符数据" class="headerlink" title="响应字符数据"></a>响应字符数据</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//response.setHeader(&quot;Content-Type&quot;,&quot;text/html&quot;);</span></span><br><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br><span class="line"><span class="type">PrintWriter</span> <span class="variable">pw</span> <span class="operator">=</span> response.getWriter();</span><br><span class="line">pw.write(<span class="string">&quot;aaaaa&quot;</span>);</span><br><span class="line">pw.write(<span class="string">&quot;&lt;h1&gt;aaaaa&lt;/h1&gt;&quot;</span>);</span><br><span class="line"><span class="comment">//响应完成后, response 会被销毁, PrintWriter会被服务器关闭</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//响应字节流数据</span></span><br><span class="line"><span class="type">FileInputStream</span> <span class="variable">fileInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;/bg.jpg&quot;</span>);</span><br><span class="line"><span class="type">ServletOutputStream</span> <span class="variable">out</span> <span class="operator">=</span> response.getOutputStream();</span><br><span class="line"><span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="keyword">while</span> ((lenght = fileInputStream.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">    out.write(buffer,<span class="number">0</span>,lenght);</span><br><span class="line">&#125;</span><br><span class="line">fileInputStream.close();</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>note</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>note</tag>
+        <tag>Resquest</tag>
+        <tag>Response</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaWEB笔记-JDBC-连接池</title>
+    <url>/jdbc-note/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/</url>
+    <content><![CDATA[<p><strong>简介: 数据库连接池是个容器, 负责分配, 管理数据库链接, 允许应用程序重复使用现有的数据库链接, 而不是重新建立一个新连接</strong></p>
+<p>标准接口: DataSource</p>
+<h3 id="Druid配置文件"><a href="#Druid配置文件" class="headerlink" title="Druid配置文件"></a>Druid配置文件</h3><div class="highlight-container" data-rel="Properties"><figure class="iseeu highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">url</span>=<span class="string">jdbc:mysql:///eoezora?useSSL=false&amp;allowPublicKeyRetrieval=true</span></span><br><span class="line"><span class="attr">username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">root</span></span><br><span class="line"><span class="comment">#初始化连接数量</span></span><br><span class="line"><span class="attr">initialSize</span>=<span class="string">5</span></span><br><span class="line"><span class="comment">#最大连接数</span></span><br><span class="line"><span class="attr">maxActive</span>=<span class="string">10</span></span><br><span class="line"><span class="comment">#最大等待时间 ms</span></span><br><span class="line"><span class="attr">maxWait</span>=<span class="string">3000</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="加载配置"><a href="#加载配置" class="headerlink" title="加载配置"></a>加载配置</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.加载配置文件</span></span><br><span class="line"><span class="type">Properties</span> <span class="variable">pro</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line"><span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> DruidDemo.class.getClassLoader().getResourceAsStream(<span class="string">&quot;druid.properties&quot;</span>);</span><br><span class="line">pro.load(is);</span><br><span class="line"><span class="comment">//2.获取连接池对象</span></span><br><span class="line"><span class="type">DataSource</span> <span class="variable">ds</span> <span class="operator">=</span> DruidDataSourceFactory.createDataSource(pro);</span><br><span class="line"><span class="comment">//3.获取连接</span></span><br><span class="line"><span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> ds.getConnection();</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="归还连接-释放资源"><a href="#归还连接-释放资源" class="headerlink" title="归还连接|释放资源"></a>归还连接|释放资源</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">(ResultSet rs, Statement stmt, Connection conn)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (rs!=<span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            rs.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (stmt!=<span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            stmt.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (conn!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn.close();<span class="comment">//归还连接</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>note</tag>
+        <tag>jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaWEB笔记-JDBC-API详解</title>
-    <url>/2022/10/03/jdbc-note/API%E8%AF%A6%E8%A7%A3/</url>
+    <url>/jdbc-note/API%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<h2 id="DriverManager"><a href="#DriverManager" class="headerlink" title="DriverManager"></a>DriverManager</h2><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建一个链接</span></span><br><span class="line"><span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost/database?useSSL=false&amp;allowPublicKeyRetrieval=true&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">pwd</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> DriverManager.getConnection(url,user,pwd);</span><br></pre></td></tr></table></figure></div>
 
 
@@ -355,24 +267,9 @@
 <div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> DriverManager.getConnection(url,user,pwd);</span><br><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;SELECT * FROM goods WHERE id = ?&quot;</span>;</span><br><span class="line"><span class="comment">//获取预编译Sql对象</span></span><br><span class="line"><span class="type">PreparedStatement</span> <span class="variable">ps</span> <span class="operator">=</span> connection.prepareStatement(sql);</span><br><span class="line"><span class="comment">//设置 ？的参数值</span></span><br><span class="line"><span class="comment">//参数位置 | 参数值</span></span><br><span class="line">ps.setInt(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line"><span class="comment">//执行语句</span></span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> ps.executeQuery();</span><br><span class="line">rs.next();</span><br><span class="line">System.out.println(rs.getString(<span class="string">&quot;name&quot;</span>));</span><br></pre></td></tr></table></figure></div>
 
 ]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>note</tag>
-        <tag>jdbc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaWEB笔记-JDBC-连接池</title>
-    <url>/2022/10/03/jdbc-note/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/</url>
-    <content><![CDATA[<p><strong>简介: 数据库连接池是个容器, 负责分配, 管理数据库链接, 允许应用程序重复使用现有的数据库链接, 而不是重新建立一个新连接</strong></p>
-<p>标准接口: DataSource</p>
-<h3 id="Druid配置文件"><a href="#Druid配置文件" class="headerlink" title="Druid配置文件"></a>Druid配置文件</h3><div class="highlight-container" data-rel="Properties"><figure class="iseeu highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">url</span>=<span class="string">jdbc:mysql:///eoezora?useSSL=false&amp;allowPublicKeyRetrieval=true</span></span><br><span class="line"><span class="attr">username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">root</span></span><br><span class="line"><span class="comment">#初始化连接数量</span></span><br><span class="line"><span class="attr">initialSize</span>=<span class="string">5</span></span><br><span class="line"><span class="comment">#最大连接数</span></span><br><span class="line"><span class="attr">maxActive</span>=<span class="string">10</span></span><br><span class="line"><span class="comment">#最大等待时间 ms</span></span><br><span class="line"><span class="attr">maxWait</span>=<span class="string">3000</span></span><br></pre></td></tr></table></figure></div>
-
-<h3 id="加载配置"><a href="#加载配置" class="headerlink" title="加载配置"></a>加载配置</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.加载配置文件</span></span><br><span class="line"><span class="type">Properties</span> <span class="variable">pro</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line"><span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> DruidDemo.class.getClassLoader().getResourceAsStream(<span class="string">&quot;druid.properties&quot;</span>);</span><br><span class="line">pro.load(is);</span><br><span class="line"><span class="comment">//2.获取连接池对象</span></span><br><span class="line"><span class="type">DataSource</span> <span class="variable">ds</span> <span class="operator">=</span> DruidDataSourceFactory.createDataSource(pro);</span><br><span class="line"><span class="comment">//3.获取连接</span></span><br><span class="line"><span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> ds.getConnection();</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="归还连接-释放资源"><a href="#归还连接-释放资源" class="headerlink" title="归还连接|释放资源"></a>归还连接|释放资源</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">(ResultSet rs, Statement stmt, Connection conn)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (rs!=<span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            rs.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (stmt!=<span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            stmt.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (conn!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn.close();<span class="comment">//归还连接</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
@@ -381,7 +278,7 @@
   </entry>
   <entry>
     <title>Git学习笔记</title>
-    <url>/2022/10/07/git/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <url>/git/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2><p>工作区: 包含.git文件夹的目录就是工作区，也就是你的项目文件夹</p>
 <p>暂存区: <strong>.git</strong>文件夹中的index文件是暂存区,也叫做stage，是临时保存修改文件的地方</p>
 <p>版本库: <strong>.git</strong>文件夹是版本库，版本库中存储了许多配置信息，日志信息，文件版本等</p>
@@ -405,7 +302,7 @@
 
 ]]></content>
       <categories>
-        <category>java</category>
+        <category>note</category>
       </categories>
       <tags>
         <tag>java</tag>
@@ -414,7 +311,7 @@
   </entry>
   <entry>
     <title>JavaWEB笔记-MyBatis-增删改查</title>
-    <url>/2022/10/05/myBatis/Mybatis-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/</url>
+    <url>/myBatis/Mybatis-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/</url>
     <content><![CDATA[<h2 id="增删改查例子"><a href="#增删改查例子" class="headerlink" title="增删改查例子"></a>增删改查例子</h2><h3 id="AccountMapper-xml"><a href="#AccountMapper-xml" class="headerlink" title="AccountMapper.xml"></a><strong>AccountMapper.xml</strong></h3><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- namespace是映射接口的路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.eoezora.mybatisDemo.mapper.AccountMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 添加数据, 参数POJO -&gt; EoeAccount --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 添加这两个 useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot; 属性在insert标签里可以返回主键 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addAccount&quot;</span> <span class="attr">useGeneratedKeys</span>=<span class="string">&quot;true&quot;</span> <span class="attr">keyProperty</span>=<span class="string">&quot;id&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addAccount&quot;</span> &gt;</span></span><br><span class="line">        INSERT INTO account (name, age, brithDay, location)</span><br><span class="line">        <span class="comment">&lt;!-- 这里的名字要与POJO类力的变量名一致 --&gt;</span></span><br><span class="line">        VALUES (#&#123;name&#125;,#&#123;age&#125;,#&#123;brithDay&#125;,#&#123;location&#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 删除一条数据 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;delAccouintById&quot;</span>&gt;</span></span><br><span class="line">        DELETE</span><br><span class="line">        FROM account</span><br><span class="line">        WHERE id = #&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 删除多条数据 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;delAccouintByIds&quot;</span>&gt;</span></span><br><span class="line">        DELETE</span><br><span class="line">        FROM account</span><br><span class="line">        WHERE id in</span><br><span class="line">        <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">            collection需要遍历的集合 </span></span><br><span class="line"><span class="comment">            item 集合里的元素 </span></span><br><span class="line"><span class="comment">            separator 分隔符</span></span><br><span class="line"><span class="comment">            open 前缀符</span></span><br><span class="line"><span class="comment">            close 后缀符</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;ids&quot;</span> <span class="attr">item</span>=<span class="string">&quot;id&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">            #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 查询所以数据 多个条件使用 and 分割 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAccounts&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">        SELECT *</span><br><span class="line">        FROM account;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 根据ID查询数据 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAccount&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">        SELECT *</span><br><span class="line">        FROM account</span><br><span class="line">        WHERE id = #&#123;id&#125;;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 根据ID修改数据 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 动态修改参考动态查询 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;setAccountAge&quot;</span>&gt;</span></span><br><span class="line">        UPDATE account</span><br><span class="line">        SET age = #&#123;age&#125;</span><br><span class="line">        WHERE id = #&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
 
 <h3 id="AccountMapper-class"><a href="#AccountMapper-class" class="headerlink" title="AccountMapper.class"></a><strong>AccountMapper.class</strong></h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.eoezora.mybatisDemo.mapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.eoezora.mybatisDemo.pojo.EoeAccount;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="comment">//映射接口, 方法名与上方SQL映射xml里的ID一致</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AccountMapper</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;insert id=&quot;addAccount&quot; parameterType=&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;&gt;</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">addAccount</span><span class="params">(EoeAccount eoeAccount)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;select id=&quot;selectAccounts&quot; resultType=&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;&gt;</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    List&lt;EoeAccount&gt; <span class="title function_">selectAccounts</span><span class="params">()</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;select id=&quot;selectAccount&quot; parameterType=&quot;int&quot; resultType=&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;&gt;</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    EoeAccount <span class="title function_">selectAccount</span><span class="params">(<span class="meta">@Param(&quot;id&quot;)</span><span class="type">int</span> id)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;delete id=&quot;delAccouintById&quot;&gt;</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">delAccouintById</span><span class="params">(<span class="meta">@Param(&quot;id&quot;)</span><span class="type">int</span> id)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;delete id=&quot;delAccouintByIds&quot;&gt; 传入数组批量删除多条数据</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">delAccouintById</span><span class="params">(<span class="meta">@Param(&quot;ids&quot;)</span> <span class="type">int</span>[] id)</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//传递参数的三种方式</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 多个单独的参数, <span class="doctag">@Param</span>里的值与xml映射表的占位符一致,也就是与 xml 里的 #&#123;&#125; 里的一致 例如: #&#123;name&#125;</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    List&lt;EoeAccount&gt; <span class="title function_">selectAccountByCondition</span><span class="params">(<span class="meta">@Param(&quot;name&quot;)</span> String name, <span class="meta">@Param(&quot;age&quot;)</span> intn age)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果参数可以封装在同一个类里,也可以直接传一个对象过来. xml #&#123;&#125; 将使用该对象参数名作为占位符</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    List&lt;EoeAccount&gt; <span class="title function_">selectAccountByCondition</span><span class="params">(EoeAccount account)</span>;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * HashMap key -&gt; value </span></span><br><span class="line"><span class="comment">     *  - 占位符名称 -&gt; 数值</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    List&lt;EoeAccount&gt; <span class="title function_">selectAccountByCondition</span><span class="params">(Map map)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用注解查询, 一般使用在简单的sql语句上, 复杂的语句还是使用xml映射</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    <span class="meta">@Select(&quot;SELECT * FROM account WHERE id = #&#123;id&#125;&quot;)</span></span><br><span class="line">    EoeAccount <span class="title function_">selectAccount</span><span class="params">(<span class="type">int</span> id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -449,6 +346,9 @@
 <h3 id="resultType"><a href="#resultType" class="headerlink" title="resultType"></a>resultType</h3><p>执行SQL语句后返回的数据进行封装，此属性指定封装后的类型</p>
 <h3 id="xml中特殊字符处理"><a href="#xml中特殊字符处理" class="headerlink" title="xml中特殊字符处理"></a>xml中特殊字符处理</h3><p>在xml文件写SQL语句时难免会出现 大于小于的判断 而 &lt; 是xml标签起始。所以需要进行处理。下面为例子</p>
 <div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAccount&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">    SELECT *</span><br><span class="line">    FROM account</span><br><span class="line">    <span class="comment">&lt;!-- 此处的小于号 &lt; 会报错, 因为被xml判定成了不完成的标签 --&gt;</span></span><br><span class="line">    WHERE id &lt; 5;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 正确的写法应该是 CDATA 或者 转义字符 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAccount&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">    SELECT *</span><br><span class="line">    FROM account</span><br><span class="line">    WHERE id</span><br><span class="line">    <span class="comment">&lt;!-- 把他也输符号写在CDATA 里就不会报错了 --&gt;</span></span><br><span class="line">    &lt;![CDATA[</span><br><span class="line">	 &lt;</span><br><span class="line">    ]]&gt; #&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></div>]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
@@ -456,54 +356,259 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaWEB笔记-MyBatis配置文件</title>
-    <url>/2022/10/05/myBatis/Mybatis-%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<p><strong>简介</strong></p>
+    <title>redis学习笔记</title>
+    <url>/redis/redis%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="SQL与NOSQL区别"><a href="#SQL与NOSQL区别" class="headerlink" title="SQL与NOSQL区别"></a>SQL与NOSQL区别</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>SQL</th>
+<th>NOSQL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据结构</td>
+<td>结构化</td>
+<td>非结构化</td>
+</tr>
+<tr>
+<td>查询方式</td>
+<td>SQL查询</td>
+<td>无关联的</td>
+</tr>
+<tr>
+<td>事务特性</td>
+<td>ACID</td>
+<td>BASE</td>
+</tr>
+<tr>
+<td>存储方式</td>
+<td>磁盘</td>
+<td>内存</td>
+</tr>
+<tr>
+<td>扩展性</td>
+<td>垂直</td>
+<td>水平</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>数据结构固定<br>业务对数据安全性一致性较高的场景</td>
+<td>数据结构不固定<br>对一致性安全性要求不高的场景<br>有高性能要求的场景</td>
+</tr>
+</tbody></table>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>Redis存储的时key-value结构的数据, 其中key是字符串类型, value有常用的5种数据类型</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>string</td>
+<td>字符串</td>
+<td>普通字符串</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>哈希</td>
+<td>适合存储对象</td>
+</tr>
+<tr>
+<td>list</td>
+<td>列表</td>
+<td>按照插入顺序排序, 可以重复</td>
+</tr>
+<tr>
+<td>set</td>
+<td>集合</td>
+<td>无序集合, 没有重复元素</td>
+</tr>
+<tr>
+<td>sorted set</td>
+<td>有序集合</td>
+<td>有序集合, 没有重复元素</td>
+</tr>
+</tbody></table>
+<h2 id="Key结构"><a href="#Key结构" class="headerlink" title="Key结构"></a>Key结构</h2><p>redis的key允许有多个单词形成层级结构, 用 <code>:</code> 隔开 。格式例如: <code>项目名:业务名:id</code><br>上述格式并非固定写法，可以根据业务需求而定<br>例如</p>
+<ul>
+<li>user 相关的key: <code>kita:user:114</code></li>
+<li>product 相关的key: <code>kita:product:1919</code></li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/06/suJFbprzIHMCkQD.png"
+                      alt="key层级结构.png"
+                ></p>
+<h2 id="简介与常用命令"><a href="#简介与常用命令" class="headerlink" title="简介与常用命令"></a>简介与常用命令</h2><h3 id="字符串-string"><a href="#字符串-string" class="headerlink" title="字符串(string)"></a>字符串(string)</h3><p><code>String</code> 类型是Redis中最简单的存储类型, 其value是字符串. 根据字符串的格式不同. 又可分三类</p>
+<ol>
+<li>string: 普通字符串</li>
+<li>int: 整数类型, 可以自增自减</li>
+<li>float: 浮点类型, 可以自增自减</li>
+</ol>
+<blockquote>
+<p>不管哪种格式  <mark style="background: #BBFABBA6;">底层都是字节数组形式存储</mark> 编码方式不同. 且字符串类型最大空间不能超过512m</p>
+</blockquote>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">SET [key] [value] <span class="comment"># 设置指定key的值</span></span><br><span class="line">GET [key] <span class="comment"># 获取指定key的值</span></span><br><span class="line">SETEX [key] [seconds] [value] <span class="comment">#  设置指定key的值, 并设置过期时间 seconds 秒</span></span><br><span class="line">SETNX [key] [value] <span class="comment"># 只有key不存在时设置key的值</span></span><br><span class="line">MSET</span><br><span class="line">MGET</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="哈希-hash"><a href="#哈希-hash" class="headerlink" title="哈希(hash)"></a>哈希(hash)</h3><blockquote>
+<p>Hash类型，也叫散列，其value是一个无序字典，类似Java中的HashMap结构</p>
+</blockquote>
+<p>String结构时将对象序列化成JSON字符串后存储, 但当要修改某个值时很不方便</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>kita:user:114</td>
+<td>{name:’先辈’, age:24}</td>
+</tr>
+<tr>
+<td>kita:user:524</td>
+<td>{name:’远野’, age:24}</td>
+</tr>
+</tbody></table>
+<p><strong>如上所示, String结构要更新某个属性时, 需要删掉再重新设置</strong></p>
+<blockquote>
+<p>Hash结构可以把对象中的每个字段单独存储，可以针对某字段进行CRUD</p>
+</blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/06/1K2lkX57SrGJfLT.png"
+                      alt="屏幕截图 2023-03-06 105936.png"
+                ></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">HSET [key] [field] [value] <span class="comment"># 设置哈希表 key 中的 field 的值为value</span></span><br><span class="line">HGET [key] [field] <span class="comment"># 获取哈希表中指定字段[field]的值</span></span><br><span class="line">HDEL [key] [field] <span class="comment"># 删除哈希表中的指定字段</span></span><br><span class="line">HKEYS [key] <span class="comment"># 获取哈希表所有字段</span></span><br><span class="line">HVALS [key] <span class="comment"># 获取哈希表中所有值</span></span><br><span class="line">HGETALL [key] <span class="comment"># 获取哈希表中所有字段跟值</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="列表-list"><a href="#列表-list" class="headerlink" title="列表(list)"></a>列表(list)</h3><p>Redis中的 <code>List</code> 类型与Java中的 <code>LinkedList</code> 类似，可以看做时一个双向链表结构，既可以正向检索，也可以反向检索<br>特征与LinkedList类似</p>
+<ul>
+<li>有序</li>
+<li>元素可重复</li>
+<li>插入和删除快</li>
+<li>查询速度一般<br>一般来保存对顺序有要求的数据，例如朋友圈点赞列表，评论列表等</li>
+</ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">LPUSH [key] [value...] <span class="comment"># 从列表左边插入一个或多个元素</span></span><br><span class="line">RPUSH [key] [value...] <span class="comment"># 从列表右边插入一个或多个元素</span></span><br><span class="line">LRANGE [key] [startIndex] [stopIndex] <span class="comment"># 获取指定范围内的元素</span></span><br><span class="line">LPOP [key] <span class="comment"># 移除并获取列表左侧第一个元素, 没有就返回nil</span></span><br><span class="line">RPOP [key] <span class="comment"># 移除并获取列表右侧第一个元素, 没有就返回nil</span></span><br><span class="line">LLEN [key] <span class="comment"># 获取列表长度</span></span><br><span class="line">BLPOP/BRPOP [key1] [key2] [TIMEOUT] <span class="comment"># 移除并获取列表左边/右边第一个元素, 如果列表没有元素, 则阻塞列表直到等待超时, 或发现可弹出元素为止</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="集合-set"><a href="#集合-set" class="headerlink" title="集合(set)"></a>集合(set)</h3><p>Redis的 <code>Set</code> 结构与Java中的 <code>HashSet</code> 类似, 可以看作是一个value为null的HashMap, 也是一个hash表，与HashSet类似的特征</p>
+<ul>
+<li>无序</li>
+<li>元素不可重复</li>
+<li>查找快</li>
+<li>支持交集，并集，差集</li>
+</ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">SADD [key] [member...] <span class="comment"># 向集合添加一个或多个成员</span></span><br><span class="line">SMEMBERS [key] <span class="comment"># 返回集合中的所有成员</span></span><br><span class="line">SCARD [key] <span class="comment"># 获取集合成员数</span></span><br><span class="line">SINTER [key...]<span class="comment"># 返回给定所有集合交集</span></span><br><span class="line">SUNION [key...] <span class="comment"># 返回给定所有集合并集</span></span><br><span class="line">SDIFF [key...]. <span class="comment"># 返回给定所有集合差集</span></span><br><span class="line">SREM [key] [member1] [member2] <span class="comment"># 移除集合中的一个或多个成员</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="有序集合-sorted-set"><a href="#有序集合-sorted-set" class="headerlink" title="有序集合(sorted set)"></a>有序集合(sorted set)</h3><p>Redis的 <code>SortedSet</code> 是一个可排序的集合, <code>SortedSet</code> 中的每一个元素都带有一个 <code>score</code> 属性，根据这个属性对元素进行排序，底层的实现是一个 <mark style="background: #ADCCFFA6;">跳表 (SkipList)</mark> 加 <mark style="background: #FFB86CA6;">hash表</mark><br>特性</p>
+<ol>
+<li>可排序</li>
+<li>不重复</li>
+<li>查询快</li>
+</ol>
+<blockquote>
+<p>因其特性经常被拿来实现排行榜这样的功能</p>
+</blockquote>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ZADD [key] [score1] [member1] [score2] [member2]... <span class="comment">#向有序集合添加/更新一个或多个成员及分数</span></span><br><span class="line">ZRANGE [key] [startIndex] [stopIndex] [withsScores] <span class="comment"># 通过索引区间返回有序集合中指定区间内的成员</span></span><br><span class="line">ZINCRBY [key] increment [menber] <span class="comment"># 有序集合中对指定成员的分数加上增量 increment</span></span><br><span class="line">ZREM [key] [member...] <span class="comment"># 移除有序集合中的一个或多个成员</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">KEYS [正则表达式] <span class="comment"># 查找符合给定表达式的key, 因redis事件处理是单线程的, 所以不建议在生产环境使用</span></span><br><span class="line">EXISTS [key] <span class="comment"># 检查给定key是否存在</span></span><br><span class="line">TYPE [key] <span class="comment"># 返回给定key所存储值的类型</span></span><br><span class="line">TTL [key] <span class="comment"># 返回给定key的剩余生存时间, 单位: 秒</span></span><br><span class="line">DEL [key] <span class="comment"># 当给定key 存在时删除key</span></span><br><span class="line">EXPIRE [key] [seconds] <span class="comment"># 给一个key设置有效期, 有效期结束会自动删除该key</span></span><br><span class="line">TTL [key] <span class="comment"># 查看一个key的剩余有效期</span></span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="Java客户端"><a href="#Java客户端" class="headerlink" title="Java客户端"></a>Java客户端</h2><h3 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h3><p>简介：以Redis命令作为方法名称，学习成本较低，简单实用但是Jedis实例是线程不安全的，多线程环境下需要基于连接池使用</p>
+<h3 id="Redisson"><a href="#Redisson" class="headerlink" title="Redisson"></a>Redisson</h3><p>简介：Redisson是一个基于Redis实现的分布式，可伸缩的Java数据结构集合。包含了诸如Map，Queue，Lock，Semaohore，AtomicLong等功能</p>
+<h3 id="Lettuce"><a href="#Lettuce" class="headerlink" title="Lettuce"></a>Lettuce</h3><p>简介： Lettuce是基于Netty实现的，支持同步，异步和响应式编程。并且是线程安全的。支持Redis的哨兵模式，集群模式和管道模式</p>
+<h2 id="Jedis-1"><a href="#Jedis-1" class="headerlink" title="Jedis"></a>Jedis</h2><h3 id="Jedis入门"><a href="#Jedis入门" class="headerlink" title="Jedis入门"></a>Jedis入门</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JedisTest</span> &#123;  </span><br><span class="line">    <span class="keyword">private</span> Jedis jedis;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@BeforeEach</span>  </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">setup</span><span class="params">()</span> &#123;<span class="comment">//初始化链接</span></span><br><span class="line">        jedis = <span class="keyword">new</span> <span class="title class_">Jedis</span>(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">6379</span>);  </span><br><span class="line">        jedis.auth(<span class="string">&quot;zora@5774&quot;</span>);  </span><br><span class="line">        jedis.select(<span class="number">0</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Test</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> jedis.set(<span class="string">&quot;kita:user:114&quot;</span>, <span class="string">&quot;先辈&quot;</span>);  </span><br><span class="line">        System.out.println(<span class="string">&quot;结果: &quot;</span> + result);  </span><br><span class="line">        <span class="type">String</span> <span class="variable">getResult</span> <span class="operator">=</span> jedis.get(<span class="string">&quot;kita:user:114&quot;</span>);  </span><br><span class="line">        System.out.println(<span class="string">&quot;获取的值: &quot;</span> + getResult);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Test</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testHash</span><span class="params">()</span> &#123;  </span><br><span class="line">        jedis.hset(<span class="string">&quot;kita:user:154&quot;</span>, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;先辈&quot;</span>);  </span><br><span class="line">        jedis.hset(<span class="string">&quot;kita:user:154&quot;</span>, <span class="string">&quot;age&quot;</span>, <span class="string">&quot;24&quot;</span>);  </span><br><span class="line">  </span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> jedis.hget(<span class="string">&quot;kita:user:154&quot;</span>, <span class="string">&quot;name&quot;</span>);  </span><br><span class="line">        System.out.println(name);  </span><br><span class="line">  </span><br><span class="line">        Map&lt;String, String&gt; stringMap = jedis.hgetAll(<span class="string">&quot;kita:user:154&quot;</span>);  </span><br><span class="line">        System.out.println(stringMap);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@AfterEach</span>  </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">shutDown</span><span class="params">()</span> &#123;  </span><br><span class="line">        <span class="keyword">if</span> (jedis != <span class="literal">null</span>) &#123;  </span><br><span class="line">            jedis.close();  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Jedis连接池"><a href="#Jedis连接池" class="headerlink" title="Jedis连接池"></a>Jedis连接池</h3><blockquote>
+<p>因为Jedis本身线程不安全，再加上如果频繁创建和销毁链接会有性能损耗，因此使用连接池代替直连</p>
+</blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//连接工具类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JedisConnectFactory</span> &#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> JedisPool jedisPool;  </span><br><span class="line">    <span class="keyword">static</span> &#123;  </span><br><span class="line">        <span class="type">JedisPoolConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JedisPoolConfig</span>();  </span><br><span class="line">        <span class="comment">//池里最大链接数  </span></span><br><span class="line">        config.setMaxTotal(<span class="number">10</span>);  </span><br><span class="line">        <span class="comment">//池里最大空闲连接数  </span></span><br><span class="line">        config.setMaxIdle(<span class="number">10</span>);  </span><br><span class="line">        <span class="comment">//池里最小空闲连接数  </span></span><br><span class="line">        config.setMinIdle(<span class="number">1</span>);  </span><br><span class="line">        <span class="comment">//最大等待时间  </span></span><br><span class="line">        config.setMaxWait(Duration.ofSeconds(<span class="number">1000</span>));  </span><br><span class="line">        jedisPool = <span class="keyword">new</span> <span class="title class_">JedisPool</span>(config, <span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">6379</span>, <span class="number">1000</span>, <span class="string">&quot;password&quot;</span>);  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Jedis <span class="title function_">getJedis</span><span class="params">()</span> &#123;  </span><br><span class="line">        <span class="keyword">return</span> jedisPool.getResource();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JedisTest</span> &#123;  </span><br><span class="line">    <span class="keyword">private</span> Jedis jedis;  </span><br><span class="line">    <span class="meta">@BeforeEach</span>  </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">setup</span><span class="params">()</span> &#123;<span class="comment">//池里拿连接</span></span><br><span class="line">	    jedis = JedisConnectFactory.getJedis();  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//redis操作与上面直连一致</span></span><br><span class="line">    <span class="meta">@AfterEach</span>  </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">shutDown</span><span class="params">()</span> &#123;  </span><br><span class="line">	    <span class="keyword">if</span> (jedis != <span class="literal">null</span>) &#123;</span><br><span class="line">	        <span class="comment">//这里的close并非关闭连接而是把连接还给连接池</span></span><br><span class="line">	        jedis.close();  </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="SpringDataRedis"><a href="#SpringDataRedis" class="headerlink" title="SpringDataRedis"></a>SpringDataRedis</h2><blockquote>
+<p>SpringData是Spring中数据操模块，针对各种数据库的集成，其中对Redis的集成模块叫SpringDataRedis</p>
+</blockquote>
+<p>简介</p>
+<ul>
+<li>提供了对不同redis客户端的集成(Lettuce和Jedis)</li>
+<li>提供了RedisTemplate统一API操作</li>
+<li>支持Redis的发布订阅模型</li>
+<li>支持Redis哨兵和Redis集群</li>
+<li>支持Lettuce的响应式编程</li>
+<li>支持基于JDK, JSON, 字符串, Spring对象的数据序列化和反数列话</li>
+<li>支持基于Redis的JDKCollection实现</li>
+</ul>
+<h3 id="在SpringBoot使用"><a href="#在SpringBoot使用" class="headerlink" title="在SpringBoot使用"></a>在SpringBoot使用</h3><p>除了引入 <code>spring-boot-starter-data-redis</code> 外还需引入连接池 <code>commons-pool2</code><br>然后在 <code>application.yaml</code> 配置文件配置如下信息</p>
+<blockquote>
+<p>需要注意的是: <mark style="background: #BBFABBA6;">spring-boot-starter-data-redis 3.0.3 版本</mark>需要加上 data<br>而且地址信息是 <mark style="background: #FFF3A3A6;">host</mark> <mark style="background: #FF5582A6;">不是 url 不是 url 不是 url</mark></p>
+</blockquote>
+<div class="highlight-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span>  </span><br><span class="line">  <span class="comment"># spring-boot-starter-data-redis 3.0.3版本需要加上 data</span></span><br><span class="line">  <span class="attr">data:</span></span><br><span class="line">    <span class="attr">redis:</span></span><br><span class="line">      <span class="comment"># 是host而不是 url</span></span><br><span class="line">      <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>  </span><br><span class="line">      <span class="attr">port:</span> <span class="number">6379</span>  </span><br><span class="line">      <span class="attr">password:</span> <span class="number">12345678</span></span><br><span class="line">      <span class="comment"># 默认使用lettuce, 如果要使用jedis 需额外引入相关maven依赖</span></span><br><span class="line">      <span class="comment"># 需要手动配置 pool 才会生效</span></span><br><span class="line">      <span class="attr">lettuce:</span>  </span><br><span class="line">        <span class="attr">pool:</span>  </span><br><span class="line">          <span class="attr">max-active:</span> <span class="number">10</span>  </span><br><span class="line">          <span class="attr">max-idle:</span> <span class="number">10</span>  </span><br><span class="line">          <span class="attr">min-idle:</span> <span class="number">1</span>  </span><br><span class="line">          <span class="attr">max-wait:</span> <span class="number">200</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="RedisTemplate"><a href="#RedisTemplate" class="headerlink" title="RedisTemplate"></a>RedisTemplate</h4><p>SpringDataRedis中提供了一个高度封装的类: RedisTemplate, 针对jedis客户端中大量api进行归类封装, 将同一类型操作封装成operation接口, 具体如下</p>
+<ul>
+<li>ValueOperations: 简单的K-V 操作</li>
+<li>SetOperations: set类型数据操作</li>
+<li>ZSetOperations: zset类型数据操作</li>
+<li>HashOperations: 针对map类型的数据操作</li>
+<li>ListOperations: 针对list类型的数据操作</li>
+</ul>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> RedisTemplate redisTemplate;</span><br><span class="line"><span class="comment">//通过redisTemplate.opsForXxxx()的方式获取操作对象</span></span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">testRedis</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="comment">//获取ValueOperations并存值</span></span><br><span class="line">       redisTemplate.opsForValue().set(<span class="string">&quot;test:123&quot;</span>, <span class="string">&quot;测试数据&quot;</span>);</span><br><span class="line">       <span class="comment">//取值</span></span><br><span class="line">       <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> redisTemplate.opsForValue().get(<span class="string">&quot;test:123&quot;</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p><code>RedisTemplate</code> 可以接受任意 <code>Object</code> 作为值写入Redis，只不过写入前会把 <code>Object</code> 序列化成字节形式，<mark style="background: #FF5582A6;">默认是JDK序列化</mark> 得到的结果类似下面这种</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/06/bxf4E6h1zvw5BdW.png"
+                      alt="屏幕截图 2023-03-06 203510.png"
+                ></p>
+<p><strong>这种不仅可读性差，内存占用还较大</strong> 我们可以自定义RedisTemplate的序列化形式，操作如下</p>
+<ol>
+<li>定义RedisConfig类，并设置key跟value的序列化器</li>
+</ol>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisConfig</span> &#123;  </span><br><span class="line">    <span class="meta">@Bean</span>  </span><br><span class="line">    <span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title function_">redisTemplate</span><span class="params">(RedisConnectionFactory connectionFactory)</span> &#123;  </span><br><span class="line">        RedisTemplate&lt;String, Object&gt; template = <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>&lt;&gt;();  </span><br><span class="line">        <span class="comment">//设置连接工厂  </span></span><br><span class="line">        template.setConnectionFactory(connectionFactory);  </span><br><span class="line">        <span class="comment">//创建JSON序列化工具  </span></span><br><span class="line">        <span class="type">GenericJackson2JsonRedisSerializer</span> <span class="variable">jackson2JsonRedisSerializer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GenericJackson2JsonRedisSerializer</span>();  </span><br><span class="line">        <span class="comment">//设置key序列化  </span></span><br><span class="line">        template.setKeySerializer(RedisSerializer.string());  </span><br><span class="line">        template.setHashKeySerializer(RedisSerializer.string());  </span><br><span class="line">        <span class="comment">//设置value序列化  </span></span><br><span class="line">        template.setValueSerializer(jackson2JsonRedisSerializer);  </span><br><span class="line">        template.setHashValueSerializer(jackson2JsonRedisSerializer);  </span><br><span class="line">        <span class="keyword">return</span> template;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ol start="2">
+<li>使用的地方 <code>redisTemplate</code> 添加泛型</li>
+</ol>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Resource</span></span><br><span class="line"><span class="keyword">private</span> RedisTemplate&lt;String, Object&gt; redisTemplate;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>使用自定义序列化后的结果如下</p>
+</blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/06/XUnRFNEL24G6mgT.png"
+                      alt="image.png"
+                ></p>
+<p>如上图所示，redisTemplate会自动帮我们把对象序列化成json，获取时再把JOSN转成对象。让我们的开发体验更加友好。但是此方法依然存在一些问题，如上图所示，json文本多了一个 <code>@class</code> 这个是<mark style="background: #D2B3FFA6;">JSON转对象</mark> 时要用到的对象类型，会一起写进redis里带来额外的内存开销</p>
+<p>为了节省内存空间，我们不使用JSON序列化器来处理value，而是统一使用 String序列化器 <code>StringRedisTemplate</code> 只存String类型的key和value，手动完成对象的序列化和反序列化</p>
+<h4 id="关于序列化的小总结"><a href="#关于序列化的小总结" class="headerlink" title="关于序列化的小总结"></a>关于序列化的小总结</h4><blockquote>
+<p>RedisTemplate的两种序列化方案</p>
+</blockquote>
+<ul>
+<li><p><strong>方案一</strong><br>自定义RedisTemplate<br>修改RedisTemplate的序列化器为 <code>GenericJackson2JsonRedisSerializer</code><br>缺点: 因需要保存反序列化的对象类名，会占用额外内存空间</p>
+</li>
+<li><p><strong>方案二</strong><br>使用StringRedisTemplate，不用自己定义<br>不会占用额外内存空间<br>缺点: 读写redis时，需要手动进行序列化和反序列化</p>
+</li>
+</ul>
 ]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
       <tags>
-        <tag>java</tag>
-        <tag>note</tag>
-        <tag>MyBatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaWEB笔记-MyBatis快速入门笔记</title>
-    <url>/2022/10/04/myBatis/Mybatis/</url>
-    <content><![CDATA[<p><strong>简介: 一个用于数据持久层的框架</strong></p>
-<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//mybatis配置文件</span></span><br><span class="line"><span class="type">String</span> <span class="variable">resource</span> <span class="operator">=</span> <span class="string">&quot;mybatis-config.xml&quot;</span>;</span><br><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Resources.getResourceAsStream(resource);</span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(inputStream);</span><br><span class="line"><span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">session</span> <span class="operator">=</span> sqlSessionFactory.openSession()) &#123;</span><br><span class="line">    <span class="comment">//此处是直接调用方法进行操作，建议使用代理开发</span></span><br><span class="line">    List&lt;EoeAccount&gt; datas = session.selectList(<span class="string">&quot;test.selectAll&quot;</span>);</span><br><span class="line">    datas.forEach(System.out::println);</span><br><span class="line">    session.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p><strong>Mybatis配置文件</strong>(mybatis-config.xml)</p>
-<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;https://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/eoezora?useSSL=false<span class="symbol">&amp;amp;</span>allowPublicKeyRetrieval=true&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;mappers/TestDemoMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<p><strong>SQL语句</strong></p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-<p><strong>映射文件</strong>(TestDemoMapper.xml)</p>
-<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 代理开发中 namespace的值应该是 Mapper接口的全限定名 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 例如 com.eoezora.mapper.TestDemoMapper --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- resultType 返回值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">        SELECT * FROM account;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-<h2 id="Mapper代理开发"><a href="#Mapper代理开发" class="headerlink" title="Mapper代理开发"></a>Mapper代理开发</h2><p><strong>定义与SQL映射文件同名的Mapper接口,并且将Mapper接口与SQL映射文件放置在同名文件下</strong></p>
-<p><strong>设置SQL映射文件的namespace属性与Mapper接口全限定名</strong></p>
-<p><strong>在Mapper接口中定义方法,方法名是SQL映射文件中的sql语句ID，并保持参数类型和返回值类型一致</strong></p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">session</span> <span class="operator">=</span> sqlSessionFactory.openSession()) &#123;</span><br><span class="line">    <span class="comment">//获取Mapper接口</span></span><br><span class="line">    <span class="type">TestDemoMapper</span> <span class="variable">testDemoMapper</span> <span class="operator">=</span> session.getMapper(TestDemoMapper.class);</span><br><span class="line">    <span class="comment">//使用接口调用方法</span></span><br><span class="line">    testDemoMapper.selectAll().forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="设置别名"><a href="#设置别名" class="headerlink" title="设置别名"></a>设置别名</h2><p>在Nybatis的sql的映射文件中,会使用paramterType、resultType 来设置 sql 语句的输入输出参数，一般参数都是基本的数据类型或封装类型，但都需要声明该类型的全路径，java.lang.String，或者 cn.com.mybatis.pojo.User, 这时就可以通过 typeAliases设置别名,简化复杂度，提高阅读性, 例子如下</p>
-<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectUserByName&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.lang.String&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.mybatis.pojo.User&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM USER WHERE username LIKE &#x27;%$&#123;value&#125;%&#x27;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>使用别名简化后</p>
-<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">&quot;user&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.mybatis.pojo.User&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">&quot;string&quot;</span> <span class="attr">type</span>=<span class="string">&quot;java.lang.String&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- paramterType、resultType直接使用别名 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectUserByName&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;string&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM USER WHERE username LIKE &#x27;%$&#123;value&#125;%&#x27;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<p><strong>其他</strong></p>
-<p>批量添加别名,以下设置,会为该包下的所有类自动添加别名,为对应类名的首字母小写 User -&gt; user</p>
-<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;com.mybatis.pojo&quot;</span>/&gt;</span></span><br><span class="line">&lt;/typeAliases</span><br></pre></td></tr></table></figure></div>
-
-]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>note</tag>
-        <tag>MyBatis</tag>
+        <tag>reids</tag>
+        <tag>jedis</tag>
+        <tag>Spring-data-redis</tag>
       </tags>
   </entry>
   <entry>
     <title>JavaWEB笔记-MyBatis-Plus</title>
-    <url>/2022/10/27/myBatis-Plus/Mybatis-Plus/</url>
+    <url>/myBatis-Plus/Mybatis-Plus/</url>
     <content><![CDATA[<h2 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a><strong>快速使用</strong></h2><hr>
 <p>​	MybatisPlus为我们提供了非常强大的接口来供我们对数据库进行增删改查操作,我们无需写sql语句,只需调用对应接口即可.</p>
 <h3 id="引入maven坐标"><a href="#引入maven坐标" class="headerlink" title="引入maven坐标"></a>引入maven坐标</h3><hr>
@@ -557,6 +662,9 @@
 <div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//映射字段</span></span><br><span class="line"><span class="meta">@TableField(&quot;pwd&quot;)</span> <span class="comment">//这里的是数据库表里的字段名</span></span><br><span class="line"><span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line"><span class="comment">//映射表名</span></span><br><span class="line"><span class="meta">@TableName(&quot;tb_users&quot;)</span> <span class="comment">//这里的是数据库表名</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserEntity</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
 ]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
@@ -565,8 +673,60 @@
       </tags>
   </entry>
   <entry>
+    <title>JavaWEB笔记-MyBatis配置文件</title>
+    <url>/myBatis/Mybatis-%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p><strong>简介</strong></p>
+]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>note</tag>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaWEB笔记-MyBatis快速入门笔记</title>
+    <url>/myBatis/Mybatis/</url>
+    <content><![CDATA[<p><strong>简介: 一个用于数据持久层的框架</strong></p>
+<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//mybatis配置文件</span></span><br><span class="line"><span class="type">String</span> <span class="variable">resource</span> <span class="operator">=</span> <span class="string">&quot;mybatis-config.xml&quot;</span>;</span><br><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Resources.getResourceAsStream(resource);</span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(inputStream);</span><br><span class="line"><span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">session</span> <span class="operator">=</span> sqlSessionFactory.openSession()) &#123;</span><br><span class="line">    <span class="comment">//此处是直接调用方法进行操作，建议使用代理开发</span></span><br><span class="line">    List&lt;EoeAccount&gt; datas = session.selectList(<span class="string">&quot;test.selectAll&quot;</span>);</span><br><span class="line">    datas.forEach(System.out::println);</span><br><span class="line">    session.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><strong>Mybatis配置文件</strong>(mybatis-config.xml)</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;https://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/eoezora?useSSL=false<span class="symbol">&amp;amp;</span>allowPublicKeyRetrieval=true&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;mappers/TestDemoMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p><strong>SQL语句</strong></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p><strong>映射文件</strong>(TestDemoMapper.xml)</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 代理开发中 namespace的值应该是 Mapper接口的全限定名 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 例如 com.eoezora.mapper.TestDemoMapper --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- resultType 返回值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">        SELECT * FROM account;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+<h2 id="Mapper代理开发"><a href="#Mapper代理开发" class="headerlink" title="Mapper代理开发"></a>Mapper代理开发</h2><p><strong>定义与SQL映射文件同名的Mapper接口,并且将Mapper接口与SQL映射文件放置在同名文件下</strong></p>
+<p><strong>设置SQL映射文件的namespace属性与Mapper接口全限定名</strong></p>
+<p><strong>在Mapper接口中定义方法,方法名是SQL映射文件中的sql语句ID，并保持参数类型和返回值类型一致</strong></p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">session</span> <span class="operator">=</span> sqlSessionFactory.openSession()) &#123;</span><br><span class="line">    <span class="comment">//获取Mapper接口</span></span><br><span class="line">    <span class="type">TestDemoMapper</span> <span class="variable">testDemoMapper</span> <span class="operator">=</span> session.getMapper(TestDemoMapper.class);</span><br><span class="line">    <span class="comment">//使用接口调用方法</span></span><br><span class="line">    testDemoMapper.selectAll().forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="设置别名"><a href="#设置别名" class="headerlink" title="设置别名"></a>设置别名</h2><p>在Nybatis的sql的映射文件中,会使用paramterType、resultType 来设置 sql 语句的输入输出参数，一般参数都是基本的数据类型或封装类型，但都需要声明该类型的全路径，java.lang.String，或者 cn.com.mybatis.pojo.User, 这时就可以通过 typeAliases设置别名,简化复杂度，提高阅读性, 例子如下</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectUserByName&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.lang.String&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.mybatis.pojo.User&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM USER WHERE username LIKE &#x27;%$&#123;value&#125;%&#x27;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>使用别名简化后</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">&quot;user&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.mybatis.pojo.User&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">&quot;string&quot;</span> <span class="attr">type</span>=<span class="string">&quot;java.lang.String&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- paramterType、resultType直接使用别名 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectUserByName&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;string&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM USER WHERE username LIKE &#x27;%$&#123;value&#125;%&#x27;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p><strong>其他</strong></p>
+<p>批量添加别名,以下设置,会为该包下的所有类自动添加别名,为对应类名的首字母小写 User -&gt; user</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;com.mybatis.pojo&quot;</span>/&gt;</span></span><br><span class="line">&lt;/typeAliases</span><br></pre></td></tr></table></figure></div>
+
+]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>note</tag>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Mysql笔记-事务</title>
-    <url>/2022/09/29/mysql-note/%E4%BA%8B%E5%8A%A1/</url>
+    <url>/mysql-note/%E4%BA%8B%E5%8A%A1/</url>
     <content><![CDATA[<h2 id="事务概念"><a href="#事务概念" class="headerlink" title="事务概念"></a>事务概念</h2><ul>
 <li>数据库的事务是一种机制，一个操作序列，包含一组数据库操作命令</li>
 <li>事务把所有命令作为一个整体向系统提交或撤销。这组命令要么同时成功，要么同时失败</li>
@@ -584,6 +744,9 @@
 <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查看事务默认提交方式</span></span><br><span class="line"><span class="keyword">SELECT</span> @<span class="variable">@autocommit</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改默认提交方式 - 1 自动提交 - 0 手动提交</span></span><br><span class="line"><span class="keyword">set</span> @<span class="variable">@autocommit</span> <span class="operator">=</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure></div></li>
 </ul>
 ]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
       <tags>
         <tag>note</tag>
         <tag>mysql</tag>
@@ -591,7 +754,7 @@
   </entry>
   <entry>
     <title>Mysql笔记-单表查询</title>
-    <url>/2022/09/29/mysql-note/%E5%8D%95%E8%A1%A8%E6%9F%A5%E8%AF%A2/</url>
+    <url>/mysql-note/%E5%8D%95%E8%A1%A8%E6%9F%A5%E8%AF%A2/</url>
     <content><![CDATA[<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"><span class="comment">-- 	字段列表</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"><span class="comment">-- 	表名列表</span></span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line"><span class="comment">-- 	条件列表</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line"><span class="comment">-- 	分组列表</span></span><br><span class="line"><span class="keyword">HAVING</span></span><br><span class="line"><span class="comment">-- 	分组后条件</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"><span class="comment">-- 	排序字段</span></span><br><span class="line">LIMIT</span><br><span class="line"><span class="comment">-- 	限制查询返回数据的数量，用于分页限制</span></span><br></pre></td></tr></table></figure></div>
 
 <h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a><strong>条件查询</strong></h2><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询表里许所有数据,不建议使用</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询名字</span></span><br><span class="line"><span class="comment">-- DISTINCT 去除重复</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> name <span class="keyword">FROM</span> users;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询名字，性别，年龄</span></span><br><span class="line"><span class="comment">-- 可以使用 sex as 性别 的方式对列起别名,也可以写成 sex 性别 省略as 但字段名跟别名之间要有空格隔开</span></span><br><span class="line"><span class="keyword">SELECT</span> name, sex <span class="keyword">as</span> 性别, age <span class="keyword">as</span> 年龄 <span class="keyword">FROM</span> users;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 条件查询符号, NULL值比较使用 IS NOT NULL 跟 IS NULL </span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">&gt;</span> <span class="number">17</span>; <span class="comment">-- 查询age数值大于17的数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">&gt;=</span> <span class="number">7</span> <span class="keyword">AND</span> age <span class="operator">&lt;=</span> <span class="number">50</span>; <span class="comment">-- 查询age数值在7跟50之间的数值(写法一)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="keyword">BETWEEN</span> <span class="number">7</span> <span class="keyword">AND</span> <span class="number">50</span>; <span class="comment">-- 查询age数值在7跟50之间的数值(写法二)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询brith_day数值在&#x27;2000-01-01&#x27;跟&#x27;2000-04-01&#x27;之间的数值(写法二)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> brith_day <span class="keyword">BETWEEN</span> <span class="string">&#x27;2000-01-01&#x27;</span> <span class="keyword">AND</span> <span class="string">&#x27;2000-04-01&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">=</span> <span class="number">17</span>; <span class="comment">-- 查询age数值等于17的数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">!=</span> <span class="number">17</span>; <span class="comment">-- 查询age数值不等于17的数据(写法一)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">&lt;&gt;</span> <span class="number">17</span>; <span class="comment">-- 查询age数值不等于17的数据(写法二)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">=</span> <span class="number">17</span> <span class="keyword">OR</span> age <span class="operator">=</span> <span class="number">18</span> <span class="keyword">OR</span> age <span class="operator">=</span> <span class="number">22</span>;<span class="comment">-- 查询age数值等于17或18或22的数据(写法一)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="keyword">IN</span> (<span class="number">17</span>，<span class="number">18</span>，<span class="number">22</span>); <span class="comment">-- 查询age数值等于17或18或22的数据(写法二)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="keyword">IS</span> <span class="keyword">NULL</span>; <span class="comment">-- 查询age数值为null的数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>; <span class="comment">-- 查询age数值不为null的数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="keyword">IS</span> <span class="keyword">NULL</span> <span class="comment">-- 查询age数值为null的数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	通配符</span></span><br><span class="line"><span class="comment">	_ 下划线代表单个字符</span></span><br><span class="line"><span class="comment">	% 百分号代表任意个数字符</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">-- 查询姓为 蔡 的名字信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="keyword">like</span> <span class="string">&#x27;蔡%&#x27;</span>;</span><br><span class="line"><span class="comment">-- 查询名字 第二个字是 徐 的名字信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="keyword">like</span> <span class="string">&#x27;_徐%&#x27;</span>;</span><br><span class="line"><span class="comment">-- 查询名字中包含坤的名字信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="keyword">like</span> <span class="string">&#x27;%坤%&#x27;</span>;</span><br></pre></td></tr></table></figure></div>
@@ -602,6 +765,9 @@
 
 <h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users LIMIT 起始索引，查询数目量;</span><br><span class="line"><span class="comment">-- 从0开始查，查询3条数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users LIMIT <span class="number">0</span>，<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 分页查询</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users LIMIT (当前页面 <span class="number">-1</span>) <span class="operator">*</span> 每页显示条目数，每页显示条目数;</span><br></pre></td></tr></table></figure></div>
 ]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
       <tags>
         <tag>note</tag>
         <tag>mysql</tag>
@@ -609,7 +775,7 @@
   </entry>
   <entry>
     <title>Mysql笔记-数据库设计-多表查询</title>
-    <url>/2022/10/02/mysql-note/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/</url>
+    <url>/mysql-note/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/</url>
     <content><![CDATA[<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><h4 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h4><p>获取两表的交集数据</p>
 <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 隐式写法</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span>, 表<span class="number">2.</span>.. <span class="keyword">WHERE</span> 条件;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 显示写法</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span> <span class="keyword">INNER</span> <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 条件</span><br></pre></td></tr></table></figure></div>
 
@@ -621,6 +787,9 @@
 <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 单行单列: 作为条件值 使用 = != &gt; &lt; 进行条件判断</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表 <span class="keyword">WHERE</span> 字段名 <span class="operator">=</span> (子查询语句);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 多行单列: 作为条件值</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表 <span class="keyword">WHERE</span> 字段名 <span class="keyword">IN</span> (子查询语句);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 多行多列: 作为虚拟表</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> (子查询语句) <span class="keyword">WHERE</span> 条件;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 例子 查询工资大于 蔡徐坤 的数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> money <span class="operator">&gt;</span> (<span class="keyword">SELECT</span> money <span class="keyword">FROM</span> infos <span class="keyword">WHERE</span> name <span class="operator">=</span> &quot;蔡徐坤&quot;);</span><br></pre></td></tr></table></figure></div>
 
 ]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
       <tags>
         <tag>note</tag>
         <tag>mysql</tag>
@@ -628,7 +797,7 @@
   </entry>
   <entry>
     <title>Mysql笔记-约束</title>
-    <url>/2022/09/29/mysql-note/%E7%BA%A6%E6%9D%9F/</url>
+    <url>/mysql-note/%E7%BA%A6%E6%9D%9F/</url>
     <content><![CDATA[<h2 id="约束概念"><a href="#约束概念" class="headerlink" title="约束概念"></a>约束概念</h2><ul>
 <li><strong>约束是作用于表中列的规则，用于限制加入表的数据</strong></li>
 <li><strong>约束的存在保证数据库数据的正确性，有限性和完整性</strong></li>
@@ -725,85 +894,17 @@
 </tr>
 </tbody></table>
 ]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
       <tags>
         <tag>note</tag>
         <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
-    <title>redis学习笔记</title>
-    <url>/2022/12/04/redis/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>Redis存储的时key-value结构的数据, 其中key是字符串类型, value有常用的5种数据类型</p>
-<table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>string</td>
-<td>字符串</td>
-<td>普通字符串</td>
-</tr>
-<tr>
-<td>hash</td>
-<td>哈希</td>
-<td>适合存储对象</td>
-</tr>
-<tr>
-<td>list</td>
-<td>列表</td>
-<td>按照插入顺序排序, 可以重复</td>
-</tr>
-<tr>
-<td>set</td>
-<td>集合</td>
-<td>无序集合, 没有重复元素</td>
-</tr>
-<tr>
-<td>sorted set</td>
-<td>有序集合</td>
-<td>有序集合, 没有重复元素</td>
-</tr>
-</tbody></table>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="字符串-string-操作"><a href="#字符串-string-操作" class="headerlink" title="字符串(string)操作"></a>字符串(string)操作</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">SET [key] [value] <span class="comment"># 设置指定key的值</span></span><br><span class="line">GET [key] <span class="comment"># 获取指定key的值</span></span><br><span class="line">SETEX [key] [seconds] [value] <span class="comment">#  设置指定key的值, 并设置过期时间 seconds 秒</span></span><br><span class="line">SETNX [key] [value] <span class="comment"># 只有key不存在时设置key的值</span></span><br></pre></td></tr></table></figure></div>
-
-<h3 id="哈希-hash-操作"><a href="#哈希-hash-操作" class="headerlink" title="哈希(hash)操作"></a>哈希(hash)操作</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">HSET [key] [field] [value] <span class="comment"># 设置哈希表 key 中的 field 的值为value</span></span><br><span class="line">HGET [key] [field] <span class="comment"># 获取哈希表中指定字段[field]的值</span></span><br><span class="line">HDEL [key] [field] <span class="comment"># 删除哈希表中的指定字段</span></span><br><span class="line">HKEYS [key] <span class="comment"># 获取哈希表所有字段</span></span><br><span class="line">HVALS [key] <span class="comment"># 获取哈希表中所有值</span></span><br><span class="line">HGETALL [key] <span class="comment"># 获取哈希表中所有字段跟值</span></span><br></pre></td></tr></table></figure></div>
-
-<h3 id="列表-list-操作"><a href="#列表-list-操作" class="headerlink" title="列表(list)操作"></a>列表(list)操作</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">LPUSH [key] [value...] <span class="comment"># 插入一个或多个值到列表头部</span></span><br><span class="line">LRANGE [key] [startIndex] [stopIndex] <span class="comment"># 获取指定范围内的元素</span></span><br><span class="line">RPOP [key] <span class="comment"># 移除并获取列表最后一个元素</span></span><br><span class="line">LLEN [key] <span class="comment"># 获取列表长度</span></span><br><span class="line">BRPOP [key1] [key2] [TIMEOUT] <span class="comment"># 移除并获取列表最后一个元素, 如果列表没有元素, 则阻塞列表直到等待超时, 或发现可弹出元素为止</span></span><br></pre></td></tr></table></figure></div>
-
-<h3 id="集合-set-操作"><a href="#集合-set-操作" class="headerlink" title="集合(set)操作"></a>集合(set)操作</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">SADD [key] [member...] <span class="comment"># 向集合添加一个或多个成员</span></span><br><span class="line">SMEMBERS [key] <span class="comment"># 返回集合中的所有成员</span></span><br><span class="line">SCARD [key] <span class="comment"># 获取集合成员数</span></span><br><span class="line">SINTER [key...]<span class="comment"># 返回给定所有集合交集</span></span><br><span class="line">SUNION [key...] <span class="comment"># 返回给定所有集合并集</span></span><br><span class="line">SDIFF [key...]. <span class="comment"># 返回给定所有集合差集</span></span><br><span class="line">SREM [key] [member1] [member2] <span class="comment"># 移除集合中的一个或多个成员</span></span><br></pre></td></tr></table></figure></div>
-
-<h3 id="有序集合-sorted-set-操作"><a href="#有序集合-sorted-set-操作" class="headerlink" title="有序集合(sorted set)操作"></a>有序集合(sorted set)操作</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ZADD [key] [score1] [member1] [score2] [member2]... <span class="comment">#向有序集合添加/更新一个或多个成员及分数</span></span><br><span class="line">ZRANGE [key] [startIndex] [stopIndex] [withsScores] <span class="comment"># 通过索引区间返回有序集合中指定区间内的成员</span></span><br><span class="line">ZINCRBY [key] increment [menber] <span class="comment"># 有序集合中对指定成员的分数加上增量 increment</span></span><br><span class="line">ZREM [key] [member...] <span class="comment"># 移除有序集合中的一个或多个成员</span></span><br></pre></td></tr></table></figure></div>
-
-<h3 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">KEYS [正则表达式] <span class="comment"># 查找符合给定表达式的key</span></span><br><span class="line">EXISTS [key] <span class="comment"># 检查给定key是否存在</span></span><br><span class="line">TYPE [key] <span class="comment"># 返回给定key所存储值的类型</span></span><br><span class="line">TTL [key] <span class="comment"># 返回给定key的剩余生存时间, 单位: 秒</span></span><br><span class="line">DEL [key] <span class="comment"># 当给定key 存在时删除key</span></span><br></pre></td></tr></table></figure></div>
-
-<hr>
-<h2 id="在Java-中使用Redis"><a href="#在Java-中使用Redis" class="headerlink" title="在Java 中使用Redis"></a>在Java 中使用Redis</h2><h3 id="SpringDataRedis"><a href="#SpringDataRedis" class="headerlink" title="SpringDataRedis"></a>SpringDataRedis</h3><p><strong>maven坐标</strong></p>
-<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<h4 id="RedisTemplate"><a href="#RedisTemplate" class="headerlink" title="RedisTemplate"></a>RedisTemplate</h4><p>SpringDataRedis中提供了一个高度封装的类: RedisTemplate, 针对jedis客户端中大量api进行归类封装, 将同一类型操作封装成operation接口, 具体如下</p>
-<ul>
-<li>ValueOperations: 简单的K-V 操作</li>
-<li>SetOperations: set类型数据操作</li>
-<li>ZSetOperations: zset类型数据操作</li>
-<li>HashOperations: 针对map类型的数据操作</li>
-<li>ListOperations: 针对list类型的数据操作</li>
-</ul>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> RedisTemplate redisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过redisTemplate.opsForXxxx()的方式获取操作对象</span></span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">testRedis</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="comment">//获取ValueOperations并存值</span></span><br><span class="line">       redisTemplate.opsForValue().set(<span class="string">&quot;test-123&quot;</span>, <span class="string">&quot;测试数据&quot;</span>);</span><br><span class="line">       <span class="comment">//取值</span></span><br><span class="line">       <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> redisTemplate.opsForValue().get(<span class="string">&quot;test-123&quot;</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></div>
-
-]]></content>
-      <tags>
-        <tag>reids</tag>
-        <tag>jedis</tag>
-        <tag>Spring-data-redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mysql笔记-数据库设计-表之间的关系</title>
-    <url>/2022/09/30/mysql-note/%E8%A1%A8%E4%B9%8B%E9%97%B4%E5%85%B3%E7%B3%BB/</url>
+    <url>/mysql-note/%E8%A1%A8%E4%B9%8B%E9%97%B4%E5%85%B3%E7%B3%BB/</url>
     <content><![CDATA[<h2 id="表之间的关系"><a href="#表之间的关系" class="headerlink" title="表之间的关系"></a>表之间的关系</h2><h3 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a><strong>一对一</strong></h3><p>例如，用户表和用户信息表(不常用的信息)</p>
 <p>实现方式: 在任意一方加入外键，关联另一方主键，并且设置外键为<strong>唯一</strong>(<strong>UNIQUE</strong>)</p>
 <h3 id="一对多-多对一"><a href="#一对多-多对一" class="headerlink" title="一对多(多对一)"></a><strong>一对多(多对一)</strong></h3><p>例如：一个部门有多个员工，多个员工属于一个部门</p>
@@ -882,6 +983,9 @@
 <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 订单与商品关联例子</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> if <span class="keyword">not</span> <span class="keyword">exists</span> orders</span><br><span class="line">(</span><br><span class="line">    id      <span class="type">int</span> auto_increment <span class="keyword">primary</span> key,</span><br><span class="line">    payment <span class="type">int</span>         <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    paytype <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    status  <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> if <span class="keyword">not</span> <span class="keyword">exists</span> goods</span><br><span class="line">(</span><br><span class="line">    id    <span class="type">int</span> auto_increment <span class="keyword">primary</span> key,</span><br><span class="line">    name  <span class="type">varchar</span>(<span class="number">60</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    price <span class="type">int</span>         <span class="keyword">not</span> <span class="keyword">null</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> if <span class="keyword">not</span> <span class="keyword">exists</span> tk_orders_goods</span><br><span class="line">(</span><br><span class="line">    id       <span class="type">int</span> auto_increment <span class="keyword">primary</span> key,</span><br><span class="line">    order_id <span class="type">int</span> <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    good_id  <span class="type">int</span> <span class="keyword">not</span> <span class="keyword">null</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 添加外键</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tk_orders_goods <span class="keyword">add</span> <span class="keyword">constraint</span>  fk_order_id <span class="keyword">FOREIGN</span> KEY(order_id) <span class="keyword">REFERENCES</span> orders(id);</span><br><span class="line"><span class="comment">-- 添加外键</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tk_orders_goods <span class="keyword">add</span> <span class="keyword">constraint</span>  fk_good_id <span class="keyword">FOREIGN</span> KEY(good_id) <span class="keyword">REFERENCES</span> goods(id);</span><br></pre></td></tr></table></figure></div>
 
 ]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
       <tags>
         <tag>note</tag>
         <tag>mysql</tag>
@@ -889,7 +993,7 @@
   </entry>
   <entry>
     <title>JavaWEB笔记-Spring-AOP</title>
-    <url>/2022/10/11/spring/spring-AOP%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
+    <url>/spring/spring-AOP%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>AOP: 面向切面编程, 一种编程范式,指导开发者如何组织程序结构</p>
 <p>作用: 在不惊动原始设计的基础上进行功能增强</p>
 <p>Spring理念: 无入侵式\无侵入式 编程</p>
@@ -942,6 +1046,10 @@
 
 <p><strong>环绕通知</strong></p>
 ]]></content>
+      <categories>
+        <category>note</category>
+        <category>spring</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
@@ -951,20 +1059,8 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaWEB笔记-SpringBoot</title>
-    <url>/2022/10/13/spring/spring-boot/</url>
-    <content><![CDATA[<h2 id="Maven坐标"><a href="#Maven坐标" class="headerlink" title="Maven坐标"></a>Maven坐标</h2><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--德鲁伊连接池--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.13-SNSAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>note</tag>
-        <tag>spring</tag>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaWEB笔记-Spring核心容器</title>
-    <url>/2022/10/09/spring/spring-IoC%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
+    <url>/spring/spring-IoC%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
     <content><![CDATA[<h2 id="控制反转Ioc"><a href="#控制反转Ioc" class="headerlink" title="控制反转Ioc"></a><strong>控制反转Ioc</strong></h2><p>使用对象时,由主动new产生对象转换为由<strong>外部</strong>提供对象, 此过程中创建对象控制权由程序转移到外部,此思想称为控制反转</p>
 <p>Spring对Ioc思想的实现</p>
 <ul>
@@ -1016,6 +1112,10 @@
 <p>注解管理第三方Bean</p>
 <div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//添加@Bean注解表示该方法返回值是一个Bean</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> DataSource <span class="title function_">dataSource</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">DruidDataSource</span> <span class="variable">ds</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DruidDataSource</span>();</span><br><span class="line">    ds.setXXXX();</span><br><span class="line">    <span class="keyword">return</span> ds;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 第三方Bean的依赖注入</span></span><br><span class="line"><span class="comment"> * 添加<span class="doctag">@Bean</span>注解表示该方法返回值是一个Bean</span></span><br><span class="line"><span class="comment"> * 如果要给第三方的Bean依赖注入,用形参的形式给到对应方法里</span></span><br><span class="line"><span class="comment"> * spring会从容器里找到该形参的Bean然后传到指定方法</span></span><br><span class="line"><span class="comment"> * 以下方方法为例, 我要传入数据库配置信息获得Druid连接池</span></span><br><span class="line"><span class="comment"> * 我定义一个SqlConfig存放数据库信息</span></span><br><span class="line"><span class="comment"> * 然后给到dataSource()方法</span></span><br><span class="line"><span class="comment"> * Spring会自动帮我们装配参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> DataSource <span class="title function_">dataSource</span><span class="params">(SqlConfig sc)</span> &#123;</span><br><span class="line">    <span class="comment">//bd do something...</span></span><br><span class="line">    <span class="type">DruidDataSource</span> <span class="variable">ds</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DruidDataSource</span>();</span><br><span class="line">    ds.setUrl(sc.getUrl());</span><br><span class="line">    <span class="keyword">return</span> ds;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 ]]></content>
+      <categories>
+        <category>note</category>
+        <category>spring</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
@@ -1024,8 +1124,24 @@
       </tags>
   </entry>
   <entry>
+    <title>JavaWEB笔记-SpringBoot</title>
+    <url>/spring/spring-boot/</url>
+    <content><![CDATA[<h2 id="Maven坐标"><a href="#Maven坐标" class="headerlink" title="Maven坐标"></a>Maven坐标</h2><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--德鲁伊连接池--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.13-SNSAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>note</category>
+        <category>spring</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>note</tag>
+        <tag>spring</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaWEB笔记-SpringMVC</title>
-    <url>/2022/10/16/spring/spring-mvc/</url>
+    <url>/spring/spring-mvc/</url>
     <content><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><hr>
 <h2 id="SpringMVC与Tomcat整合"><a href="#SpringMVC与Tomcat整合" class="headerlink" title="SpringMVC与Tomcat整合"></a>SpringMVC与Tomcat整合</h2><p>需要注意的是Tomcat 10与spring mvc不兼容. 请使用tomcat 8</p>
 <h3 id="导入maven坐标"><a href="#导入maven坐标" class="headerlink" title="导入maven坐标"></a>导入maven坐标</h3><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax-servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
@@ -1163,6 +1279,10 @@
 
 <h3 id="简化后"><a href="#简化后" class="headerlink" title="简化后"></a><strong>简化后</strong></h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 如果该Controller里的所有方法都有返回值,那么可以使用 <span class="doctag">@RestController</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@RestController</span> 等于 <span class="doctag">@Controller</span>和<span class="doctag">@ResponseBody</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 提取入口的访问前缀注解到类上</span></span><br><span class="line"><span class="comment"> * 代表该类下的所有访问入口都带此前缀</span></span><br><span class="line"><span class="comment"> * http://localhost/users/xxx</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/users&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AccountController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * POST请求的入口</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id 路径参数</span></span><br><span class="line"><span class="comment">     * 示例请求地址 http://localhost/users/1</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">OnAccountLogin</span><span class="params">(<span class="meta">@PathVariable</span> String id)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;login request data -&gt; &quot;</span> + id);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * GET请求的入口</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id 路径参数</span></span><br><span class="line"><span class="comment">     * 示例请求地址 http://localhost/users/1</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">OnAccountRegister</span><span class="params">(<span class="meta">@PathVariable</span> String id)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;register request data -&gt; &quot;</span> + id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 ]]></content>
+      <categories>
+        <category>note</category>
+        <category>spring</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
@@ -1173,7 +1293,7 @@
   </entry>
   <entry>
     <title>JavaWEB笔记-Spring事务</title>
-    <url>/2022/10/14/spring/spring-%E4%BA%8B%E5%8A%A1/</url>
+    <url>/spring/spring-%E4%BA%8B%E5%8A%A1/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>事务作用</strong>: 在数据层保证一系列数据库操作同时成功或同时失败</p>
 <p><strong>Spring事务作用</strong>: 在<strong>数据层</strong>或<strong>业务层</strong>的一些列数据库操作同时成功或同时失败</p>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>通过相同的数据源<strong>DataSource</strong>来管理sql的事务</p>
@@ -1283,6 +1403,10 @@
 </tr>
 </tbody></table>
 ]]></content>
+      <categories>
+        <category>note</category>
+        <category>spring</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
@@ -1292,7 +1416,7 @@
   </entry>
   <entry>
     <title>JavaWEB笔记-Spring异常处理</title>
-    <url>/2022/10/23/spring/spring-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</url>
+    <url>/spring/spring-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<h2 id="异常处理器"><a href="#异常处理器" class="headerlink" title="异常处理器"></a>异常处理器</h2><p>出现异常现象的常见位置与诱因如下:</p>
 <p>框架内部抛出的异常: 使用不合规导致</p>
 <p>数据层抛出的异常: 因外部服务器故障导致(如: 服务器访问超时)</p>
@@ -1324,6 +1448,10 @@
 <div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;success&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">233</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;错误, 系统出现异常&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;success&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">255</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;错误, 系统禁止此操作&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
 
 ]]></content>
+      <categories>
+        <category>note</category>
+        <category>spring</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
@@ -1332,7 +1460,7 @@
   </entry>
   <entry>
     <title>JavaWEB笔记-Spring拦截器</title>
-    <url>/2022/10/13/spring/spring-%E6%8B%A6%E6%88%AA%E5%99%A8/</url>
+    <url>/spring/spring-%E6%8B%A6%E6%88%AA%E5%99%A8/</url>
     <content><![CDATA[<h2 id="入门案例"><a href="#入门案例" class="headerlink" title="入门案例"></a>入门案例</h2><p>定义一个拦截器Bean,实现<strong>HandlerInterceptor</strong>接口</p>
 <div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//拦截之前触发</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;preHandle&quot;</span>);</span><br><span class="line">        <span class="comment">//返回false表示不放行 中止原始操作, 也会影响拦截器链的运行</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//拦截之后触发</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;postHandle&quot;</span>);</span><br><span class="line">        HandlerInterceptor.<span class="built_in">super</span>.postHandle(request, response, handler, modelAndView);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//拦截完成后触发</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;afterCompletion&quot;</span>);</span><br><span class="line">        HandlerInterceptor.<span class="built_in">super</span>.afterCompletion(request, response, handler, ex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
@@ -1366,6 +1494,10 @@
 <li>Object handler: 被调用的处理器对象,本质是一个方法, 对反射技术中的Method进行封装</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>note</category>
+        <category>spring</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>
@@ -1374,7 +1506,7 @@
   </entry>
   <entry>
     <title>JavaWEB笔记-Spring整合mybatis</title>
-    <url>/2022/10/13/spring/spring-%E6%95%B4%E5%90%88mybatis/</url>
+    <url>/spring/spring-%E6%95%B4%E5%90%88mybatis/</url>
     <content><![CDATA[<h2 id="Maven坐标"><a href="#Maven坐标" class="headerlink" title="Maven坐标"></a>Maven坐标</h2><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--德鲁伊连接池--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.13-SNSAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--数据库连接组件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--mybatis--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--spring操作数据库需要的--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--spring整合mybatis需要的--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
 
 <h3 id="JDBC配置类"><a href="#JDBC配置类" class="headerlink" title="JDBC配置类"></a>JDBC配置类</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JDBCConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;jdbc.url&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;jdbc.username&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;jdbc.password&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">driverClass</span> <span class="operator">=</span> <span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> DataSource <span class="title function_">dataSource</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">DruidDataSource</span> <span class="variable">druidDataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DruidDataSource</span>();</span><br><span class="line">        druidDataSource.setDriverClassName(driverClass);</span><br><span class="line">        druidDataSource.setUrl(url);</span><br><span class="line">        druidDataSource.setUsername(username);</span><br><span class="line">        druidDataSource.setPassword(password);</span><br><span class="line">        <span class="keyword">return</span> druidDataSource;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -1385,6 +1517,10 @@
 
 <p>至此Spring和Mybatis整和完毕</p>
 ]]></content>
+      <categories>
+        <category>note</category>
+        <category>spring</category>
+      </categories>
       <tags>
         <tag>java</tag>
         <tag>note</tag>

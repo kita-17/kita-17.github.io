@@ -437,10 +437,6 @@ button {
   cursor: pointer;
   background: transparent;
 }
-mark {
-  border-radius: 5px;
-  padding: 1px;
-}
 .btn {
   display: inline-block;
   position: relative;
@@ -462,6 +458,10 @@ mark {
 .btn:hover {
   color: var(--background-color);
   background: var(--primary-color);
+}
+mark {
+  border-radius: 5px;
+  padding: 1px;
 }
 .flex-center {
   display: flex;

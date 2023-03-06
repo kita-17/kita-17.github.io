@@ -18,10 +18,10 @@
   padding: 5px 5px 5px 10px;
 }
 .markdown-body p {
-  line-height: 1.5;
+  line-height: 1.8;
   color: var(--default-text-color);
   margin-bottom: 1rem;
-  margin-top: 0;
+  margin-top: 1rem;
 }
 .markdown-body a {
   position: relative;
