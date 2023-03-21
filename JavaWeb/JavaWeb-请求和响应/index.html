@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="kita17">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://kita-17.github.io/javaweb/javaweb-请求和响应/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="JavaWEB笔记-请求和响应">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="http://kita-17.github.ioJavaWeb/JavaWeb-请求和响应/">
+    
+    <meta property="og:site_name" content="KITA!!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JavaWEB笔记-请求和响应">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            JavaWEB笔记-请求和响应 -
+        
+        KITA!!
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.png","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"font_sizes":{"title":"2.8rem","subtitle":"1.5rem"},"line_height":1.2,"title":"Theme Redefine","subtitle":{"enable":false,"list":[]},"custom_font":{"enable":false,"font_family":null,"font_url":null},"description":"KITA KITA!!"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"simple","custom_font":{"enable":true,"font_family":"JetBrains Mono","font_url":"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap"}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.5","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}}};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                KITA!!
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-tag"></i>
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-book"></i>
+                                        
+                                        CATEGORIES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/about"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                    <i class="fa-regular fa-tag"></i>
+                                
+                                TAGS
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                    <i class="fa-regular fa-book"></i>
+                                
+                                CATEGORIES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/about"  >
+                             
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">JavaWEB笔记-请求和响应</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.png">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">kita17</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2022-10-05</span>
+        <span class="mobile">2022-10-05 00</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2023-03-04 21:49:08</span>
+            <span class="mobile">2023-03-04 21:49</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/note/">note</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/note/JavaWeb/">JavaWeb</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/note/">note</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Resquest/">Resquest</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Response/">Response</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li>Request: 获取请求数据</li>
+<li>Response: 设置响应数据</li>
+</ul>
+<h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><h3 id="获取请求数据"><a href="#获取请求数据" class="headerlink" title="获取请求数据"></a>获取请求数据</h3><p>一些需要了解的方法</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    <span class="comment">// http://localhost:8080/EoeWebDemo_war/test?username=aas&amp;password=1234567</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 请求行的数据</span></span><br><span class="line">    req.getMethod(); <span class="comment">// GET  提交方法</span></span><br><span class="line">    req.getContextPath(); <span class="comment">// EoeWebDemo_war  虚拟路径</span></span><br><span class="line">    req.getRequestURL(); <span class="comment">// http://localhost:8080/EoeWebDemo_war/test</span></span><br><span class="line">    req.getRequestURI(); <span class="comment">// /EoeWebDemo_war/test</span></span><br><span class="line">    req.getQueryString();  <span class="comment">// username=aas&amp;password=1234567</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//请求头的数据, 根据请求头名称获取值</span></span><br><span class="line">    req.getHeader(<span class="string">&quot;User-Agent&quot;</span>);</span><br><span class="line">    <span class="comment">//Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    <span class="comment">//获取POST请求体的数据</span></span><br><span class="line">    <span class="comment">//获取流对象</span></span><br><span class="line">    <span class="comment">// BufferedReader getReader()：获取字符输入流 只能操作字符数据</span></span><br><span class="line">    <span class="comment">// ServletInputStream getInputStream()：获取字节输入流 可以操作所有类型数据</span></span><br><span class="line">    req.getInputStream();</span><br><span class="line">    req.getReader();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>Reuqest提供的获取参数的方法,不管是get还是post都通用</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取所有参数</span></span><br><span class="line">Map&lt;String, String[]&gt; stringMap = req.getParameterMap();</span><br><span class="line"><span class="comment">//获取指定参数名的多个值</span></span><br><span class="line">String[] pars = req.getParameterValues(<span class="string">&quot;某个参数名&quot;</span>);</span><br><span class="line"><span class="comment">//获取指定参数的单个值</span></span><br><span class="line"><span class="type">String</span> <span class="variable">par</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;某个参数名&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="中文参数乱码解决方式"><a href="#中文参数乱码解决方式" class="headerlink" title="中文参数乱码解决方式"></a>中文参数乱码解决方式</h3><p>浏览器对url中的中文会进行URL编码,而Tomcat在解码时使用的字符集是<strong>ISO-8859-1</strong>, 会导致中文乱码.</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//POST请求直接使用这个方法设置即可</span></span><br><span class="line">req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line"><span class="comment">//GET请求需要我们手动对字符串进行编码解码操作</span></span><br><span class="line"><span class="comment">//把收到的字符串转为二进制</span></span><br><span class="line"><span class="type">byte</span>[] bytes = req.getParameter(<span class="string">&quot;参数名&quot;</span>).getBytes();</span><br><span class="line"><span class="comment">//在用utf8字符集把二进制数据转成String</span></span><br><span class="line"><span class="type">String</span> <span class="variable">newParame</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(bytes, StandardCharsets.UTF_8);</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3><p>一种服务器内部资源跳转方式</p>
+<p>特点</p>
+<ul>
+<li>浏览器地址栏不会发生变化</li>
+<li>转发只能转到服务器内部资源</li>
+<li>转发是一次请求,可以使用request共享数据</li>
+</ul>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转发资源间共享数据方式</span></span><br><span class="line">request.setAttribute(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line">request.getAttribute(<span class="string">&quot;key&quot;</span>);</span><br><span class="line">request.removeAttribute(<span class="string">&quot;key&quot;</span>);</span><br><span class="line"><span class="comment">//请求转发</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">&quot;其他资源的访问路径&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h2><p>一些方法</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    <span class="comment">//设置响应代码</span></span><br><span class="line">    response.setStatus(<span class="number">200</span>);</span><br><span class="line">    <span class="comment">//设置响应头</span></span><br><span class="line">    response.setHeader(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line">    <span class="comment">//获取字符输出流</span></span><br><span class="line">    response.getWriter();</span><br><span class="line">    <span class="comment">//获取字节输出流</span></span><br><span class="line">    response.getOutputStream();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Response重定向"><a href="#Response重定向" class="headerlink" title="Response重定向"></a>Response重定向</h3><p>介绍：一种资源跳转方式</p>
+<p>特点</p>
+<ul>
+<li>地址栏路径发生变化</li>
+<li>可以重定向到任意位置资源, 服务器内部, 外部都可</li>
+<li>两次请求,不能在多个资源共享数据</li>
+</ul>
+<p>实现方式</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置重定向代码</span></span><br><span class="line">response.setStatus(<span class="number">302</span>);</span><br><span class="line"><span class="comment">//设置重定向路径</span></span><br><span class="line"><span class="comment">//需要添加request.getContextPath()虚拟目录</span></span><br><span class="line">response.setHeader(<span class="string">&quot;Location&quot;</span>, request.getContextPath() + <span class="string">&quot;/ts&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//简化方式, 使用这个</span></span><br><span class="line">response.sendRedirect(request.getContextPath() + <span class="string">&quot;/ts&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="响应字符数据"><a href="#响应字符数据" class="headerlink" title="响应字符数据"></a>响应字符数据</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//response.setHeader(&quot;Content-Type&quot;,&quot;text/html&quot;);</span></span><br><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br><span class="line"><span class="type">PrintWriter</span> <span class="variable">pw</span> <span class="operator">=</span> response.getWriter();</span><br><span class="line">pw.write(<span class="string">&quot;aaaaa&quot;</span>);</span><br><span class="line">pw.write(<span class="string">&quot;&lt;h1&gt;aaaaa&lt;/h1&gt;&quot;</span>);</span><br><span class="line"><span class="comment">//响应完成后, response 会被销毁, PrintWriter会被服务器关闭</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//响应字节流数据</span></span><br><span class="line"><span class="type">FileInputStream</span> <span class="variable">fileInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;/bg.jpg&quot;</span>);</span><br><span class="line"><span class="type">ServletOutputStream</span> <span class="variable">out</span> <span class="operator">=</span> response.getOutputStream();</span><br><span class="line"><span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="keyword">while</span> ((lenght = fileInputStream.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">    out.write(buffer,<span class="number">0</span>,lenght);</span><br><span class="line">&#125;</span><br><span class="line">fileInputStream.close();</span><br></pre></td></tr></table></figure></div>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/java/">#java</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/note/">#note</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Resquest/">#Resquest</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Response/">#Response</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/JavaWeb/JavaWeb-Tomcat/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">JavaWEB笔记-Servlet</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/myBatis/Mybatis-%E9%85%8D%E7%BD%AE/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">JavaWEB笔记-MyBatis配置文件</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">JavaWEB笔记-请求和响应</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Request"><span class="nav-text">Request</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE"><span class="nav-text">获取请求数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E5%8F%82%E6%95%B0%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="nav-text">中文参数乱码解决方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91"><span class="nav-text">请求转发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Response"><span class="nav-text">Response</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Response%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-text">Response重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E5%AD%97%E7%AC%A6%E6%95%B0%E6%8D%AE"><span class="nav-text">响应字符数据</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">kita17</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br> 
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.5</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/tools/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

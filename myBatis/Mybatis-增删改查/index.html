@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="kita17">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://kita-17.github.io/mybatis/mybatis-增删改查/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="JavaWEB笔记-MyBatis-增删改查">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="http://kita-17.github.iomyBatis/Mybatis-增删改查/">
+    
+    <meta property="og:site_name" content="KITA!!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JavaWEB笔记-MyBatis-增删改查">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            JavaWEB笔记-MyBatis-增删改查 -
+        
+        KITA!!
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.png","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"font_sizes":{"title":"2.8rem","subtitle":"1.5rem"},"line_height":1.2,"title":"Theme Redefine","subtitle":{"enable":false,"list":[]},"custom_font":{"enable":false,"font_family":null,"font_url":null},"description":"KITA KITA!!"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"simple","custom_font":{"enable":true,"font_family":"JetBrains Mono","font_url":"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap"}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.5","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}}};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                KITA!!
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-tag"></i>
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-book"></i>
+                                        
+                                        CATEGORIES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/about"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                    <i class="fa-regular fa-tag"></i>
+                                
+                                TAGS
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                    <i class="fa-regular fa-book"></i>
+                                
+                                CATEGORIES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/about"  >
+                             
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">JavaWEB笔记-MyBatis-增删改查</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.png">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">kita17</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2022-10-05</span>
+        <span class="mobile">2022-10-05 00</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2023-03-04 21:47:56</span>
+            <span class="mobile">2023-03-04 21:47</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/note/">note</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/note/">note</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/MyBatis/">MyBatis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="增删改查例子"><a href="#增删改查例子" class="headerlink" title="增删改查例子"></a>增删改查例子</h2><h3 id="AccountMapper-xml"><a href="#AccountMapper-xml" class="headerlink" title="AccountMapper.xml"></a><strong>AccountMapper.xml</strong></h3><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- namespace是映射接口的路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.eoezora.mybatisDemo.mapper.AccountMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 添加数据, 参数POJO -&gt; EoeAccount --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 添加这两个 useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot; 属性在insert标签里可以返回主键 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addAccount&quot;</span> <span class="attr">useGeneratedKeys</span>=<span class="string">&quot;true&quot;</span> <span class="attr">keyProperty</span>=<span class="string">&quot;id&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addAccount&quot;</span> &gt;</span></span><br><span class="line">        INSERT INTO account (name, age, brithDay, location)</span><br><span class="line">        <span class="comment">&lt;!-- 这里的名字要与POJO类力的变量名一致 --&gt;</span></span><br><span class="line">        VALUES (#&#123;name&#125;,#&#123;age&#125;,#&#123;brithDay&#125;,#&#123;location&#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 删除一条数据 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;delAccouintById&quot;</span>&gt;</span></span><br><span class="line">        DELETE</span><br><span class="line">        FROM account</span><br><span class="line">        WHERE id = #&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 删除多条数据 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;delAccouintByIds&quot;</span>&gt;</span></span><br><span class="line">        DELETE</span><br><span class="line">        FROM account</span><br><span class="line">        WHERE id in</span><br><span class="line">        <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">            collection需要遍历的集合 </span></span><br><span class="line"><span class="comment">            item 集合里的元素 </span></span><br><span class="line"><span class="comment">            separator 分隔符</span></span><br><span class="line"><span class="comment">            open 前缀符</span></span><br><span class="line"><span class="comment">            close 后缀符</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;ids&quot;</span> <span class="attr">item</span>=<span class="string">&quot;id&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">            #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 查询所以数据 多个条件使用 and 分割 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAccounts&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">        SELECT *</span><br><span class="line">        FROM account;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 根据ID查询数据 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAccount&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">        SELECT *</span><br><span class="line">        FROM account</span><br><span class="line">        WHERE id = #&#123;id&#125;;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 根据ID修改数据 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 动态修改参考动态查询 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;setAccountAge&quot;</span>&gt;</span></span><br><span class="line">        UPDATE account</span><br><span class="line">        SET age = #&#123;age&#125;</span><br><span class="line">        WHERE id = #&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="AccountMapper-class"><a href="#AccountMapper-class" class="headerlink" title="AccountMapper.class"></a><strong>AccountMapper.class</strong></h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.eoezora.mybatisDemo.mapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.eoezora.mybatisDemo.pojo.EoeAccount;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="comment">//映射接口, 方法名与上方SQL映射xml里的ID一致</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AccountMapper</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;insert id=&quot;addAccount&quot; parameterType=&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;&gt;</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">addAccount</span><span class="params">(EoeAccount eoeAccount)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;select id=&quot;selectAccounts&quot; resultType=&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;&gt;</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    List&lt;EoeAccount&gt; <span class="title function_">selectAccounts</span><span class="params">()</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;select id=&quot;selectAccount&quot; parameterType=&quot;int&quot; resultType=&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;&gt;</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    EoeAccount <span class="title function_">selectAccount</span><span class="params">(<span class="meta">@Param(&quot;id&quot;)</span><span class="type">int</span> id)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;delete id=&quot;delAccouintById&quot;&gt;</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">delAccouintById</span><span class="params">(<span class="meta">@Param(&quot;id&quot;)</span><span class="type">int</span> id)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;delete id=&quot;delAccouintByIds&quot;&gt; 传入数组批量删除多条数据</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">delAccouintById</span><span class="params">(<span class="meta">@Param(&quot;ids&quot;)</span> <span class="type">int</span>[] id)</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//传递参数的三种方式</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 多个单独的参数, <span class="doctag">@Param</span>里的值与xml映射表的占位符一致,也就是与 xml 里的 #&#123;&#125; 里的一致 例如: #&#123;name&#125;</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    List&lt;EoeAccount&gt; <span class="title function_">selectAccountByCondition</span><span class="params">(<span class="meta">@Param(&quot;name&quot;)</span> String name, <span class="meta">@Param(&quot;age&quot;)</span> intn age)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果参数可以封装在同一个类里,也可以直接传一个对象过来. xml #&#123;&#125; 将使用该对象参数名作为占位符</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    List&lt;EoeAccount&gt; <span class="title function_">selectAccountByCondition</span><span class="params">(EoeAccount account)</span>;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * HashMap key -&gt; value </span></span><br><span class="line"><span class="comment">     *  - 占位符名称 -&gt; 数值</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    List&lt;EoeAccount&gt; <span class="title function_">selectAccountByCondition</span><span class="params">(Map map)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用注解查询, 一般使用在简单的sql语句上, 复杂的语句还是使用xml映射</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    <span class="meta">@Select(&quot;SELECT * FROM account WHERE id = #&#123;id&#125;&quot;)</span></span><br><span class="line">    EoeAccount <span class="title function_">selectAccount</span><span class="params">(<span class="type">int</span> id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="使用接口进行增删改查"><a href="#使用接口进行增删改查" class="headerlink" title="使用接口进行增删改查"></a>使用接口进行增删改查</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">session</span> <span class="operator">=</span> sqlSessionFactory.openSession()) &#123;</span><br><span class="line">    <span class="type">AccountMapper</span> <span class="variable">mapper</span> <span class="operator">=</span> session.getMapper(AccountMapper.class);</span><br><span class="line">    mapper.selectAccounts();</span><br><span class="line">    mapper.addAccount();</span><br><span class="line">    <span class="comment">//需要注意的是 mybatis 对数据库进行增删改的操作后需要手动提交</span></span><br><span class="line">    session.commit();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取主键</span></span><br><span class="line"><span class="comment"> * 当数据添加完成后, 若insert标签有设置useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot; 属性</span></span><br><span class="line"><span class="comment"> * 则可以根据 以下方式获取返回的主键id</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="type">EoeAccount</span> <span class="variable">ea</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EoeAccount</span>(<span class="string">&quot;蔡某&quot;</span>,<span class="number">25</span>,<span class="string">&quot;1919-08-10&quot;</span>,<span class="string">&quot;荔枝星&quot;</span>);</span><br><span class="line">mapper.addAccount(ea);</span><br><span class="line">System.out.println(ea.getId());</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="多条件动态查询"><a href="#多条件动态查询" class="headerlink" title="多条件动态查询"></a>多条件动态查询</h2><p>在根据条件查询时,多个条件使用以下方式,传入的条件参数是固定的。比如下面这条是3个.</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 查询所以数据 多个条件使用 and 分割 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAccounts&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">    SELECT *</span><br><span class="line">    FROM account WHERE id = 1 AND name = &#x27;xxx&#x27; AND AGE = 24;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>有时候我们需要的是模糊查询, 用户给的条件数量是不固定的，有时一个有时三个。我们需要根据传来的条件参数数量来<strong>动态调整我们的SQL</strong>语句。MyBatis提供了许多标签来支持此功能: <strong>if</strong> | <strong>choose(when, otherwise)</strong> | <strong>trim(where, set)</strong> | <strong>foreach</strong></p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAccounts&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">    SELECT *</span><br><span class="line">    FROM account</span><br><span class="line">    <span class="comment">&lt;!-- 使用where标签可以解决第一个条件不存在时的报错, 同时会帮我们去掉多余的AND --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 下面为例 当id小于0，条件不会被拼到sql语句里,且会帮我们去掉name前面的AND --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- test后面跟判断条件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;id &gt; 0&quot;</span>&gt;</span></span><br><span class="line">            AND id = #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;name != null&quot;</span>&gt;</span></span><br><span class="line">            AND name LIKE #&#123;name&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;age &gt; 0&quot;</span>&gt;</span></span><br><span class="line">            AND age = #&#123;age&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="单条件动态查询"><a href="#单条件动态查询" class="headerlink" title="单条件动态查询"></a>单条件动态查询</h2><p>当我们需要单条件动态查询时，使用以下方法</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAccounts&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">    SELECT *</span><br><span class="line">    FROM account</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">choose</span>&gt;</span><span class="comment">&lt;!-- 类似switch --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;id &gt; 0&quot;</span>&gt;</span><span class="comment">&lt;!-- 类似case --&gt;</span></span><br><span class="line">                id = #&#123;id&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;name != null and name != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">                name like #&#123;name&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;age &gt; 0&quot;</span>&gt;</span></span><br><span class="line">                age = #&#123;age&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span>1 = 1<span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span><span class="comment">&lt;!-- 类似default 使用where标签可以去掉这个 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><p>Mybatis接口方法可以接受各种各样的参数，底层会对这些参数进行不同的封装处理</p>
+<h3 id="单个参数"><a href="#单个参数" class="headerlink" title="单个参数:"></a>单个参数:</h3><ul>
+<li>POJO类型</li>
+<li>Map集合</li>
+<li>Coolection</li>
+<li>List</li>
+<li>Array</li>
+<li>其他类型</li>
+</ul>
+<h3 id="多个参数"><a href="#多个参数" class="headerlink" title="多个参数:"></a>多个参数:</h3><p>类似</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EoeAccount <span class="title function_">selectAccount</span><span class="params">(<span class="meta">@Param(&quot;id&quot;)</span><span class="type">int</span> id, <span class="meta">@Param(&quot;name&quot;)</span>String name...)</span>;</span><br></pre></td></tr></table></figure></div>
+<p>参数需要有@Param注解,里面的值与xml映射文件里的占位符一致</p>
+<h2 id="D"><a href="#D" class="headerlink" title="#:D"></a>#:D</h2><h3 id="参数占位符"><a href="#参数占位符" class="headerlink" title="参数占位符"></a>参数占位符</h3><p>#{}: 执行SQL时, 会将#{}占位符替换成 ? 会自动设置参数, 防止sql注入</p>
+<p>${}: 拼SQL语句,会出现sql注入问题.</p>
+<p><strong>一般在传参数时使用 #{} 在对表名，列名进行动态设置时，使用${} 进行拼接.</strong></p>
+<h3 id="parameterType"><a href="#parameterType" class="headerlink" title="parameterType"></a>parameterType</h3><p>用于设置传入的参数类型, 此属性可以省略</p>
+<h3 id="resultType"><a href="#resultType" class="headerlink" title="resultType"></a>resultType</h3><p>执行SQL语句后返回的数据进行封装，此属性指定封装后的类型</p>
+<h3 id="xml中特殊字符处理"><a href="#xml中特殊字符处理" class="headerlink" title="xml中特殊字符处理"></a>xml中特殊字符处理</h3><p>在xml文件写SQL语句时难免会出现 大于小于的判断 而 &lt; 是xml标签起始。所以需要进行处理。下面为例子</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAccount&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">    SELECT *</span><br><span class="line">    FROM account</span><br><span class="line">    <span class="comment">&lt;!-- 此处的小于号 &lt; 会报错, 因为被xml判定成了不完成的标签 --&gt;</span></span><br><span class="line">    WHERE id &lt; 5;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 正确的写法应该是 CDATA 或者 转义字符 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAccount&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.eoezora.mybatisDemo.pojo.EoeAccount&quot;</span>&gt;</span></span><br><span class="line">    SELECT *</span><br><span class="line">    FROM account</span><br><span class="line">    WHERE id</span><br><span class="line">    <span class="comment">&lt;!-- 把他也输符号写在CDATA 里就不会报错了 --&gt;</span></span><br><span class="line">    &lt;![CDATA[</span><br><span class="line">	 &lt;</span><br><span class="line">    ]]&gt; #&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/java/">#java</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/note/">#note</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/MyBatis/">#MyBatis</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/myBatis/Mybatis-%E9%85%8D%E7%BD%AE/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">JavaWEB笔记-MyBatis配置文件</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/myBatis/Mybatis/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">JavaWEB笔记-MyBatis快速入门笔记</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">JavaWEB笔记-MyBatis-增删改查</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%E4%BE%8B%E5%AD%90"><span class="nav-text">增删改查例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AccountMapper-xml"><span class="nav-text">AccountMapper.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AccountMapper-class"><span class="nav-text">AccountMapper.class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="nav-text">使用接口进行增删改查</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%9D%A1%E4%BB%B6%E5%8A%A8%E6%80%81%E6%9F%A5%E8%AF%A2"><span class="nav-text">多条件动态查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E6%9D%A1%E4%BB%B6%E5%8A%A8%E6%80%81%E6%9F%A5%E8%AF%A2"><span class="nav-text">单条件动态查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-text">参数传递</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%B8%AA%E5%8F%82%E6%95%B0"><span class="nav-text">单个参数:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0"><span class="nav-text">多个参数:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-text">#:D</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%8D%A0%E4%BD%8D%E7%AC%A6"><span class="nav-text">参数占位符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parameterType"><span class="nav-text">parameterType</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resultType"><span class="nav-text">resultType</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xml%E4%B8%AD%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86"><span class="nav-text">xml中特殊字符处理</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">kita17</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br> 
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.5</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/tools/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

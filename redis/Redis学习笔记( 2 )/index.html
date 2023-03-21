@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="kita17">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://kita-17.github.io/redis/redis学习笔记( 2 )/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Redis学习笔记(2)">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="http://kita-17.github.ioredis/Redis学习笔记( 2 )/">
+    
+    <meta property="og:site_name" content="KITA!!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Redis学习笔记(2)">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Redis学习笔记(2) -
+        
+        KITA!!
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.png","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"font_sizes":{"title":"2.8rem","subtitle":"1.5rem"},"line_height":1.2,"title":"Theme Redefine","subtitle":{"enable":false,"list":[]},"custom_font":{"enable":false,"font_family":null,"font_url":null},"description":"KITA KITA!!"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"simple","custom_font":{"enable":true,"font_family":"JetBrains Mono","font_url":"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap"}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.5","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}}};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                KITA!!
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-tag"></i>
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-book"></i>
+                                        
+                                        CATEGORIES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/about"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                    <i class="fa-regular fa-tag"></i>
+                                
+                                TAGS
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                    <i class="fa-regular fa-book"></i>
+                                
+                                CATEGORIES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/about"  >
+                             
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">Redis学习笔记(2)</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.png">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">kita17</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2022-12-04</span>
+        <span class="mobile">2022-12-04 00</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2023-03-17 10:24:42</span>
+            <span class="mobile">2023-03-17 10:24</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/note/">note</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/reids/">reids</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Spring-data-redis/">Spring-data-redis</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">分布式锁</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/redisson/">redisson</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <blockquote>
+<p>本章笔记记录SpringDataRedis和Redisson的使用，高并发下的线程安全问题，普通锁与分布式锁的使用，以及Redisson锁的原理</p>
+</blockquote>
+<h3 id="并发线程安全问题"><a href="#并发线程安全问题" class="headerlink" title="并发线程安全问题"></a>并发线程安全问题</h3><blockquote>
+<p>在并发访问数据库时，总会存在线程安全问题。为了解决该问题，我们一般使用加锁解决。而对于 <mark style="background: #ADCCFFA6;">上锁与否的态度</mark> 分为 <code>悲观锁</code> 和 <code>乐观锁</code>。这里将使用 <code>乐观锁</code> 进行演示</p>
+</blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用myBatis-plus, 等价于 -&gt; set stock = stock - 1 where item_id = ? and stock &gt; 0</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">res</span> <span class="operator">=</span> itemService  </span><br><span class="line">        .update()  </span><br><span class="line">        .setSql(<span class="string">&quot;stock = stock - 1&quot;</span>)  </span><br><span class="line">        .eq(<span class="string">&quot;item_id&quot;</span>, itemId)</span><br><span class="line">        <span class="comment">//判断stock是否大于0</span></span><br><span class="line">        .gt(<span class="string">&quot;stock&quot;</span>, <span class="number">0</span>)</span><br><span class="line">        .update();</span><br><span class="line"><span class="comment">//等价于-&gt; set stock = stock - 1 where item_id = ? and stock = ?</span></span><br><span class="line"><span class="comment">//boolean res = itemService  </span></span><br><span class="line"><span class="comment">//      .update()  </span></span><br><span class="line"><span class="comment">//      .setSql(&quot;stock = stock - 1&quot;)  </span></span><br><span class="line"><span class="comment">//      .eq(&quot;item_id&quot;, itemId)  </span></span><br><span class="line"><span class="comment">//       eq(&quot;stock&quot;, itemStock)</span></span><br><span class="line"><span class="comment">//      .update();</span></span><br><span class="line"><span class="keyword">if</span> (!res) &#123;</span><br><span class="line">	<span class="comment">//乐观锁的失败率会更大，所以一般更新失败，会重试</span></span><br><span class="line">	<span class="comment">//...重试逻辑</span></span><br><span class="line">    <span class="keyword">return</span> Result.fail(<span class="string">&quot;库存不足&quot;</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>上方的代码实现了一个简单的CAS乐观锁。需要注意的是，因为乐观锁失败几率更大，为了不让用户感知到失败，这里的业务只要stock大于0就可更新。减少锁的粒度。实际开发应根据业务选择和修改。</p>
+<h3 id="一人一单问题（也是线程安全问题）"><a href="#一人一单问题（也是线程安全问题）" class="headerlink" title="一人一单问题（也是线程安全问题）"></a>一人一单问题（也是线程安全问题）</h3><p>有时候在做业务时，我们想限制用户在同个活动里只能购买一个商品，或者电商系统防止出现超卖。这时可以给业务代码加锁，让线程串行执行。而对于单机系统与分布式系统，则有如下几种方案。</p>
+<h4 id="单机系统"><a href="#单机系统" class="headerlink" title="单机系统"></a>单机系统</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span>  </span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">createVoucherOrder</span><span class="params">(Long voucherId)</span> &#123;  <span class="comment">//创建优惠券订单</span></span><br><span class="line">    <span class="type">Long</span> <span class="variable">userId</span> <span class="operator">=</span> UserLocal.getUser().getId();  </span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> query()  </span><br><span class="line">            .eq(<span class="string">&quot;user_id&quot;</span>, userId)  </span><br><span class="line">            .eq(<span class="string">&quot;voucher_id&quot;</span>, voucherId)  </span><br><span class="line">            .count();  </span><br><span class="line">    <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> Result.fail(<span class="string">&quot;购买失败，只允许购买一次&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//用户第一次购买</span></span><br><span class="line">    <span class="comment">//减少库存 - 具体下单业务代码</span></span><br><span class="line">    <span class="comment">//......</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">orderNow</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="comment">//商品信息获取</span></span><br><span class="line">	<span class="comment">//库存判断，活动时间判断逻辑</span></span><br><span class="line">	<span class="comment">//......</span></span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//加锁，一人一单</span></span><br><span class="line">	<span class="keyword">synchronized</span> (userId.toString().intern()) &#123;<span class="comment">//使用用户Id加锁</span></span><br><span class="line">	    <span class="type">IVoucherOrderService</span> <span class="variable">proxy</span> <span class="operator">=</span> (IVoucherOrderService) AopContext.currentProxy();<span class="comment">//获取当前代理对象</span></span><br><span class="line">	    <span class="keyword">return</span> proxy.createVoucherOrder(voucherId); <span class="comment">//代理对象调用保证事务生效</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>上面代码，在单机系统下，通过 <code>synchronized</code> 加锁，实现了一人一单的功能。但仅限单机系统可用，若是 <mark style="background: #FFB8EBA6;">分布式系统还是会出现线程并发安全</mark></p>
+<h4 id="分布式系统"><a href="#分布式系统" class="headerlink" title="分布式系统"></a>分布式系统</h4><blockquote>
+<p>分布式一般由若干个单机系统的集合，通过代理转发请求到各个单机应用。 从而达到负载均衡，缓解单个单机应用压力，处理高并发数据的功能。</p>
+</blockquote>
+<p>在单机系统，我们想做一人一单功能的话，只需使用 <code>synchronized</code> 加锁即可。可在分布式系统这个方法行不通。因为分布式是多个单机系统的集合。每个单机系统都有自己的jvm（已Java的Spring为例）。多个jvm之间并不共享锁的信息。可用分布式锁解决此问题</p>
+<h5 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h5><p>简介：满足分布式锁系统或者集群模式下多进程可见并且互斥的锁<br>要求：多进程可见，互斥，高可用，高性能，安全性，</p>
+<h4 id="基于Redis命令SETNX的分布式锁"><a href="#基于Redis命令SETNX的分布式锁" class="headerlink" title="基于Redis命令SETNX的分布式锁"></a>基于Redis命令SETNX的分布式锁</h4><p>使用Redis的 <code>SETNX</code> 实现互斥锁，并添加过期时间作为兜底方案，防止服务宕机造成的死锁</p>
+<h6 id="获取锁"><a href="#获取锁" class="headerlink" title="获取锁"></a>获取锁</h6><p>使用redis的 <code>SETNX</code> 命令实现互斥，具体实现如下，其中可以用 <code>uuid + 线程Id</code> 来当锁的值</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">tryLock</span><span class="params">(Long expire)</span> &#123;<span class="comment">//尝试加锁，并设置一个超时时间作为兜底方案</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">lockKey</span> <span class="operator">=</span> PREFIX + LOCK_KEY + <span class="string">&quot;&quot;</span>;<span class="comment">//锁的key，一般由一个前缀加业务名，或业务相关的值拼接而成，但不能加随机值，如用户Id之类的，保证每次SETNX时是同个key</span></span><br><span class="line">    <span class="type">Boolean</span> <span class="variable">res</span> <span class="operator">=</span> stringRedisTemplate.opsForValue()  </span><br><span class="line">            .setIfAbsent(lockKey, LOCK_VALUE, expire, TimeUnit.SECONDS);  </span><br><span class="line">    <span class="keyword">return</span> Boolean.TRUE.equals(res);<span class="comment">//res是包装类型，自动拆箱可能会空指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h6 id="释放锁"><a href="#释放锁" class="headerlink" title="释放锁"></a>释放锁</h6><p>根据锁的key来获取值，为了防止锁的误删，需要判断获取到的reids锁的值是否与锁对象中的值是否一致，一致再删除。这样就能实现一个简单的分布式锁</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">unLock</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="comment">//根据锁的key拿值</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">lockValue</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(LOCK_KEY);  </span><br><span class="line">    <span class="comment">//值存在</span></span><br><span class="line">    <span class="keyword">if</span> (lockValue.equals(LOCK_VALUE)) &#123; <span class="comment">//值的内容是否一致</span></span><br><span class="line">        stringRedisTemplate.delete(PREFIX + LOCK_KEY);<span class="comment">//一致则删除该记录，以达到释放锁 </span></span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h6 id="锁的误删与原子性操作"><a href="#锁的误删与原子性操作" class="headerlink" title="锁的误删与原子性操作"></a>锁的误删与原子性操作</h6><p>在高并发的情况下，可能会出现极端情况，例如线程A拿到锁，执行完业务准备释放锁，判断锁是自己后，准备释放锁时，<code>jvm</code> GC机制触发或其他一些原因导致当前线程A被阻塞。如果阻塞时间超过了锁的存在时间。时间一到，锁被释放。在这一刻如果恰好线程B来拿锁，那线程B就会获取锁成功。而这时线程A阻塞完毕，开始解锁。因为在阻塞前已经判断锁是线程A的了。所以此时线程A会删掉线程B的锁。导致锁的误删。<br>为了解决这一问题，需要保证锁的判断与删除的 <mark style="background: #BBFABBA6;">原子性</mark>。可以使用Redis的 <mark style="background: #FFB86CA6;">Lua脚本</mark> 来确保命令执行的原子性。</p>
+<p><strong>Lua脚本如下</strong></p>
+<div class="highlight-container" data-rel="Lua"><figure class="iseeu highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- lua数组下标从1开始</span></span><br><span class="line"><span class="comment">-- KEYS是key数组 ARGS是参数数组,redis.call由redis提供，使用redis命令 -&gt; EVAL </span></span><br><span class="line"><span class="comment">-- 判断获取到的值是否与传入值一致  </span></span><br><span class="line"><span class="keyword">if</span>(redis.call(<span class="string">&#x27;GET&#x27;</span>, KEYS[<span class="number">1</span>]) == ARGS[<span class="number">1</span>]) <span class="keyword">then</span>  </span><br><span class="line">    <span class="keyword">return</span> redis.call(<span class="string">&#x27;DEL&#x27;</span>, KEYS[<span class="number">1</span>])  </span><br><span class="line"><span class="keyword">end</span>  </span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Java代码部分</strong><br>使用RedisTemplate调用Lua脚本，调用 <code>RedisTemplate</code> 的方法 <code>execute</code> 即可，此方法参数与命令 <code>EVAL</code> 差不多</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化RedisScript</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> DefaultRedisScript&lt;Long&gt; unlockScript;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">    unlockScript = <span class="keyword">new</span> <span class="title class_">DefaultRedisScript</span>&lt;&gt;();</span><br><span class="line">    unlockScript.setLocation(<span class="keyword">new</span> <span class="title class_">ClassPathResource</span>(<span class="string">&quot;lua/lock.lua&quot;</span>));  </span><br><span class="line">    unlockScript.setResultType(Long.class);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">unLock</span><span class="params">()</span> &#123;</span><br><span class="line">    stringRedisTemplate.execute(  </span><br><span class="line">            unlockScript,  </span><br><span class="line">            Collections.singletonList(PREFIX + LOCK_KEY),  </span><br><span class="line">            LOCK_VALUE  </span><br><span class="line">    );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>通过lua脚本，我们让判断与删除锁在一行代码里执行完，保证了操作的原子性。</p>
+</blockquote>
+<h6 id="SETNX分布锁的问题与总结"><a href="#SETNX分布锁的问题与总结" class="headerlink" title="SETNX分布锁的问题与总结"></a>SETNX分布锁的问题与总结</h6><p><strong>总结</strong><br>对于一些消费系统，钱包系统，一人一旦的秒杀活动等业务场景，为了防止高并发场景下因多个线程之间同步访问操作一个资源，造成数据不一致，数据损失等问题。例如前面提到的三个系统，如果没有使用锁，就会出现消费系统超卖，钱包支出金额超过了存款，秒杀活动一人下了多单等问题。</p>
+<ol>
+<li>在单机系统下，我们可以使用由JVM实现的 <code>synchronized</code> 和 JDK提供的 <code>Lock</code> 对数据操作的业务逻辑代码加锁，让并发线程串行执行，防止出现问题。</li>
+<li>在分布式或系统下，我们可以使用Redis的 <code>SETNX</code> 实现互斥锁。 <code>SETNX</code> 意思就是 set if not exist，如果 <code>key</code> 不存在则写入返回 1 如果存在则返回非1，代表其他线程已经设置过了。同时给这个 <code>key</code> 添加一个过期时间，防止出现因业务崩溃，没人解锁导致死锁的问题。需要注意的是应该在设置 key 的时候就添加过期时间，而不是先设置key。在添加过期时间，用一行代码完成加锁，保证操作原子性。</li>
+</ol>
+<p><strong>存在的问题</strong></p>
+<ol>
+<li>不可重入：同一个线程无法获取多把锁</li>
+<li>不可重试：获取锁只尝试一次，不成功就返回false，没有重试机制</li>
+<li>超时释放：超时释放可以避免死锁问题，但如果业务代码执行时间超过锁的超时时间，也会导致锁的释放，存在安全隐患</li>
+<li>主从一致性：如果redis提供主从集群，主从同步存在延迟，当 <mark style="background: #FFB86CA6;">主节点</mark> 宕机时， <mark style="background: #BBFABBA6;">从节点</mark> 来不及同步 <mark style="background: #FFB86CA6;">主节点</mark> 的锁数据，就会出现锁数据的丢失</li>
+</ol>
+<h4 id="Redisson的锁"><a href="#Redisson的锁" class="headerlink" title="Redisson的锁"></a>Redisson的锁</h4><blockquote>
+<p>Redisson是一个在Redis的基础上实现的Java驻内存数据网格。它不仅提供了一系列分布式的Java常用对象，还提供了许多分布式服务</p>
+</blockquote>
+<p><strong>使用Redisson的分布式锁</strong></p>
+<ul>
+<li><p>配置redisson，这里使用配置类形式，也可以写application.yml里</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisConfig</span> &#123;  </span><br><span class="line">    <span class="meta">@Bean</span>  </span><br><span class="line">    <span class="keyword">public</span> RedissonClient <span class="title function_">redissonClient</span><span class="params">()</span> &#123;  </span><br><span class="line">        <span class="type">Config</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Config</span>();  </span><br><span class="line">        config.useSingleServer()  </span><br><span class="line">                .setAddress(<span class="string">&quot;redis://127.0.0.1:6379&quot;</span>)  </span><br><span class="line">                .setPassword(<span class="string">&quot;12345678&quot;</span>);  </span><br><span class="line">        <span class="keyword">return</span> Redisson.create(config);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>锁的使用</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Resource</span>  </span><br><span class="line"><span class="keyword">private</span> RedissonClient redissonClient;</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">lockKey</span> <span class="operator">=</span> <span class="string">&quot;lock:order:&quot;</span> + userId + <span class="string">&quot;:&quot;</span> + voucherId;  </span><br><span class="line"><span class="type">RLock</span> <span class="variable">lock</span> <span class="operator">=</span> redissonClient.getLock(lockKey);  </span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="comment">//这里也可以使用无参的tryLock方法，无参方法默认不等待，超时时间30秒</span></span><br><span class="line">    <span class="type">boolean</span> <span class="variable">isLock</span> <span class="operator">=</span> lock.tryLock(<span class="number">2L</span>, <span class="number">30L</span>, TimeUnit.SECONDS);  </span><br><span class="line">    <span class="keyword">if</span> (!isLock) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//.....业务代码 </span></span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;  </span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);  </span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;  </span><br><span class="line">    lock.unlock();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h5 id="Redisson锁可重入流程"><a href="#Redisson锁可重入流程" class="headerlink" title="Redisson锁可重入流程"></a>Redisson锁可重入流程</h5><blockquote>
+<p>为确保操作原子性，应用Lua脚本来操作</p>
+</blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/13/JafH4EzQ2YPgkrn.png"
+                      alt="重入锁流程.png"
+                ></p>
+<p>原理：利用Hash结构记录线程标识与获取锁的次数实现同一线程多次获取锁，当获取锁的线程标识与记录的线程标识一致时，锁的次数+1，否则获取锁失败。解锁时也判断一次线程标识是否一致，一致就把锁的次数-1，当锁的次数等于0时才真正释放锁，删掉这个hash结构。其他线程才能获取到锁。</p>
+<h5 id="Redisson锁重试流程"><a href="#Redisson锁重试流程" class="headerlink" title="Redisson锁重试流程"></a>Redisson锁重试流程</h5><p><strong>获取锁流程</strong><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/13/xodmHp4PIA9CYLi.png"
+                      alt="锁重试原理.png"
+                ></p>
+<p><strong>释放锁流程</strong><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/13/ak4hbrdz7N2yLXx.png"
+                      alt="无标题流程图 _1_.png"
+                ></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ol>
+<li>可重入：利用hash结构记录线程id和重入次数（当前线程获取锁的次数）每一次获取锁成功，重入次数+1，释放锁重入次数-1，当记录的重入次数为0时就删除该hash释放线程锁</li>
+<li>可重试：利用信号量和PubSub功能实现等待，唤醒，获取锁失败的重试机制。在第一次获取锁失败后，等待释放锁的消息。当得到锁释放的消息后重试获取锁，继续失败，继续等待。如果超过了等待时间，则不会再重试。</li>
+<li>超时续约：利用WatchDog，每隔一段时间重置锁的超时时间，这个时间间隔，是你提交的超时时间的三分之一。</li>
+</ol>
+<h5 id="Redisson锁的主从一致性-multiLock"><a href="#Redisson锁的主从一致性-multiLock" class="headerlink" title="Redisson锁的主从一致性(multiLock)"></a>Redisson锁的主从一致性(multiLock)</h5><blockquote>
+<p>为了提高服务高可用，我们会选择搭建redis主从集群，增删改操作由主节点完成，读操作由从节点完成。当增删改操作到达主节点，主节点操作完成后会跟从节点进行同步。主节点宕机后，会从其余从节点选一个当主节点</p>
+</blockquote>
+<p>问题分析：如果一个Java应用提交了一个锁的数据到主节点。但主节点操作完后准备同步时发生不可避免地错误或意外宕机了。这时redis哨兵会选择新的主节点。但已宕机的主节点数据还未同步，锁的数据丢失。这时如果有其他线程的请求进来获取锁还是会成功。并发安全问题又一次发生。</p>
+<p>Redisson解决方案：Redisson会把锁的信息写入到每个redis节点。获取锁时需要从所有节点获取锁成功才算成功，这样如果有一个节点意外宕机，剩下的节点也不会出现锁信息丢失的情况。这些节点可以是单独的节点，也可以是主从关系的节点。</p>
+<p><strong>简单使用</strong><br>需在配置文件配置好多个redis节点</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义多个锁对象，每个锁对象代表独立的redis节点</span></span><br><span class="line"><span class="type">RLock</span> <span class="variable">lock1</span> <span class="operator">=</span> redissonClient1.getLock(lockKey); <span class="comment">//节点1</span></span><br><span class="line"><span class="type">RLock</span> <span class="variable">lock2</span> <span class="operator">=</span> redissonClient2.getLock(lockKey); <span class="comment">//节点2</span></span><br><span class="line"><span class="type">RLock</span> <span class="variable">lock3</span> <span class="operator">=</span> redissonClient3.getLock(lockKey); <span class="comment">//节点3</span></span><br><span class="line"><span class="comment">//获取一个联锁</span></span><br><span class="line"><span class="type">RLock</span> <span class="variable">multiLock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RedissonMultiLock</span>(lock1, lock2, lock3);<span class="comment">//获取联锁，</span></span><br><span class="line"><span class="comment">//使用一样</span></span><br><span class="line">multiLock.tryLock();</span><br><span class="line">multiLock.unLock();</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><blockquote>
+<p>消息队列（Message Queue） 字面意思就是存放消息的队列。最简单的消息队列模型包含三个角色<br>消息队列：存储和管理消息，也被称为消息代理<br>生产者：发送消息到消息队列<br>消费者：从消息队列获取消息并处理消息</p>
+</blockquote>
+<h4 id="PubSub"><a href="#PubSub" class="headerlink" title="PubSub"></a>PubSub</h4><p>pubsub是Redis2.0版本引入的消息传递类型。顾名思义，消费者可以订阅一个或者多个channel，生产者向对应channel发送消息后，所有订阅者都能收到消息。</p>
+<p><strong>命令使用</strong></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SUBSCRIBE [channel....] <span class="comment"># 订阅一个或多个频道</span></span><br><span class="line">PUBLISH channel msg <span class="comment"># 向一个频道发送消息</span></span><br><span class="line">PSUBSCRIBE [pattern] <span class="comment"># 订阅符合 pattern 的所有频道</span></span><br></pre></td></tr></table></figure></div>
+
+<p>优点：</p>
+<ul>
+<li>采用发布订阅模型，支持多生产，多消费<br>缺点：</li>
+<li>不支持消息持久化</li>
+<li>无法避免消息丢失</li>
+<li>消息有堆积上限，超时数据丢失</li>
+</ul>
+<h4 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h4><blockquote>
+<p>Stream是redis 5.0引入的一种新数据类型，可以实现一个功能非常完善的消息队列。</p>
+</blockquote>
+<h5 id="单消费模式"><a href="#单消费模式" class="headerlink" title="单消费模式"></a>单消费模式</h5><h6 id="添加消息-XADD"><a href="#添加消息-XADD" class="headerlink" title="添加消息(XADD)"></a>添加消息(XADD)</h6><p><strong>命令使用</strong></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XADD key [NOMKSTREAM] [&lt;MAXLEN | MINID&gt; [= | ~] threshold [LIMIT count]] &lt;* | <span class="built_in">id</span>&gt; [field value ...]</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>参数解释</strong></p>
+<ul>
+<li>NOMKSTREAM： 如果队列不存在，是否自动创建队列。默认自动创建</li>
+<li>&lt;MAXLEN | MINID&gt; [&#x3D; | ~] threshold [LIMIT count]： 设置消息队列的最大消息量</li>
+<li><ul>
+<li>| id： 消息的唯一 Id， * 代表由redis自动生成。格式是 <code>时间戳-递增数字</code> 例如 <code>1526919030474-55</code></li>
+</ul>
+</li>
+<li>field value：  键值对Entry，存到消息队列中的消息</li>
+</ul>
+<p><strong>使用例</strong></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加 users: &#123;name: senpai, age:24&#125;</span></span><br><span class="line">XADD <span class="built_in">users</span> * name senpai age 24</span><br></pre></td></tr></table></figure></div>
+
+<h6 id="读取消息-XREAD"><a href="#读取消息-XREAD" class="headerlink" title="读取消息(XREAD)"></a>读取消息(XREAD)</h6><p><strong>命令</strong></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XREAD [COUNT count] [BLOCK milliseconds] STREAMS [key ...] [<span class="built_in">id</span> ...]</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>参数解释</strong></p>
+<ul>
+<li>COUNT count： 每次读取消息的数量</li>
+<li>BLOCK milliseconds： 当没有消息时，是否阻塞，以及阻塞时长</li>
+<li>STREAMS key … ： 要从哪个消息队列读消息， key为队列名</li>
+<li>id…  ：起始Id，只返回大于这个Id的消息，0 表示从第一个消息开始 $ 表示读最新的一条消息</li>
+</ul>
+<h6 id="单消费优缺点"><a href="#单消费优缺点" class="headerlink" title="单消费优缺点"></a>单消费优缺点</h6><p><strong>优点</strong></p>
+<ul>
+<li>消息可回溯</li>
+<li>一个消息可被多个消费者读取</li>
+<li>可以阻塞读取<br><strong>缺点</strong></li>
+<li>有消息漏读风险</li>
+</ul>
+<h5 id="Stream消费者组"><a href="#Stream消费者组" class="headerlink" title="Stream消费者组"></a>Stream消费者组</h5><p>消费者组：将多个消费者划分到一个组中，监听同一个队列<br>具备以下特点：</p>
+<ul>
+<li>消息分流：队列中会分流给组内的不同消费者，而不是重复消费。加快消息处理速度</li>
+<li>消息标识：消费者组会维护一个标识，记录最后一个被处理的消息。哪怕消费者宕机重启，还会读取标识后的消息，确保每个消息都被消费掉</li>
+<li>消息确认：消费者获取消息后，消息处于 <code>Pending</code> 状态，并存入一个pending-list。当处理完成后会通过 <code>xack</code> 来确认消息。标记消息已处理。才会从 pending-list 移除</li>
+</ul>
+<h6 id="创建消费者组"><a href="#创建消费者组" class="headerlink" title="创建消费者组"></a>创建消费者组</h6><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XGROUP CREATE KEY GROUP_NAME ID [MKSTREAM]</span><br></pre></td></tr></table></figure></div>
+<p>参数解析</p>
+<ul>
+<li>key：队列名称</li>
+<li>group_name：消费者组名称</li>
+<li>id：起始id， $ 代表最新一个消息。0 代表队列中第一个消息</li>
+</ul>
+<h6 id="删除消费者组"><a href="#删除消费者组" class="headerlink" title="删除消费者组"></a>删除消费者组</h6><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XGROUP DESTROY KEY GROUP_NAME</span><br></pre></td></tr></table></figure></div>
+<p>参数解析</p>
+<ul>
+<li>key：队列名称</li>
+<li>group_name：消费者组名称</li>
+</ul>
+<h6 id="从消费者组读取消息"><a href="#从消费者组读取消息" class="headerlink" title="从消费者组读取消息"></a>从消费者组读取消息</h6><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XREADGROUP GROUP GROUP_NAME CONSUMER [COUNT] [BLOCK] [NOACK] STREAMS KEY... ID...</span><br></pre></td></tr></table></figure></div>
+<p>参数解析</p>
+<ul>
+<li>GROUP_NAME：消费者组名称</li>
+<li>CONSUMER：消费者名称，如果没有，则会自动创建</li>
+<li>COUNT：本次查询最大数量， count 20 查20条</li>
+<li>BLOCK：没有消息时阻塞，以及阻塞时间 block 2000 阻塞两秒</li>
+<li>NOACK：获取到消息后自动确认(不建议)</li>
+<li>STREAMS KEY：指定队列名称</li>
+<li>ID：获取消息的起始Id<ul>
+<li><code>&gt;</code> ：从下一个未消费的消息开始</li>
+<li>其他：根据指定id，从pengding-list里获取已消费单未确认的消息。</li>
+</ul>
+</li>
+</ul>
+<h6 id="消费者组特点"><a href="#消费者组特点" class="headerlink" title="消费者组特点"></a>消费者组特点</h6><ul>
+<li>消息可回溯</li>
+<li>可以多消费者消费消息，加快消费速度</li>
+<li>可以阻塞读取</li>
+<li>没有消息漏读风险</li>
+<li>有消息确认机制，保证消息被消费一次</li>
+</ul>
+<h3 id="Feed流"><a href="#Feed流" class="headerlink" title="Feed流"></a>Feed流</h3><p>Feed流产品有两种常见模式</p>
+<ul>
+<li>Timeline：不做内容筛选，简单的按照内容发布时间排序，常用于好友或关注。例如朋友圈<ul>
+<li>优点：信息全面，不会有缺失。实现相对简单</li>
+<li>缺点：信息噪音较多。用户不一定感兴趣，内容获取率较低</li>
+</ul>
+</li>
+<li>智能排序：利用算法屏蔽违规的，用户不感兴趣的。推送用户感兴趣的内容吸引用户<ul>
+<li>优点：投喂用户感兴趣信息，用户黏度高，容易沉迷</li>
+<li>缺点：如果算法不精准，可能起到反作用</li>
+</ul>
+</li>
+</ul>
+<h4 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h4><blockquote>
+<p>假设我们要实现朋友圈功能，用户发送一个新的动态后，动态信息会存到发送箱里，而他的粉丝将有一个收件箱接受消息</p>
+</blockquote>
+<h5 id="拉模式"><a href="#拉模式" class="headerlink" title="拉模式"></a>拉模式</h5><p>拉模式也叫读扩散，数据只存一份（存发送箱里），每次读的时候，都从发送箱拉取。写操作较低，读操作较多，读取延迟可能较大，一般很少使用</p>
+<h5 id="推模式"><a href="#推模式" class="headerlink" title="推模式"></a>推模式</h5><p>推模式也叫写扩散，直接将消息推送到收件箱，写操作较高，读操作较低，读取延迟较低。在用户量少时使用</p>
+<h5 id="推拉模式"><a href="#推拉模式" class="headerlink" title="推拉模式"></a>推拉模式</h5><p>推拉模式也叫读写混合，兼具推和拉两种模式的优点。例如可以根据 <mark style="background: #FFB86CA6;">接收者的活跃情况</mark> 来判断使用 <code>推</code> 还是 <code>拉</code>。举例：一个粉丝有百万的博主在发布新的动态时。可以对该博主粉丝活跃情况进行分级，天天活跃的粉丝使用推模式，偶尔活跃的粉丝和不活跃的粉丝则使用拉模式。而对于粉丝不多的普通账号，则可以直接使用推模式。</p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/reids/">#reids</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Spring-data-redis/">#Spring-data-redis</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">#分布式锁</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/redisson/">#redisson</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/mysql-note/%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">并发安全问题</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/redis/redis%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">redis学习笔记</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Redis学习笔记(2)</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-text">并发线程安全问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%BA%E4%B8%80%E5%8D%95%E9%97%AE%E9%A2%98%EF%BC%88%E4%B9%9F%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%89"><span class="nav-text">一人一单问题（也是线程安全问题）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E6%9C%BA%E7%B3%BB%E7%BB%9F"><span class="nav-text">单机系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F"><span class="nav-text">分布式系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-text">分布式锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8ERedis%E5%91%BD%E4%BB%A4SETNX%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-text">基于Redis命令SETNX的分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E9%94%81"><span class="nav-text">获取锁</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%87%8A%E6%94%BE%E9%94%81"><span class="nav-text">释放锁</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%94%81%E7%9A%84%E8%AF%AF%E5%88%A0%E4%B8%8E%E5%8E%9F%E5%AD%90%E6%80%A7%E6%93%8D%E4%BD%9C"><span class="nav-text">锁的误删与原子性操作</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SETNX%E5%88%86%E5%B8%83%E9%94%81%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E6%80%BB%E7%BB%93"><span class="nav-text">SETNX分布锁的问题与总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redisson%E7%9A%84%E9%94%81"><span class="nav-text">Redisson的锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Redisson%E9%94%81%E5%8F%AF%E9%87%8D%E5%85%A5%E6%B5%81%E7%A8%8B"><span class="nav-text">Redisson锁可重入流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Redisson%E9%94%81%E9%87%8D%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="nav-text">Redisson锁重试流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Redisson%E9%94%81%E7%9A%84%E4%B8%BB%E4%BB%8E%E4%B8%80%E8%87%B4%E6%80%A7-multiLock"><span class="nav-text">Redisson锁的主从一致性(multiLock)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="nav-text">消息队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PubSub"><span class="nav-text">PubSub</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stream"><span class="nav-text">Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8D%95%E6%B6%88%E8%B4%B9%E6%A8%A1%E5%BC%8F"><span class="nav-text">单消费模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%B6%88%E6%81%AF-XADD"><span class="nav-text">添加消息(XADD)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%B6%88%E6%81%AF-XREAD"><span class="nav-text">读取消息(XREAD)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%8D%95%E6%B6%88%E8%B4%B9%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">单消费优缺点</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Stream%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84"><span class="nav-text">Stream消费者组</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84"><span class="nav-text">创建消费者组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84"><span class="nav-text">删除消费者组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BB%8E%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84%E8%AF%BB%E5%8F%96%E6%B6%88%E6%81%AF"><span class="nav-text">从消费者组读取消息</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84%E7%89%B9%E7%82%B9"><span class="nav-text">消费者组特点</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Feed%E6%B5%81"><span class="nav-text">Feed流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Timeline"><span class="nav-text">Timeline</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8B%89%E6%A8%A1%E5%BC%8F"><span class="nav-text">拉模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A8%E6%A8%A1%E5%BC%8F"><span class="nav-text">推模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A8%E6%8B%89%E6%A8%A1%E5%BC%8F"><span class="nav-text">推拉模式</span></a></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">kita17</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br> 
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.5</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/tools/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

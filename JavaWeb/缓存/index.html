@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="kita17">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://kita-17.github.io/javaweb/缓存/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="缓存">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="http://kita-17.github.ioJavaWeb/缓存/">
+    
+    <meta property="og:site_name" content="KITA!!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="缓存">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            缓存 -
+        
+        KITA!!
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.png","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"font_sizes":{"title":"2.8rem","subtitle":"1.5rem"},"line_height":1.2,"title":"Theme Redefine","subtitle":{"enable":false,"list":[]},"custom_font":{"enable":false,"font_family":null,"font_url":null},"description":"KITA KITA!!"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"simple","custom_font":{"enable":true,"font_family":"JetBrains Mono","font_url":"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap"}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.5","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}}};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                KITA!!
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-tag"></i>
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-book"></i>
+                                        
+                                        CATEGORIES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/about"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                    <i class="fa-regular fa-tag"></i>
+                                
+                                TAGS
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                    <i class="fa-regular fa-book"></i>
+                                
+                                CATEGORIES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/about"  >
+                             
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">缓存</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.png">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">kita17</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2022-11-07</span>
+        <span class="mobile">2022-11-07 00</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2023-03-09 21:04:49</span>
+            <span class="mobile">2023-03-09 21:04</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/note/">note</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/note/JavaWeb/">JavaWeb</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/note/JavaWeb/redis/">redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/note/">note</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/redis/">redis</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/cache/">cache</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="什么是缓存"><a href="#什么是缓存" class="headerlink" title="什么是缓存"></a>什么是缓存</h2><blockquote>
+<p>缓存是数据交换的缓冲区(称作 Cache)，是存贮数据的临时地方，一般读写性能很高。</p>
+</blockquote>
+<p><strong>好处</strong></p>
+<ul>
+<li>降低后端负载，缓解数据库压力</li>
+<li>提高读写效率，降低响应时间</li>
+</ul>
+<p><strong>成本</strong></p>
+<ul>
+<li>数据一致性成本</li>
+<li>为了解决一致性导致的代码维护成本</li>
+<li>运维成本</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://camo.githubusercontent.com/a8e4f82ccadea3e6cdc8366ad167b231558250d026e4347f5432fd32d185d0de/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f436f6465724c65697869616f73687561692f6173736574732f3230323130322f32303231303530343231353633322d323032312d30352d30342d32312d35362d33332e706e67"
+                     
+                ></p>
+<blockquote>
+<p>图源 <a class="link"   target="_blank" rel="noopener" href="https://github.com/CoderLeixiaoshuai/java-eight-part/blob/master/docs/redis/" >https://github.com/CoderLeixiaoshuai/java-eight-part/blob/master/docs/redis/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</blockquote>
+<h2 id="使用缓存"><a href="#使用缓存" class="headerlink" title="使用缓存"></a>使用缓存</h2><blockquote>
+<p>流程图，需要注意的是此图并没有对缓存异常做解决方案， <mark style="background: #FF5582A6;">只是最基础的使用流程</mark></p>
+</blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/07/mvwd5sPIyXtJbgL.png"
+                      alt="缓存流程图 _1_.png"
+                ></p>
+<blockquote>
+<p>简单例子</p>
+</blockquote>
+<ol>
+<li>传入查询条件，这里是查询店铺信息，传入店铺Id</li>
+<li>查询redis缓存，缓存存在就直接返回</li>
+<li>缓存不存在，查询数据库，数据库数据存在就写入redis再返回，数据库数据不存在直接返回错误</li>
+</ol>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">queryById</span><span class="params">(Long id)</span> &#123;  </span><br><span class="line">    <span class="keyword">final</span> <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> CACHE_SHOP_KEY + id;  </span><br><span class="line">    <span class="comment">//尝试从redis查询缓存  </span></span><br><span class="line">    <span class="type">String</span> <span class="variable">shopJson</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(key);  </span><br><span class="line">    <span class="comment">//判断缓存是否存在  </span></span><br><span class="line">    <span class="keyword">if</span> (StrUtil.isNotBlank(shopJson)) &#123; <span class="comment">//缓存存在，直接返回  </span></span><br><span class="line">        <span class="type">Shop</span> <span class="variable">shop</span> <span class="operator">=</span> JSONUtil.toBean(shopJson, Shop.class);  </span><br><span class="line">        <span class="keyword">return</span> Result.ok(shop);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//缓存数据不存在，根据条件查数据库数据  </span></span><br><span class="line">    <span class="type">Shop</span> <span class="variable">shop</span> <span class="operator">=</span> getById(id);  </span><br><span class="line">    <span class="comment">//数据库数据不存在  </span></span><br><span class="line">    <span class="keyword">if</span> (shop == <span class="literal">null</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> Result.fail(<span class="string">&quot;数据不存在&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//数据库数据存在  </span></span><br><span class="line">    <span class="comment">//数据库数据写入缓存  </span></span><br><span class="line">    stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(shop));  </span><br><span class="line">    <span class="comment">//返回查询的数据  </span></span><br><span class="line">    <span class="keyword">return</span> Result.ok(shop);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="更新策略"><a href="#更新策略" class="headerlink" title="更新策略"></a>更新策略</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>内存淘汰</th>
+<th>超时提出</th>
+<th>主动更新</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简介</td>
+<td>不用自己维护，利用Redis的内存淘汰机制，当内存不足时自动淘汰部分数据，下次查询时更新缓存</td>
+<td>给缓存数据添加TTL时间，到期后自动删除缓存。下次查询时更新缓存</td>
+<td>编写业务逻辑，当修改数据库的同时，更新缓存</td>
+</tr>
+<tr>
+<td>一致性</td>
+<td>差</td>
+<td>低</td>
+<td>好</td>
+</tr>
+<tr>
+<td>维护成本</td>
+<td>无</td>
+<td>低</td>
+<td>高</td>
+</tr>
+</tbody></table>
+<p>使用场景：</p>
+<ul>
+<li>低一致性需求：使用内存淘汰机制。例如店铺类型的缓存</li>
+<li>高一致性需求：主动更新，加上超时剔除作为兜底方案。例如店铺详情的缓存。店铺商品数据的缓存</li>
+</ul>
+<p>一般我们会选择 <code>主动更新</code> 来作为我们的缓存更新策略。但使用 <code>主动更新</code> 须注意以下几个问题</p>
+<ol>
+<li>更新缓存时应选择直接删掉缓存，让缓存失效。而不是更新缓存的内容。如果选择更新缓存内容，会产生较多的 <mark style="background: #FF5582A6;">写</mark> 操作</li>
+<li>应保证缓存与数据库的操作原子性，要么同时成功，要么同时失败。在 <mark style="background: #FFF3A3A6;">单体系统</mark> 上，我们可以<mark style="background: #ADCCFFA6;">把缓存与数据库的操作放在同一个事务里</mark>  而在 <mark style="background: #BBFABBA6;">分布式系统</mark> 里，则可以<mark style="background: #ADCCFFA6;">利用TCC等分布式事务方案</mark></li>
+<li>在更新缓存时，应该先修改数据库内容再删除缓存。以确保在多线程下缓存与数据库不一致。</li>
+</ol>
+<blockquote>
+<p>实际上，不管是 <mark style="background: #ABF7F7A6;"> 先删缓存再更新数据库</mark>  还是 <mark style="background: #FFB86CA6;">先更新数据库再删缓存</mark> 都是可以的。只不过前者较大概率会出现缓存跟数据库数据不一致的问题。后者也会出现此问题，但几率比起前者较小</p>
+</blockquote>
+<h2 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h2><blockquote>
+<p>缓存穿透是指 <mark style="background: #ABF7F7A6;">客户端请求的数据在缓存中和数据库中都不存在</mark> 这样缓存永远不会生效，这些请求都会到达数据库。为了解决这个问题，有以下两种方案解决</p>
+</blockquote>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p><strong>1. 缓存空对象</strong><br>当客户端请求获取一个不存在的数据时，程序把这个不存在的数据转成假数据写入Redis。这样下次有同样的请求的话，就直接从Redis返回</p>
+<ul>
+<li>优点：实现简单，维护方便</li>
+<li>缺点：<ol>
+<li>造成额外的内存消耗（可以通过设置TTL缓解）</li>
+<li>且可能造成短期的数据不一致，例如用户访问了一个不存在的非法数据，这时会写入并返回空对象缓存。但短暂时间后，这个数据合法了，并写入数据库了。那此时用户再访问，返回的还是空缓存对象。当然，我们可以在数据合法化时，手动更新缓存，对原来的空对象进行覆盖，以此缓解该问题。</li>
+</ol>
+</li>
+</ul>
+<p><strong>2. 布隆过滤</strong><br>当客户端请求数据时，请求会先经过一个过滤器，由过滤器判断请求获取的数据存不存在。再决定放不放行。</p>
+<ul>
+<li>优点：内存占用少，没有多余的缓存数据</li>
+<li>缺点<ol>
+<li>实现较复杂</li>
+<li>可能存在误判（如过滤器判定数据存在，但实际数据不存在<br><strong>3. 接口参数权限校验</strong><br>在API接口处对参数进行校验，过滤非法值。也可以给接口添加访问权限，并对访问频率进行限流等。</li>
+</ol>
+</li>
+</ul>
+<h2 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h2><blockquote>
+<p>缓存雪崩是指在 <mark style="background: #FFB86CA6;">同一时间段大量的缓存数据同时失效</mark>  或者 <mark style="background: #BBFABBA6;">redis服务宕机</mark>  导致大量的请求数据直接到达数据库，给数据库带来巨大压力</p>
+</blockquote>
+<h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>给不用的缓存的TTL添加随机值，让缓存数据过期时间分散开。</li>
+<li>利用redis集群提高服务的可用性，主从redis服务，一台挂了，另一台顶上</li>
+<li>给缓存业务添加降级限流策略，redis挂了，随机对一些请求直接返回错误，而不是全都去查数据库</li>
+<li>给业务添加多级缓存</li>
+</ol>
+<h2 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h2><blockquote>
+<p><strong>缓存击穿问题</strong>也叫 <mark style="background: #ABF7F7A6;">热点Key问题</mark> 就是一个被 <mark style="background: #FFF3A3A6;">高并发访问并且缓存重建业务比较复杂的key突然失效</mark> 了，无数的访问请求就会给数据库带来巨大压力。</p>
+</blockquote>
+<p><strong>常见的解决方案</strong></p>
+<ol>
+<li>互斥锁：在多个请求中，只有一个请求线程能拿到锁并查询数据库进行缓存重建，其他请求进入等待状态。等待缓存重建完成后，走缓存返回数据。</li>
+<li>逻辑过期：将热点缓存数据设置为不过期，<mark style="background: #ABF7F7A6;">把过期时间存在对应缓存数据里</mark>，然后<mark style="background: #BBFABBA6;">由定时任务去异步加载数据更新缓存</mark>。在<mark style="background: #FFB86CA6;">缓存更新期间请求返回的还是旧数据</mark>。适合比较极端的场景，例如访问量特别大的场景，使用时需考虑业务是否能接受数据时间不一致。<table>
+<thead>
+<tr>
+<th>解决方案</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>互斥锁</td>
+<td>没有额外的内存消耗<br>保证一致性</td>
+<td>线程需要等待<br>可能有死锁风险</td>
+</tr>
+<tr>
+<td>逻辑过期</td>
+<td>线程无需等待，性能较好</td>
+<td>不保证一致性<br>有额外内存消耗</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p><strong>互斥锁</strong><br>简单的案例，利用redis的 <code>SETNX</code> 命令实现简单的互斥锁<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/09/xvn4I3LG5Thqjwt.png"
+                      alt="互斥锁解决缓存击穿 _1_.png"
+                ></p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String <span class="title function_">queryMutex</span><span class="params">(<span class="keyword">final</span> String key)</span> &#123;  </span><br><span class="line">    <span class="comment">//尝试从redis查询缓存  </span></span><br><span class="line">    <span class="type">String</span> <span class="variable">cacheData</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(key);  </span><br><span class="line">    <span class="keyword">if</span>(cacheData == <span class="literal">null</span>) &#123; <span class="comment">//缓存失效，需要重建  </span></span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">            <span class="comment">//加锁，开始缓存重建  </span></span><br><span class="line">            <span class="type">boolean</span> <span class="variable">isLock</span> <span class="operator">=</span> tryLock(lockKey);  </span><br><span class="line">            <span class="keyword">if</span> (!isLock) &#123;  </span><br><span class="line">                Thread.sleep(<span class="number">100</span>); <span class="comment">//获取锁失败，休眠后再次尝试  </span></span><br><span class="line">                <span class="keyword">return</span> queryMutex(key); <span class="comment">//递归重试  </span></span><br><span class="line">            &#125;  </span><br><span class="line">            <span class="comment">//获取锁成功，开始缓存重建  </span></span><br><span class="line">            <span class="comment">//二次缓存检查  </span></span><br><span class="line">            <span class="type">String</span> <span class="variable">dupCheck</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(key);  </span><br><span class="line">            <span class="keyword">if</span> (StrUtil.isNotBlank(dupCheck)) &#123;  </span><br><span class="line">                <span class="keyword">return</span> JSONUtil.toBean(dupCheck, YouBean.class);  </span><br><span class="line">            &#125;  </span><br><span class="line">            <span class="comment">//缓存重建逻辑....</span></span><br><span class="line">            <span class="comment">//防止穿透逻辑....</span></span><br><span class="line">            <span class="comment">//缓存写入逻辑....  </span></span><br><span class="line">            <span class="comment">//缓存返回逻辑....</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)&#123;  </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>();  </span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;  </span><br><span class="line">            unlock(lockKey);<span class="comment">//解锁  </span></span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cacheData;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">tryLock</span><span class="params">(String key)</span> &#123;  </span><br><span class="line">    <span class="type">Boolean</span> <span class="variable">flag</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().setIfAbsent(key, <span class="string">&quot;lock&quot;</span>, LOCK_TTL, TimeUnit.MINUTES);  </span><br><span class="line">    <span class="keyword">return</span> BooleanUtil.isTrue(flag);  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">unlock</span><span class="params">(String key)</span> &#123;  </span><br><span class="line">    stringRedisTemplate.delete(key);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>逻辑过期</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/09/2oxnMZumQL1JlGp.png"
+                      alt="逻辑过期解决缓存击穿.png"
+                ></p>
+<p>以下用例实现了一个简单的逻辑过期，其中上锁使用Redis的  <code>SETNX</code>  实现</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Shop <span class="title function_">queryWithLogical</span><span class="params">(Long id)</span> &#123;  </span><br><span class="line">    <span class="keyword">final</span> <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> CACHE_SHOP_KEY + id;  </span><br><span class="line">    <span class="type">String</span> <span class="variable">dataJson</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(key);  </span><br><span class="line">    <span class="comment">//缓存未命中，直接返回  </span></span><br><span class="line">    <span class="keyword">if</span> (StrUtil.isBlank(dataJson)) <span class="keyword">return</span> <span class="literal">null</span>;  </span><br><span class="line">    <span class="comment">//缓存命中  </span></span><br><span class="line">    <span class="type">RedisData</span> <span class="variable">redisData</span> <span class="operator">=</span> JSONUtil.toBean(dataJson, RedisData.class);  </span><br><span class="line">    <span class="type">LocalDateTime</span> <span class="variable">cacheExpire</span> <span class="operator">=</span> redisData.getExpire();  </span><br><span class="line">    <span class="type">Shop</span> <span class="variable">shop</span> <span class="operator">=</span> JSONUtil.toBean((JSONObject) redisData.getData(), Shop.class);  </span><br><span class="line">    <span class="keyword">if</span> (cacheExpire.isAfter(LocalDateTime.now())) &#123;<span class="comment">//缓存未过期，直接返回数据  </span></span><br><span class="line">        <span class="keyword">return</span> shop;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//缓存过期，开始独立线程重建  </span></span><br><span class="line">    <span class="keyword">final</span> <span class="type">String</span> <span class="variable">lockKey</span> <span class="operator">=</span> LOCK_SHOP_KEY + id;  </span><br><span class="line">    <span class="type">boolean</span> <span class="variable">isLock</span> <span class="operator">=</span> tryLock(lockKey);  </span><br><span class="line">    <span class="keyword">if</span> (isLock) &#123;  </span><br><span class="line">        <span class="comment">////获取锁成功，开启独立线程，  </span></span><br><span class="line">        CACHE_REBUILD_EXECUTOR.submit(() -&gt; &#123;  </span><br><span class="line">            <span class="keyword">try</span> &#123;  </span><br><span class="line">                <span class="comment">//实现缓存重建逻辑</span></span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>();  </span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;  </span><br><span class="line">                unlock(lockKey);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//获取锁失败，直接返回旧数据  </span></span><br><span class="line">    <span class="keyword">return</span> shop;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/java/">#java</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/note/">#note</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/redis/">#redis</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/cache/">#cache</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/JavaWeb/%E5%9F%BA%E4%BA%8ERedis%E5%AE%9E%E7%8E%B0Session%E5%85%B1%E4%BA%AB%E7%9A%84%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">基于Redis实现Session共享的登录功能</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/myBatis-Plus/Mybatis-Plus/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">JavaWEB笔记-MyBatis-Plus</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">缓存</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BC%93%E5%AD%98"><span class="nav-text">什么是缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%BC%93%E5%AD%98"><span class="nav-text">使用缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5"><span class="nav-text">更新策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="nav-text">缓存穿透</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="nav-text">缓存雪崩</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-1"><span class="nav-text">解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF"><span class="nav-text">缓存击穿</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">kita17</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br> 
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.5</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/tools/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

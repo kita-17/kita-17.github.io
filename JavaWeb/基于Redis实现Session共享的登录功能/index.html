@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="kita17">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://kita-17.github.io/javaweb/基于redis实现session共享的登录功能/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="基于Redis实现Session共享的登录功能">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="http://kita-17.github.ioJavaWeb/基于Redis实现Session共享的登录功能/">
+    
+    <meta property="og:site_name" content="KITA!!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="基于Redis实现Session共享的登录功能">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            基于Redis实现Session共享的登录功能 -
+        
+        KITA!!
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.png","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"font_sizes":{"title":"2.8rem","subtitle":"1.5rem"},"line_height":1.2,"title":"Theme Redefine","subtitle":{"enable":false,"list":[]},"custom_font":{"enable":false,"font_family":null,"font_url":null},"description":"KITA KITA!!"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"simple","custom_font":{"enable":true,"font_family":"JetBrains Mono","font_url":"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap"}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.5","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}}};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                KITA!!
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-tag"></i>
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-book"></i>
+                                        
+                                        CATEGORIES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/about"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                    <i class="fa-regular fa-tag"></i>
+                                
+                                TAGS
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                    <i class="fa-regular fa-book"></i>
+                                
+                                CATEGORIES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/about"  >
+                             
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">基于Redis实现Session共享的登录功能</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.png">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">kita17</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2022-11-07</span>
+        <span class="mobile">2022-11-07 00</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2023-03-07 18:03:47</span>
+            <span class="mobile">2023-03-07 18:03</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/note/">note</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/note/JavaWeb/">JavaWeb</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/note/JavaWeb/redis/">redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/note/">note</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/session/">session</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/redis/">redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="传统Session形式"><a href="#传统Session形式" class="headerlink" title="传统Session形式"></a>传统Session形式</h2><h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/07/aZidRxJSXGpqTFk.png"
+                      alt="session登录流程.png"
+                ></p>
+<h3 id="验证码发送"><a href="#验证码发送" class="headerlink" title="验证码发送"></a>验证码发送</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">sendCode</span><span class="params">(String phone, HttpSession session)</span> &#123;  </span><br><span class="line">    <span class="comment">//手机号码验证  </span></span><br><span class="line">    <span class="keyword">if</span> (RegexUtils.isPhoneInvalid(phone)) &#123;  </span><br><span class="line">        <span class="keyword">return</span> Result.fail(<span class="string">&quot;手机号码错误&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//验证码生成  </span></span><br><span class="line">    <span class="type">String</span> <span class="variable">code</span> <span class="operator">=</span> RandomUtil.randomNumbers(<span class="number">6</span>);</span><br><span class="line">    <span class="comment">//保存到session</span></span><br><span class="line">    session.setAttribute(<span class="string">&quot;code&quot;</span>, code);</span><br><span class="line">    <span class="comment">//实际通过短信发送验证码需借助第三方的短信服务</span></span><br><span class="line">    log.debug(<span class="string">&quot;验证码: &#123;&#125;&quot;</span>, code);  </span><br><span class="line">    <span class="keyword">return</span> Result.success();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="登录与注册"><a href="#登录与注册" class="headerlink" title="登录与注册"></a>登录与注册</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">login</span><span class="params">(User cUser, HttpSession session)</span> &#123;  </span><br><span class="line">    <span class="type">String</span> <span class="variable">phone</span> <span class="operator">=</span> cUser.getPhone();</span><br><span class="line">    <span class="type">String</span> <span class="variable">code</span> <span class="operator">=</span> cUser.getCode();</span><br><span class="line">    <span class="comment">//检验手机号  </span></span><br><span class="line">    <span class="keyword">if</span> (RegexUtils.isPhoneInvalid(phone)) &#123;  </span><br><span class="line">        <span class="keyword">return</span> Result.fail(<span class="string">&quot;手机号错误&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//从session获取验证码</span></span><br><span class="line">    <span class="type">Object</span> <span class="variable">cacheCode</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;code&quot;</span>);</span><br><span class="line">    <span class="comment">//检验验证码</span></span><br><span class="line">    <span class="keyword">if</span> (cacheCode == <span class="literal">null</span> || !cacheCode.toString().equals(code)) &#123;  </span><br><span class="line">        <span class="keyword">return</span> Result.fail(<span class="string">&quot;验证码错误&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//根据手机号码查询用户  </span></span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> query().eq(<span class="string">&quot;phone&quot;</span>, phone).one();  </span><br><span class="line">    <span class="keyword">if</span> (user == <span class="literal">null</span>) &#123;  </span><br><span class="line">        <span class="comment">//数据库没信息，创建新用户</span></span><br><span class="line">        user = <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        <span class="comment">//...user doSomething</span></span><br><span class="line">        <span class="comment">//user信息入库</span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//session保存用户信息</span></span><br><span class="line">    <span class="comment">//这里存放的User信息要注意是否有敏感信息, 如密码，手机号等</span></span><br><span class="line">    session.setAttribute(<span class="string">&quot;user&quot;</span>, user);  </span><br><span class="line">    <span class="keyword">return</span> Result.success();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="校验用户信息"><a href="#校验用户信息" class="headerlink" title="校验用户信息"></a>校验用户信息</h3><p>使用拦截器校验用户信息</p>
+<h4 id="设置拦截器"><a href="#设置拦截器" class="headerlink" title="设置拦截器"></a>设置拦截器</h4><p>新建一个拦截器类 <code>UserInterceptor</code> 并实现 <code>HandlerInterceptor</code> 接口</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line">        <span class="comment">//获取session  </span></span><br><span class="line">        <span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> request.getSession();  </span><br><span class="line">        <span class="comment">//获取用户  </span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">user</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;user&quot;</span>);  </span><br><span class="line">        <span class="comment">//判断用户是否存在  </span></span><br><span class="line">        <span class="keyword">if</span>(user == <span class="literal">null</span>) &#123;  </span><br><span class="line">            <span class="comment">//用户不存在，拦截请求  </span></span><br><span class="line">            response.setStatus(<span class="number">401</span>);  </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="comment">//保存到ThreadLocal, 每个请求都是一个线程，保存到ThreadLocal，不会与其他请求线程的信息发生冲突</span></span><br><span class="line">        UserLocal.save((User) user);  </span><br><span class="line">        <span class="comment">//放行  </span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>用户保存到ThreadLocal, 每个请求都是一个线程，保存到ThreadLocal，不会与其他请求线程的信息发生冲突，且在控制器那边获取用户信息也只需要在ThreadLocal获取即可</p>
+</blockquote>
+<h4 id="添加拦截器"><a href="#添加拦截器" class="headerlink" title="添加拦截器"></a>添加拦截器</h4><p>新建一个配置类 <code>MvcConfig</code> 实现 <code>WebMvcConfigurer</code> 接口 <code>addInterceptors</code></p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MvcConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> &#123;  </span><br><span class="line">        registry</span><br><span class="line">		        <span class="comment">//添加拦截器</span></span><br><span class="line">                .addInterceptor(<span class="keyword">new</span> <span class="title class_">UserInterceptor</span>())  </span><br><span class="line">                <span class="comment">//排除不需要拦截的路径，以下路径不会被拦截  </span></span><br><span class="line">                .excludePathPatterns(  </span><br><span class="line">                        <span class="string">&quot;/user/code&quot;</span>,  </span><br><span class="line">                        <span class="string">&quot;/user/login&quot;</span>,</span><br><span class="line">                );  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>至此，一个简单的基于session的登录注册功能便完成</strong></p>
+<h3 id="Session共享问题"><a href="#Session共享问题" class="headerlink" title="Session共享问题"></a>Session共享问题</h3><p>多台tomcat服务器并不共享session存储空间，当请求切换到不同的tomcat服务器时导致数据丢失</p>
+<h2 id="Redis共享Session形式"><a href="#Redis共享Session形式" class="headerlink" title="Redis共享Session形式"></a>Redis共享Session形式</h2><h3 id="流程图-1"><a href="#流程图-1" class="headerlink" title="流程图"></a>流程图</h3><p>流程与传统方式差不多，区别在于把数据存在Redis里和把Token返回给前端，以及配置拦截器刷新token</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/07/XGeJqN9rVf8uk2w.png"
+                      alt="redis_token登录.png"
+                ></p>
+<h3 id="验证码发送-1"><a href="#验证码发送-1" class="headerlink" title="验证码发送"></a>验证码发送</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">sendCode</span><span class="params">(String phone, HttpSession session)</span> &#123;  </span><br><span class="line">    <span class="comment">//手机号码验证</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">//验证码生成  </span></span><br><span class="line">    <span class="type">String</span> <span class="variable">code</span> <span class="operator">=</span> RandomUtil.randomNumbers(<span class="number">6</span>);  </span><br><span class="line">    <span class="comment">//手机号码作key把验证码存到redis里</span></span><br><span class="line">    stringRedisTemplate.opsForValue().set(LOGIN_CODE_KEY + phone, code, LOGIN_CODE_TTL, TimeUnit.MINUTES);  </span><br><span class="line">    log.debug(<span class="string">&quot;验证码: &#123;&#125;&quot;</span>, code);  </span><br><span class="line">    <span class="keyword">return</span> Result.success();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="登陆与注册"><a href="#登陆与注册" class="headerlink" title="登陆与注册"></a>登陆与注册</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">login</span><span class="params">(User cUser, HttpSession session)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">phone</span> <span class="operator">=</span> cUser.getPhone();</span><br><span class="line">    <span class="type">String</span> <span class="variable">code</span> <span class="operator">=</span> cUserr.getCode();</span><br><span class="line">    <span class="comment">//检验手机号  </span></span><br><span class="line">    ...  </span><br><span class="line">    <span class="comment">//检验验证码  </span></span><br><span class="line">    <span class="comment">//从redis获取验证码  </span></span><br><span class="line">    <span class="type">String</span> <span class="variable">cacheCode</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(LOGIN_CODE_KEY + phone);  </span><br><span class="line">    <span class="keyword">if</span> (cacheCode == <span class="literal">null</span> || !cacheCode.equals(code)) &#123;  </span><br><span class="line">        <span class="keyword">return</span> Result.fail(<span class="string">&quot;验证码错误&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//根据手机号码查询用户  </span></span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> query().eq(<span class="string">&quot;phone&quot;</span>, phone).one();  </span><br><span class="line">    <span class="keyword">if</span> (user == <span class="literal">null</span>) &#123;<span class="comment">//数据库没信息，创建新用户  </span></span><br><span class="line">        user = <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        <span class="comment">//对新用户信息初始化 </span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//生成随机TOKEN  </span></span><br><span class="line">    <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> UUID.randomUUID().toString(<span class="literal">true</span>);  </span><br><span class="line">    <span class="comment">//User对象转HashMap存储  </span></span><br><span class="line">    <span class="type">UserDTO</span> <span class="variable">userDTO</span> <span class="operator">=</span> BeanUtil.copyProperties(user, UserDTO.class);</span><br><span class="line">    <span class="comment">//对象转map </span></span><br><span class="line">    Map&lt;String, Object&gt; beanToMap = BeanUtil.beanToMap(userDTO, <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;(),  </span><br><span class="line">            CopyOptions.create()  </span><br><span class="line">                    <span class="comment">//忽略空值  </span></span><br><span class="line">                    .setIgnoreNullValue(<span class="literal">true</span>)  </span><br><span class="line">                    <span class="comment">//值转字符串类型  </span></span><br><span class="line">                    .setFieldValueEditor((key, value) -&gt; value.toString())  </span><br><span class="line">    );  </span><br><span class="line">    <span class="comment">//存到redis里  </span></span><br><span class="line">    <span class="keyword">final</span> <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> LOGIN_USER_KEY + token;  </span><br><span class="line">    stringRedisTemplate.opsForHash().putAll(key, beanToMap);  </span><br><span class="line">    <span class="comment">//设置数据有效期  </span></span><br><span class="line">    stringRedisTemplate.expire(key, <span class="number">1</span>, TimeUnit.MINUTES);  </span><br><span class="line">    <span class="keyword">return</span> Result.success(token);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="检验用户信息"><a href="#检验用户信息" class="headerlink" title="检验用户信息"></a>检验用户信息</h3><p>当一些用户长时间不活跃时，他们的登录信息依然存在Redis里，这造成一定的内存空间浪费。所以我给用户登录的信息设置了失效时间。当让，也同时也为活跃用户刷新失效数据时间，只要用户还有操作。那数据就一直存在。否则，就会超时被自动回收。</p>
+<p>为了实现这个我设置了两个拦截器。一个拦截所有请求，为登录的用户刷新Token以及其他数据。另一个则用来做登录判定，具体实现如下</p>
+<h4 id="登陆拦截器"><a href="#登陆拦截器" class="headerlink" title="登陆拦截器"></a>登陆拦截器</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoginInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line">        <span class="keyword">if</span>(UserLocal.getUser() == <span class="literal">null</span>) &#123;<span class="comment">//没用户信息，拦截  </span></span><br><span class="line">            response.setStatus(<span class="number">301</span>);  </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="comment">//有用户信息，放行  </span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="刷新拦截器"><a href="#刷新拦截器" class="headerlink" title="刷新拦截器"></a>刷新拦截器</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line">    <span class="comment">//获取请求头中的token</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> request.getHeader(<span class="string">&quot;authorization&quot;</span>);  </span><br><span class="line">    <span class="keyword">if</span> (StrUtil.isBlank(token)) &#123; <span class="comment">//token为空但是放行给 LoginInterceptor</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">final</span> <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> LOGIN_USER_KEY + token;  </span><br><span class="line">    <span class="comment">//根据token获取用户  </span></span><br><span class="line">    Map&lt;Object, Object&gt; entries = redisTemplate.opsForHash().entries(key);  </span><br><span class="line">    <span class="comment">//判断用户是否存在  </span></span><br><span class="line">    <span class="keyword">if</span>(entries.isEmpty()) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;  <span class="comment">//用户信息为空但是放行给 LoginInterceptor</span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//hash数据转对象  </span></span><br><span class="line">    <span class="type">UserDTO</span> <span class="variable">userDTO</span> <span class="operator">=</span> BeanUtil.fillBeanWithMap(entries, <span class="keyword">new</span> <span class="title class_">UserDTO</span>(), <span class="literal">false</span>);  </span><br><span class="line">    <span class="comment">//有用户信息，保存到ThreadLocal</span></span><br><span class="line">    UserLocal.saveUser(userDTO);  </span><br><span class="line">    <span class="comment">//刷新token时间  </span></span><br><span class="line">    redisTemplate.expire(key, LOGIN_USER_TTL, TimeUnit.MINUTES);  </span><br><span class="line">    <span class="comment">//放行  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="拦截器注册"><a href="#拦截器注册" class="headerlink" title="拦截器注册"></a>拦截器注册</h4><p>我们新增的拦截器会被注册成 <code>InterceptorRegistration</code> 内部有个属性 <code>order</code> 用来决定拦截器触发顺序。默认为0，如果不设置将按下面这样以添加顺序来执行拦截器</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> &#123;</span><br><span class="line">    <span class="comment">//TOKEN刷新  </span></span><br><span class="line">    registry.addInterceptor(<span class="keyword">new</span> <span class="title class_">TokenInterceptor</span>(stringRedisTemplate))  </span><br><span class="line">            .addPathPatterns(<span class="string">&quot;/**&quot;</span>);  </span><br><span class="line">    <span class="comment">//登录拦截  </span></span><br><span class="line">    registry.addInterceptor(<span class="keyword">new</span> <span class="title class_">LoginInterceptor</span>())  </span><br><span class="line">            <span class="comment">//排除不需要拦截的路径，以下路径不会被拦截  </span></span><br><span class="line">            .excludePathPatterns(  </span><br><span class="line">                    <span class="string">&quot;/user/code&quot;</span>,  </span><br><span class="line">                    <span class="string">&quot;/user/login&quot;</span>,  </span><br><span class="line">                    <span class="string">&quot;/shop/**&quot;</span>,  </span><br><span class="line">                    <span class="string">&quot;/shop-type/**&quot;</span>,  </span><br><span class="line">                    <span class="string">&quot;/blog/**&quot;</span>  </span><br><span class="line">            );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/java/">#java</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/note/">#note</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/session/">#session</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/redis/">#redis</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/redis/redis%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">redis学习笔记</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/JavaWeb/%E7%BC%93%E5%AD%98/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">缓存</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">基于Redis实现Session共享的登录功能</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9FSession%E5%BD%A2%E5%BC%8F"><span class="nav-text">传统Session形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%91%E9%80%81"><span class="nav-text">验证码发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E4%B8%8E%E6%B3%A8%E5%86%8C"><span class="nav-text">登录与注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%A1%E9%AA%8C%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-text">校验用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">设置拦截器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">添加拦截器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98"><span class="nav-text">Session共享问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E5%85%B1%E4%BA%ABSession%E5%BD%A2%E5%BC%8F"><span class="nav-text">Redis共享Session形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE-1"><span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%91%E9%80%81-1"><span class="nav-text">验证码发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E9%99%86%E4%B8%8E%E6%B3%A8%E5%86%8C"><span class="nav-text">登陆与注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E9%AA%8C%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-text">检验用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BB%E9%99%86%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">登陆拦截器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B7%E6%96%B0%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">刷新拦截器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8%E6%B3%A8%E5%86%8C"><span class="nav-text">拦截器注册</span></a></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">kita17</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br> 
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.5</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/tools/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

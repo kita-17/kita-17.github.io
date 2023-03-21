@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="kita17">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://kita-17.github.io/mysql-note/单表查询/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Mysql笔记-单表查询">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="http://kita-17.github.iomysql-note/单表查询/">
+    
+    <meta property="og:site_name" content="KITA!!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mysql笔记-单表查询">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Mysql笔记-单表查询 -
+        
+        KITA!!
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.png","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"font_sizes":{"title":"2.8rem","subtitle":"1.5rem"},"line_height":1.2,"title":"Theme Redefine","subtitle":{"enable":false,"list":[]},"custom_font":{"enable":false,"font_family":null,"font_url":null},"description":"KITA KITA!!"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"simple","custom_font":{"enable":true,"font_family":"JetBrains Mono","font_url":"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap"}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.5","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}}};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                KITA!!
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-tag"></i>
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-book"></i>
+                                        
+                                        CATEGORIES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/about"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                    <i class="fa-regular fa-tag"></i>
+                                
+                                TAGS
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                    <i class="fa-regular fa-book"></i>
+                                
+                                CATEGORIES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/about"  >
+                             
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">Mysql笔记-单表查询</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.png">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">kita17</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2022-09-29</span>
+        <span class="mobile">2022-09-29 00</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2023-03-17 21:24:55</span>
+            <span class="mobile">2023-03-17 21:24</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/note/">note</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/note/">note</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/mysql/">mysql</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>       <span class="comment">-- 4</span></span><br><span class="line"><span class="comment">-- 	字段列表</span></span><br><span class="line"><span class="keyword">FROM</span>         <span class="comment">-- 1</span></span><br><span class="line"><span class="comment">-- 	表名列表</span></span><br><span class="line"><span class="keyword">WHERE</span>        <span class="comment">-- 2</span></span><br><span class="line"><span class="comment">-- 	条件列表</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span>     <span class="comment">-- 3</span></span><br><span class="line"><span class="comment">-- 	分组列表</span></span><br><span class="line"><span class="keyword">HAVING</span>       <span class="comment">-- 分组条件后执行</span></span><br><span class="line"><span class="comment">-- 	分组后条件</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span>     <span class="comment">-- 5</span></span><br><span class="line"><span class="comment">-- 	排序字段</span></span><br><span class="line">LIMIT        <span class="comment">-- 6</span></span><br><span class="line"><span class="comment">-- 	限制查询返回数据的数量，用于分页限制</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a><strong>条件查询</strong></h2><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询表里许所有数据,不建议使用</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询名字</span></span><br><span class="line"><span class="comment">-- DISTINCT 去除重复</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> name <span class="keyword">FROM</span> users;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询名字，性别，年龄</span></span><br><span class="line"><span class="comment">-- 可以使用 sex as 性别 的方式对列起别名,也可以写成 sex 性别 省略as 但字段名跟别名之间要有空格隔开</span></span><br><span class="line"><span class="keyword">SELECT</span> name, sex <span class="keyword">as</span> 性别, age <span class="keyword">as</span> 年龄 <span class="keyword">FROM</span> users;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 条件查询符号, NULL值比较使用 IS NOT NULL 跟 IS NULL </span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">&gt;</span> <span class="number">17</span>; <span class="comment">-- 查询age数值大于17的数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">&gt;=</span> <span class="number">7</span> <span class="keyword">AND</span> age <span class="operator">&lt;=</span> <span class="number">50</span>; <span class="comment">-- 查询age数值在7跟50之间的数值(写法一)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="keyword">BETWEEN</span> <span class="number">7</span> <span class="keyword">AND</span> <span class="number">50</span>; <span class="comment">-- 查询age数值在7跟50之间的数值(写法二)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询brith_day数值在&#x27;2000-01-01&#x27;跟&#x27;2000-04-01&#x27;之间的数值(写法二)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> brith_day <span class="keyword">BETWEEN</span> <span class="string">&#x27;2000-01-01&#x27;</span> <span class="keyword">AND</span> <span class="string">&#x27;2000-04-01&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">=</span> <span class="number">17</span>; <span class="comment">-- 查询age数值等于17的数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">!=</span> <span class="number">17</span>; <span class="comment">-- 查询age数值不等于17的数据(写法一)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">&lt;&gt;</span> <span class="number">17</span>; <span class="comment">-- 查询age数值不等于17的数据(写法二)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">=</span> <span class="number">17</span> <span class="keyword">OR</span> age <span class="operator">=</span> <span class="number">18</span> <span class="keyword">OR</span> age <span class="operator">=</span> <span class="number">22</span>;<span class="comment">-- 查询age数值等于17或18或22的数据(写法一)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="keyword">IN</span> (<span class="number">17</span>，<span class="number">18</span>，<span class="number">22</span>); <span class="comment">-- 查询age数值等于17或18或22的数据(写法二)</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="keyword">IS</span> <span class="keyword">NULL</span>; <span class="comment">-- 查询age数值为null的数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>; <span class="comment">-- 查询age数值不为null的数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="keyword">IS</span> <span class="keyword">NULL</span> <span class="comment">-- 查询age数值为null的数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	通配符</span></span><br><span class="line"><span class="comment">	_ 下划线代表单个字符</span></span><br><span class="line"><span class="comment">	% 百分号代表任意个数字符</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">-- 查询姓为 蔡 的名字信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="keyword">like</span> <span class="string">&#x27;蔡%&#x27;</span>;</span><br><span class="line"><span class="comment">-- 查询名字 第二个字是 徐 的名字信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="keyword">like</span> <span class="string">&#x27;_徐%&#x27;</span>;</span><br><span class="line"><span class="comment">-- 查询名字中包含坤的名字信息</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="keyword">like</span> <span class="string">&#x27;%坤%&#x27;</span>;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h2><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 排序查询语法</span></span><br><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表名 <span class="keyword">ORDER</span> <span class="keyword">BY</span> 排序字段名<span class="number">1</span> [排序方式<span class="number">1</span>]，排序字段名<span class="number">2</span> [排序方式<span class="number">2</span>]...;</span><br><span class="line"><span class="comment">-- 排序方式</span></span><br><span class="line"><span class="comment">-- ASC 升序排列[默认]</span></span><br><span class="line"><span class="comment">-- DESC 降序排列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 升序排序例子</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">ASC</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 降序排序例子</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">DESC</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 多字段降序排序例子</span></span><br><span class="line"><span class="comment">-- 如果年龄一样，则按工资升序排序</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users <span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">DESC</span>, money <span class="keyword">ASC</span>;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h2><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 聚合函数查询</span></span><br><span class="line"><span class="built_in">count</span>(列名) <span class="comment">-- 统计数量</span></span><br><span class="line"><span class="built_in">max</span>(列名)   <span class="comment">-- 最大值</span></span><br><span class="line"><span class="built_in">min</span>(列名)   <span class="comment">-- 最小值</span></span><br><span class="line"><span class="built_in">sum</span>(列名)   <span class="comment">-- 求和</span></span><br><span class="line"><span class="built_in">avg</span>(列名)   <span class="comment">-- 求平均值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 聚合函数查询语法 SELECT 聚合函数(列名)... FROM users;</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(name) <span class="keyword">FROM</span> users; <span class="comment">-- 统计name有几个，不能为空，不会统计null值</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">MAX</span>(age) <span class="keyword">FROM</span> users； <span class="comment">-- 求年龄最大的</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">MIN</span>(age) <span class="keyword">FROM</span> users； <span class="comment">-- 求年龄最小的</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">SUM</span>(money) <span class="keyword">FROM</span> users； <span class="comment">-- 求一整列的 money 和</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span>(money) <span class="keyword">FROM</span> users； <span class="comment">-- 求一整列的 money 的平均值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 分组查询</span></span><br><span class="line"><span class="comment">-- 根据性别分组查询平均工资</span></span><br><span class="line"><span class="keyword">SELECT</span> sex, <span class="built_in">avg</span>(money) <span class="keyword">FROM</span> users <span class="keyword">GROUP</span> <span class="keyword">BY</span> sex;</span><br><span class="line"><span class="comment">-- 根据性别分组查询平均工资，只计算工资高于5000的数据</span></span><br><span class="line"><span class="keyword">SELECT</span> sex, <span class="built_in">avg</span>(money) <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> money <span class="operator">&gt;</span> <span class="number">5000</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> sex;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 根据性别分组查询平均工资，只计算工资高于5000的数据, 且数据大于2条</span></span><br><span class="line"><span class="keyword">SELECT</span> sex, <span class="built_in">avg</span>(money) <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> money <span class="operator">&gt;</span> <span class="number">5000</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> sex <span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>where 是对分组前进行过滤，不支持聚合函数<br>having 是对分组后的数据进行过滤，支持聚合函数，一般查询的字段是聚合函数和分组字段<br>执行顺序：where &gt; 聚合函数 &gt; having</p>
+</blockquote>
+<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users LIMIT 起始索引，查询数目量;</span><br><span class="line"><span class="comment">-- 从0开始查，查询3条数据</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users LIMIT <span class="number">0</span>，<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 分页查询</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> users LIMIT (当前页面 <span class="number">-1</span>) <span class="operator">*</span> 每页显示条目数，每页显示条目数;</span><br></pre></td></tr></table></figure></div>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/note/">#note</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/mysql/">#mysql</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/mysql-note/%E4%BA%8B%E5%8A%A1/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Mysql笔记-事务</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Mysql笔记-单表查询</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="nav-text">条件查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E6%9F%A5%E8%AF%A2"><span class="nav-text">排序查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A2"><span class="nav-text">分组查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="nav-text">分页查询</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">kita17</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br> 
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.5</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/tools/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

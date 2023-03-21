@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="kita17">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://kita-17.github.io/springcloud/微服务/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="微服务笔记">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="http://kita-17.github.iospringCloud/微服务/">
+    
+    <meta property="og:site_name" content="KITA!!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="微服务笔记">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            微服务笔记 -
+        
+        KITA!!
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.png","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"font_sizes":{"title":"2.8rem","subtitle":"1.5rem"},"line_height":1.2,"title":"Theme Redefine","subtitle":{"enable":false,"list":[]},"custom_font":{"enable":false,"font_family":null,"font_url":null},"description":"KITA KITA!!"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"simple","custom_font":{"enable":true,"font_family":"JetBrains Mono","font_url":"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap"}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.5","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}}};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                KITA!!
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-tag"></i>
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-book"></i>
+                                        
+                                        CATEGORIES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/about"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                    <i class="fa-regular fa-tag"></i>
+                                
+                                TAGS
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                    <i class="fa-regular fa-book"></i>
+                                
+                                CATEGORIES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/about"  >
+                             
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">微服务笔记</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.png">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">kita17</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2022-10-13</span>
+        <span class="mobile">2022-10-13 00</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2023-03-17 10:42:59</span>
+            <span class="mobile">2023-03-17 10:42</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/note/">note</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/note/spring/">spring</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/note/">note</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/spring/">spring</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/spring-cloud/">spring-cloud</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/nacos/">nacos</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <blockquote>
+<p>微服务是一种经过良好架构设计的分布式架构方案</p>
+</blockquote>
+<p><strong>微服务架构特征</strong></p>
+<ul>
+<li>单一职责：微服务拆分粒度更小，每一个服务对应唯一的业务能力，做到单一职责，避免重复开发</li>
+<li>面向服务：微服务对外暴露业务接口</li>
+<li>自治：团队独立，技术独立，数据独立，部署独立</li>
+<li>隔离性强：服务调用做好隔离，容错，降级，避免出现级联问题</li>
+</ul>
+<h2 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h2><h3 id="远程调用"><a href="#远程调用" class="headerlink" title="远程调用"></a>远程调用</h3><p>微服务把业务模块拆分出来，单个模块只做自己业务相关的事，例如订单模块只负责订单的创建，查询等。用户模块负责记录用户信息。每个模块都有自己对应的数据库，在编码中我们不应该去做重复业务，如：用户模块中有增删改查用户的方法。而订单模块查询订单需要一起返回用户信息，这时。我们不应该在订单模块中去查询用户的信息，而是发送请求调用用户模块暴露的接口来获取用户信息。服务模块之间互相调用的方法，有以下几种。</p>
+<h4 id="提供者与消费者"><a href="#提供者与消费者" class="headerlink" title="提供者与消费者"></a>提供者与消费者</h4><p>服务提供者：一次业务中，被其他微服务调用的服务（提供接口）<br>服务消费者：一次业务中，调用其他微服务的服务（调用接口）<br>一个服务既可以是提供者，也可以是消费者。如服务A -&gt; B -&gt; C | A调用B。A是B的消费者，B是A的提供者。B调用C，B是C的消费者，C是B的提供者。提供者与消费者角色是相对的。</p>
+<h4 id="RestTemplate"><a href="#RestTemplate" class="headerlink" title="RestTemplate"></a>RestTemplate</h4><p>当我们需要远程调用一个 HTTP 接口时，我们经常会用到 RestTemplate 这个类。这个类是 Spring 框架提供的一个工具类</p>
+<h5 id="RestTemplate简单使用"><a href="#RestTemplate简单使用" class="headerlink" title="RestTemplate简单使用"></a>RestTemplate简单使用</h5><p>RestTemplate提供高度封装的接口，让我们可以非常方便地进行API调用。例如：使用 <code>GET</code> 发起请求的方法 <code>getForObject</code>， 使用 <code>POST</code> 方法发起请求的 <code>postForObject</code> 方法。这些方法并不用记忆，因为方法名基本与HTTP 方法一致。</p>
+<p>创建RestTemplate，注册为Bean，使用时注入RestTemplate即可</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 最简单的使用，如果需要统一超时时间，设置代理等，可以配置个ClientHttpRequestFactory，并传给RestTemplate当参数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Bean</span>  </span><br><span class="line"><span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;  </span><br><span class="line">    <span class="type">RestTemplate</span> <span class="variable">restTemplate</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();  </span><br><span class="line">    <span class="keyword">return</span> restTemplate;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>调用其他服务的接口</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;http://localhost:8080/user/&quot;</span> + order.getUserId();  </span><br><span class="line"><span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> restTemplate.getForObject(url, User.class);</span><br><span class="line"><span class="comment">//getForObject 可以将返回的JSON字符串转成实体</span></span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h3><h4 id="Eureka注册中心"><a href="#Eureka注册中心" class="headerlink" title="Eureka注册中心"></a>Eureka注册中心</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/16/mZKGTdAJV5pWv2P.png"
+                      alt="image-20210713220104956.png"
+                ></p>
+<ul>
+<li>角色<ul>
+<li>EurakaServer：服务端，即注册中心，负责服务管理，健康管理，</li>
+<li>EurakaClient：客户端，即每一个微服务模块，微服务启动时会将自己信息注册到EurekaServer</li>
+</ul>
+</li>
+<li>服务启动时向Eureka注册自己的服务信息，Eureka保存这些信息</li>
+<li>消费者根据服务名称向Eureka拉取提供者信息</li>
+<li>如果有多个服务，会利用负载均衡算法从服务列表中挑选</li>
+<li>每个服务每30秒会向Euraka发送心跳信息，报告健康状态。Euraka会根据健康信息判断，剔除宕机服务</li>
+</ul>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><h6 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h6><p>新建一个 <code>eureka-service</code> 模块项目并添加依赖，下面这个依赖添加到 <code>eureka-service</code> 模块的pom里</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>在 <code>eureka-service</code> 的启动类添加注解 <code>@EnableEurekaServer</code><br>然后配置文件 <code>application.yml</code></p>
+<div class="highlight-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span>  </span><br><span class="line">  <span class="attr">port:</span> <span class="number">8100</span>  <span class="comment"># 该服务端口</span></span><br><span class="line"><span class="attr">spring:</span>  </span><br><span class="line">  <span class="attr">application:</span>  </span><br><span class="line">    <span class="attr">name:</span> <span class="string">eureka-server</span> <span class="comment"># 服务名称</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">instance:</span>  </span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">localhost</span> <span class="comment"># 实例名，没写的话根据操作系统猜出</span></span><br><span class="line">  <span class="attr">client:</span>  </span><br><span class="line">    <span class="attr">service-url:</span> <span class="comment"># eureka服务地址</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:8100/eureka</span>  <span class="comment"># 单机版注册中心，若有多个用逗号 , 隔开</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">false</span>  </span><br><span class="line">    <span class="attr">register-with-eureka:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
+<p>启动项目，一个简单的Eureka服务注册中心就启动了</p>
+<h6 id="搭建服务提供者（业务模块注册到Eureka）"><a href="#搭建服务提供者（业务模块注册到Eureka）" class="headerlink" title="搭建服务提供者（业务模块注册到Eureka）"></a>搭建服务提供者（业务模块注册到Eureka）</h6><p>在业务模块里添加依赖</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--eureka客户端--&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>在配置文件 <code>application.yml</code> 添加如下配置</p>
+<div class="highlight-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span>  </span><br><span class="line">  <span class="attr">port:</span> <span class="number">8081</span> <span class="comment"># 你的服务模块端口</span></span><br><span class="line"><span class="attr">spring:</span>  </span><br><span class="line">  <span class="attr">application:</span>  </span><br><span class="line">    <span class="attr">name:</span> <span class="string">you-server</span> <span class="comment"># 你的服务模块名称，服务发现将根据这个名字来，所以非常重要</span></span><br><span class="line"><span class="attr">eureka:</span>  </span><br><span class="line">  <span class="attr">client:</span>  </span><br><span class="line">    <span class="attr">service-url:</span>  </span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:8100/eureka</span> <span class="comment"># 你的eureka服务地址</span></span><br></pre></td></tr></table></figure></div>
+
+<h5 id="服务拉取"><a href="#服务拉取" class="headerlink" title="服务拉取"></a>服务拉取</h5><p>服务拉取是根据服务名称获取服务列表，然后对服务列表做复杂均衡</p>
+<h6 id="RestTemplate例"><a href="#RestTemplate例" class="headerlink" title="RestTemplate例"></a>RestTemplate例</h6><p>给RestTemplate添加负载均衡注解 <code>@LoadBalanced</code></p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span>  </span><br><span class="line"><span class="meta">@LoadBalanced</span>  </span><br><span class="line"><span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;  </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在调用服务接口的地方把IP地址换成对应的服务名</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//yourService是你服务模块配置文件的spring.application.name值</span></span><br><span class="line"><span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;http://yourService/user/&quot;</span> + order.getUserId();  </span><br><span class="line"><span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> restTemplate.getForObject(url, User.class);</span><br></pre></td></tr></table></figure></div>
+<p>这样就简单实现了服务拉取</p>
+<blockquote>
+<p>如果你出现了异常: <mark style="background: #FF5582A6;">java.lang.IllegalStateException: No instances available for userService</mark> 有两个原因，第一个原因是Eureka需要三次心跳才会把服务加入服务列表，大概10秒一次，所以要等待30秒，第二个原因是因为负载均衡Ribbon是懒加载，只有第一次调用才会创建，把所有服务都激活访问一次就行，或者可以把Ribbon设置成饥饿加载</p>
+</blockquote>
+<h5 id="负载均衡-Ribbon"><a href="#负载均衡-Ribbon" class="headerlink" title="负载均衡(Ribbon)"></a>负载均衡(Ribbon)</h5><h6 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h6><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/16/Xj3eiNUrftMmoIu.png"
+                      alt="image-20210713224517686.png"
+                ></p>
+<h6 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h6><p>当请求进入Ribbon后，会被一个拦截器 <code>LoadBalancerInterceptor</code> 拦截，获取请求中的 service name 服务名称，交给 <code>RibbonLoadBanlancerClient</code>，<code>RibbonLoadBalancerClient</code> 会把服务名称交给 <code>DynamicServerListLoadBalancer</code>  去 <code>Eureka</code> 获取该服务的IP地址列表，然后去 <code>IRule</code> 根据规则做负载均衡选取一个地址出来返回给 <code>RibbonLoadBalancer</code> 替换服务名称获取真实请求地址。<br>流程图如下<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/16/KOl2HN69qPfUnAs.png"
+                      alt="image-20210713224724673.png"
+                ></p>
+<h6 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h6><p>Ribbon的负载均衡规则是一个叫IRule的接口定义的，每一个子接口都是一种规则<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/16/uZMykBiCgjT5KfX.png"
+                      alt="image.png"
+                ></p>
+<p><strong>常见常用规则</strong></p>
+<ul>
+<li>RetryRule：重试机制的选择逻辑</li>
+<li>RandomRule：随机选择一个可用</li>
+<li>RoundRobinRule：简单轮询服务器列表，<mark style="background: #FF5582A6;">是默认的负载均衡规则</mark></li>
+<li>AvailabilityFilteringRule：对以下两种服务器进行忽略<ol>
+<li>在默认情况下，如果这台服务器3次连接失败，那么这台服务器就会被设置为 “短路” 状态，短路状态持续30秒，如果再次连接失败，短路持续时间会几何级地增加</li>
+<li>并发数过高的服务器，如果一个服务器并发连接数过高</li>
+</ol>
+</li>
+<li>WeightedResponseTimeRule：为每一个服务器赋予一个权重值。服务响应时间越长，权重越小。会随机选择服务器，权重值会影响服务器的选择</li>
+<li>ZoneAvoidanceRule：以区域可用的服务器为基础进行服务器选择。使用Zone对服务器分类</li>
+<li>BestAvailableRule：忽略哪些短路服务器，选择并发次数较低的服务器</li>
+</ul>
+<p>规则配置方式</p>
+<ol>
+<li><p>通过代码配置<br>添加一个Bean返回你想设置的 IRule 实现类，此方案是全局规则，不管调用哪个服务的接口都会应用此规则</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span>  </span><br><span class="line"><span class="keyword">public</span> IRule <span class="title function_">randomRule</span><span class="params">()</span> &#123;  </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RandomRule</span>();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>配置文件方式<br>在 <code>application,.yml</code> 中添加如下配置，此方案是针对某个服务</p>
+<div class="highlight-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">youservice:</span> <span class="comment"># 目标服务名称</span></span><br><span class="line">	<span class="attr">ribbon:</span></span><br><span class="line">		<span class="attr">NFLoadBalancerRuleClassNamme:</span> <span class="string">com.netflix.loadbalancer.RandomRule</span> <span class="comment"># 此服务要应用的规则</span></span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h6 id="懒加载与饥饿加载"><a href="#懒加载与饥饿加载" class="headerlink" title="懒加载与饥饿加载"></a>懒加载与饥饿加载</h6><p>Ribbon默认启用懒加载，即第一次访问时才会去创建 <code>LoadBalanceClient</code>，请求时间会较长<br>而饥饿加载则会在项目启动时创建，降低第一次访问的耗时，通过下面配置开启饥饿加载</p>
+<div class="highlight-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ribbon:</span></span><br><span class="line">	<span class="attr">eager-load:</span></span><br><span class="line">		<span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">		<span class="attr">clients:</span> <span class="string">youservice</span> <span class="comment"># 针对这个服务开启饥饿加载</span></span><br><span class="line">	<span class="comment">#	clients:  若需设置多个</span></span><br><span class="line">	<span class="comment">#		- service1</span></span><br><span class="line">	<span class="comment">#		- service2</span></span><br><span class="line">	<span class="comment">#		- ....</span></span><br></pre></td></tr></table></figure></div>
+
+<h6 id="Ribbon总结"><a href="#Ribbon总结" class="headerlink" title="Ribbon总结"></a>Ribbon总结</h6><ul>
+<li>负载均衡规则<ul>
+<li>规则接口是 <code>IRule</code></li>
+<li>默认实现是 <code>ZoneAvoidanceRule</code> 根据zone选择服务列表，然后轮询</li>
+</ul>
+</li>
+<li>负载均衡配置<ul>
+<li>代码方式：通过添加Bean的方式，实现全局规则</li>
+<li>配置方式：在配置文件添加相关配置，可以针对某个服务的规则</li>
+</ul>
+</li>
+<li>饥饿加载：<code>LoadBalanceClient</code> 第一次访问才会创建，饥饿加载能够在启动时就创建</li>
+</ul>
+<h4 id="Nacos注册中心"><a href="#Nacos注册中心" class="headerlink" title="Nacos注册中心"></a>Nacos注册中心</h4><h5 id="服务注册"><a href="#服务注册" class="headerlink" title="服务注册"></a>服务注册</h5><p>首先在父工程引入依赖</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--nacos依赖--&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;alibaba.cloud.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+<p>然后给每个服务模块（服务提供者）添加nacos客户端依赖</p>
+<div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--nacos客户端依赖--&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+<p>接着在每个服务模块配置nacos注册中心地址即可</p>
+<div class="highlight-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span>  </span><br><span class="line">    <span class="attr">cloud:</span>  </span><br><span class="line">        <span class="attr">nacos:</span>  </span><br><span class="line">            <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos中心地址</span></span><br></pre></td></tr></table></figure></div>
+<p>因为 <code>Eureka</code> 跟 <code>Nacos</code> 都实现了接口 <code>DiscoveryClient</code> 和 <code>ServiceRegistry</code> 所以代码使用是一样的都是，<code>restTemplate.xxxx</code></p>
+<h5 id="Nacos服务分级模型"><a href="#Nacos服务分级模型" class="headerlink" title="Nacos服务分级模型"></a>Nacos服务分级模型</h5><p>Nacos服务分级为：服务 -&gt; 集群 -&gt; 实例。</p>
+<ul>
+<li>一级是服务，例如 userService等微服务模块</li>
+<li>二级是地区集群，为了保证服务高可用，我们会做集群，但不会把所有集群都放在同个地区，一是防止不可抗拒因素导致服务器宕机。二是让用户访问就近集群提高访问速度</li>
+<li>三级是实例，每个部署了服务(例如部署了userService)的服务器都可以叫实例</li>
+</ul>
+<h6 id="设置集群属性"><a href="#设置集群属性" class="headerlink" title="设置集群属性"></a>设置集群属性</h6><p>修改服务模块的配置文件</p>
+<div class="highlight-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span>  </span><br><span class="line">    <span class="attr">cloud:</span>  </span><br><span class="line">        <span class="attr">nacos:</span>  </span><br><span class="line">            <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos中心地址</span></span><br><span class="line">            <span class="attr">discovery:</span>  </span><br><span class="line">	            <span class="attr">cluster-name:</span> <span class="string">Shanghai</span>  <span class="comment"># 集群名称，不能中文</span></span><br></pre></td></tr></table></figure></div>
+
+<p>设置完成后打开浏览器访问Nacos我们可以看到，两台userService被划分到了不同集群组<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/17/hCFVyjRS714HQeP.png"
+                      alt="屏幕截图 2023-03-17 104143.png"
+                ></p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/java/">#java</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/note/">#note</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/spring/">#spring</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/spring-cloud/">#spring-cloud</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/nacos/">#nacos</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/spring/spring-%E4%BA%8B%E5%8A%A1/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">JavaWEB笔记-Spring事务</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/spring/spring-boot/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">JavaWEB笔记-SpringBoot</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">微服务笔记</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringCloud"><span class="nav-text">SpringCloud</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8"><span class="nav-text">远程调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E4%BE%9B%E8%80%85%E4%B8%8E%E6%B6%88%E8%B4%B9%E8%80%85"><span class="nav-text">提供者与消费者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RestTemplate"><span class="nav-text">RestTemplate</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#RestTemplate%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-text">RestTemplate简单使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="nav-text">注册中心</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="nav-text">Eureka注册中心</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E8%80%85%EF%BC%88%E4%B8%9A%E5%8A%A1%E6%A8%A1%E5%9D%97%E6%B3%A8%E5%86%8C%E5%88%B0Eureka%EF%BC%89"><span class="nav-text">搭建服务提供者（业务模块注册到Eureka）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E6%8B%89%E5%8F%96"><span class="nav-text">服务拉取</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#RestTemplate%E4%BE%8B"><span class="nav-text">RestTemplate例</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-Ribbon"><span class="nav-text">负载均衡(Ribbon)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-text">流程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-text">原理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AD%96%E7%95%A5"><span class="nav-text">策略</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%87%92%E5%8A%A0%E8%BD%BD%E4%B8%8E%E9%A5%A5%E9%A5%BF%E5%8A%A0%E8%BD%BD"><span class="nav-text">懒加载与饥饿加载</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Ribbon%E6%80%BB%E7%BB%93"><span class="nav-text">Ribbon总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nacos%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="nav-text">Nacos注册中心</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C"><span class="nav-text">服务注册</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Nacos%E6%9C%8D%E5%8A%A1%E5%88%86%E7%BA%A7%E6%A8%A1%E5%9E%8B"><span class="nav-text">Nacos服务分级模型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%9B%86%E7%BE%A4%E5%B1%9E%E6%80%A7"><span class="nav-text">设置集群属性</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">kita17</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br> 
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.5</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/tools/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
