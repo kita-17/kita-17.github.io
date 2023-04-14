@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="Hexo Theme Redefine">
-    <meta name="description" content="Hexo Theme Redefine">
+    
     <meta name="author" content="kita17">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
     <!-- preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,20 +17,30 @@
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="基于Redis实现Session共享的登录功能">
-    <meta property="og:description" content="Hexo Theme Redefine">
-    <meta property="og:url" content="http://kita-17.github.ioJavaWeb/基于Redis实现Session共享的登录功能/">
     
-    <meta property="og:site_name" content="KITA!!">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="基于Redis实现Session共享的登录功能">
-    <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo.png">
+        <meta name="description" content="传统Session形式流程图 验证码发送1234567891011121314@Override  public Result sendCode(String phone, HttpSession session) &amp;#123;      &#x2F;&#x2F;手机号码验证      if (RegexUtils.isPhoneInvalid(phone)) &amp;#123;          return Resul">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Redis实现Session共享的登录功能">
+<meta property="og:url" content="http://kita-17.github.io/JavaWeb/%E5%9F%BA%E4%BA%8ERedis%E5%AE%9E%E7%8E%B0Session%E5%85%B1%E4%BA%AB%E7%9A%84%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="传统Session形式流程图 验证码发送1234567891011121314@Override  public Result sendCode(String phone, HttpSession session) &amp;#123;      &#x2F;&#x2F;手机号码验证      if (RegexUtils.isPhoneInvalid(phone)) &amp;#123;          return Resul">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2023/03/07/aZidRxJSXGpqTFk.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/07/XGeJqN9rVf8uk2w.png">
+<meta property="article:published_time" content="2022-11-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-07T10:03:47.717Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="note">
+<meta property="article:tag" content="session">
+<meta property="article:tag" content="redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/03/07/aZidRxJSXGpqTFk.png">
+    
     <!--- Icon Part-->
     <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
-    <meta name="theme-color" content="#005080">
+    <meta name="theme-color" content="#A31F34">
     <link rel="shortcut icon" href="/images/logo.png">
     <!--- Page Info-->
     
@@ -50,7 +59,7 @@
     <!--- Font Part-->
     
     
-        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     
     
     
@@ -58,10 +67,10 @@
     <!--- Inject Part-->
     
     <script id="hexo-configurations">
-    let REDEFINE = window.REDEFINE || {};
-    REDEFINE.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.png","favicon":"/images/logo.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"font_sizes":{"title":"2.8rem","subtitle":"1.5rem"},"line_height":1.2,"title":"KITA KITA!!","subtitle":{"enable":false,"list":[]},"custom_font":{"enable":false,"font_family":null,"font_url":null},"description":"KITA KITA!!"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"simple","custom_font":{"enable":true,"font_family":"JetBrains Mono","font_url":"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap"}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.3","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}}};
-    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"simple","font":{"enable":true,"family":"Fira Code","url":"https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=JetBrains+Mono:wght@500&display=swap"}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true},"home_banner":{"enable":true,"image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title":"KITA KITA!!","subtitle":{"text":[],"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/kita-17"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"icon":"fa-regular fa-tag","path":"/tags"},"Categories":{"icon":"fa-regular fa-book","path":"/categories"},"About":{"icon":"fa-regular fa-user","path":"/about"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
   </script>
     
     <!--- Fontawesome Part-->
@@ -87,8 +96,6 @@
 <body>
 <div class="progress-bar-container">
     
-        <span class="scroll-progress-bar"></span>
-    
 
     
         <span class="pjax-progress-bar"></span>
@@ -103,12 +110,12 @@
 
     
 
-    <div class="page-main-content">
+    <div class="main-content-container">
 
-        <div class="page-main-content-top">
-            <header class="menu-wrapper">
+        <div class="main-content-header">
+            <header class="navbar-container">
     
-    <div class="menu-content">
+    <div class="navbar-content">
         <div class="left">
             
             <a class="logo-title" href="/">
@@ -120,11 +127,11 @@
 
         <div class="right">
             <!-- PC -->
-            <div class="pc">
-                <ul class="menu-list">
+            <div class="desktop">
+                <ul class="navbar-list">
                     
                         
-                            <li class="menu-item">
+                            <li class="navbar-item">
                                 <!-- Menu -->
                                 <a class="" 
                                     href="/"  >
@@ -140,7 +147,7 @@
                             </li>
                     
                         
-                            <li class="menu-item">
+                            <li class="navbar-item">
                                 <!-- Menu -->
                                 <a class="" 
                                     href="/archives"  >
@@ -156,7 +163,7 @@
                             </li>
                     
                         
-                            <li class="menu-item">
+                            <li class="navbar-item">
                                 <!-- Menu -->
                                 <a class="" 
                                     href="/tags"  >
@@ -172,7 +179,7 @@
                             </li>
                     
                         
-                            <li class="menu-item">
+                            <li class="navbar-item">
                                 <!-- Menu -->
                                 <a class="" 
                                     href="/categories"  >
@@ -188,7 +195,7 @@
                             </li>
                     
                         
-                            <li class="menu-item">
+                            <li class="navbar-item">
                                 <!-- Menu -->
                                 <a class="" 
                                     href="/about"  >
@@ -204,7 +211,7 @@
                             </li>
                     
                     
-                        <li class="menu-item search search-popup-trigger">
+                        <li class="navbar-item search search-popup-trigger">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </li>
                     
@@ -215,19 +222,19 @@
                 
                     <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
                 
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Mobile drawer -->
-    <div class="menu-drawer">
-        <ul class="drawer-menu-list">
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
             
                 
-                    <li class="drawer-menu-item flex-center">
+                    <li class="drawer-navbar-item flex-center">
                         <a class="" 
                         href="/"  >
                              
@@ -242,7 +249,7 @@
                     
             
                 
-                    <li class="drawer-menu-item flex-center">
+                    <li class="drawer-navbar-item flex-center">
                         <a class="" 
                         href="/archives"  >
                              
@@ -257,7 +264,7 @@
                     
             
                 
-                    <li class="drawer-menu-item flex-center">
+                    <li class="drawer-navbar-item flex-center">
                         <a class="" 
                         href="/tags"  >
                              
@@ -272,7 +279,7 @@
                     
             
                 
-                    <li class="drawer-menu-item flex-center">
+                    <li class="drawer-navbar-item flex-center">
                         <a class="" 
                         href="/categories"  >
                              
@@ -287,7 +294,7 @@
                     
             
                 
-                    <li class="drawer-menu-item flex-center">
+                    <li class="drawer-navbar-item flex-center">
                         <a class="" 
                         href="/about"  >
                              
@@ -312,7 +319,9 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="main-content-body">
+
+            
 
             <div class="main-content">
 
@@ -339,19 +348,21 @@
                         <div class="author">
                             <span class="name">kita17</span>
                             
+                                <span class="author-label"></span>
+                            
                         </div>
                         <div class="meta-info">
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="pc">2022-11-07</span>
+        <span class="desktop">2022-11-07</span>
         <span class="mobile">2022-11-07 00</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="pc">2023-03-07 18:03:47</span>
+            <span class="desktop">2023-03-07 18:03:47</span>
             <span class="mobile">2023-03-07 18:03</span>
             <span class="hover-info">Updated</span>
         </span>
@@ -489,13 +500,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/mysql-note/%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98/"
+                            href="/redis/redis%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">并发安全问题</span>
+                                    <span class="post-nav-title-item">redis学习笔记</span>
                                     <span class="post-nav-item">Prev posts</span>
                                 </span>
                             </a>
@@ -530,7 +541,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">基于Redis实现Session共享的登录功能</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9FSession%E5%BD%A2%E5%BC%8F"><span class="nav-text">传统Session形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%91%E9%80%81"><span class="nav-text">验证码发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E4%B8%8E%E6%B3%A8%E5%86%8C"><span class="nav-text">登录与注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%A1%E9%AA%8C%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-text">校验用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">设置拦截器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">添加拦截器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98"><span class="nav-text">Session共享问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E5%85%B1%E4%BA%ABSession%E5%BD%A2%E5%BC%8F"><span class="nav-text">Redis共享Session形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE-1"><span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%91%E9%80%81-1"><span class="nav-text">验证码发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E9%99%86%E4%B8%8E%E6%B3%A8%E5%86%8C"><span class="nav-text">登陆与注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E9%AA%8C%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-text">检验用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BB%E9%99%86%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">登陆拦截器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B7%E6%96%B0%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">刷新拦截器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8%E6%B3%A8%E5%86%8C"><span class="nav-text">拦截器注册</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9FSession%E5%BD%A2%E5%BC%8F"><span class="nav-text">传统Session形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%91%E9%80%81"><span class="nav-text">验证码发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E4%B8%8E%E6%B3%A8%E5%86%8C"><span class="nav-text">登录与注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%A1%E9%AA%8C%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-text">校验用户信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98"><span class="nav-text">Session共享问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E5%85%B1%E4%BA%ABSession%E5%BD%A2%E5%BC%8F"><span class="nav-text">Redis共享Session形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE-1"><span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%91%E9%80%81-1"><span class="nav-text">验证码发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E9%99%86%E4%B8%8E%E6%B3%A8%E5%86%8C"><span class="nav-text">登陆与注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E9%AA%8C%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-text">检验用户信息</span></a></li></ol></li></ol>
 
     </div>
 </div>
@@ -543,12 +554,12 @@
                 
 
             </div>
-
-
+            
+            
 
         </div>
 
-        <div class="page-main-content-bottom">
+        <div class="main-content-footer">
             <footer class="footer">
     <div class="info-container">
         <div class="copyright-info">
@@ -560,38 +571,29 @@
             2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">kita17</a>
         </div>
         
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
         <div class="theme-info info-item">
             <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
-                <br> 
-            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.2.3</a>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.1</a>
         </div>
         
         
         
-            <div id="start_time_div" style="display:none">
-                2022/8/17 11:45:14
-            </div>
-            <div>
-                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
-            </div>
         
-        
-        
-            <script async data-pjax>
-                try {
-                    function odometer_init() {
-                    const elements = document.querySelectorAll('.odometer');
-                    elements.forEach(el => {
-                        new Odometer({
-                            el,
-                            format: '( ddd).dd',
-                            duration: 200
-                        });
-                    });
-                    }
-                    odometer_init();
-                } catch (error) {}
-            </script>
         
         
         
@@ -603,7 +605,7 @@
     
         <div class="post-tools">
             <div class="post-tools-container">
-    <ul class="tools-list">
+    <ul class="article-tools-list">
         <!-- TOC aside toggle -->
         
             <li class="right-bottom-tools page-aside-toggle">
@@ -619,9 +621,9 @@
         </div>
     
 
-    <div class="right-bottom-side-tools">
+    <div class="right-side-tools-container">
         <div class="side-tools-container">
-    <ul class="unfolded-tools-list">
+    <ul class="hidden-tools-list">
         <li class="right-bottom-tools tool-font-adjust-plus flex-center">
             <i class="fa-regular fa-magnifying-glass-plus"></i>
         </li>
@@ -642,20 +644,22 @@
         
 
         
-            <li class="right-bottom-tools tool-scroll-to-top flex-center">
-                <i class="fa-regular fa-arrow-up"></i>
-            </li>
-        
 
         <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
             <i class="fa-regular fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="folded-tools-list">
-        <li class="right-bottom-tools tool-toggle-show flex-center">
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
             <i class="fa-regular fa-cog fa-spin"></i>
         </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
         
     </ul>
 </div>
@@ -708,22 +712,22 @@
 
 <script src="/js/main.js"></script>
 
-<script src="/js/layouts/menu-shrink.js"></script>
+<script src="/js/layouts/navbarShrink.js"></script>
 
-<script src="/js/tools/go-top-bottom.js"></script>
+<script src="/js/tools/scrollTopBottom.js"></script>
 
-<script src="/js/tools/dark-light-toggle.js"></script>
-
-
-
-    
-<script src="/js/tools/local-search.js"></script>
-
+<script src="/js/tools/lightDarkSwitch.js"></script>
 
 
 
     
-<script src="/js/tools/code-block.js"></script>
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
 
 
 
@@ -734,16 +738,13 @@
 
 
 
-    
-<script src="/js/tools/runtime.js"></script>
-
-    
-<script src="/js/layouts/odometer.min.js"></script>
-
-    
-<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
 
 
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
 
 
 
@@ -754,7 +755,7 @@
 <div class="post-scripts pjax">
     
         
-<script src="/js/tools/toc-toggle.js"></script>
+<script src="/js/tools/tocToggle.js"></script>
 
 <script src="/js/libs/anime.min.js"></script>
 
@@ -775,7 +776,7 @@
             selectors: [
                 'head title',
                 '.page-container',
-                '.pjax'
+                '.pjax',
             ],
             history: true,
             debug: false,
@@ -788,13 +789,13 @@
         });
 
         document.addEventListener('pjax:send', () => {
-            REDEFINE.utils.pjaxProgressBarStart();
+            Global.utils.pjaxProgressBarStart();
         });
 
         document.addEventListener('pjax:complete', () => {
-            REDEFINE.utils.pjaxProgressBarEnd();
+            Global.utils.pjaxProgressBarEnd();
             window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            REDEFINE.refresh();
+            Global.refresh();
         });
     });
 </script>

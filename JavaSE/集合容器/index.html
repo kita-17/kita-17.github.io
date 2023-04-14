@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="kita17">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://kita-17.github.io/javase/集合容器/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="集合与数组数组的不足 数组长度开始必须指定, 且一旦被指定, 就无法更改 数组保存的数据必须类型一致 数组增删元素比较麻烦, 灵活性不够123456789Integer[] arr &#x3D; new Integer[1];arr[0] &#x3D; 1;&#x2F;&#x2F;扩容Integer[] arr2 &#x3D; new Integer[arr.length + 1];&#x2F;&#x2F;拷贝arr数据到arr2copy....&#x2F;&#x2F;添加数据arr2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集合容器">
+<meta property="og:url" content="http://kita-17.github.io/JavaSE/%E9%9B%86%E5%90%88%E5%AE%B9%E5%99%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="集合与数组数组的不足 数组长度开始必须指定, 且一旦被指定, 就无法更改 数组保存的数据必须类型一致 数组增删元素比较麻烦, 灵活性不够123456789Integer[] arr &#x3D; new Integer[1];arr[0] &#x3D; 1;&#x2F;&#x2F;扩容Integer[] arr2 &#x3D; new Integer[arr.length + 1];&#x2F;&#x2F;拷贝arr数据到arr2copy....&#x2F;&#x2F;添加数据arr2">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2023/03/04/jrbXx69PWdJto7e.png">
+<meta property="article:published_time" content="2022-10-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-13T02:48:17.377Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/03/04/jrbXx69PWdJto7e.png">
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/logo.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            集合容器 -
+        
+        KITA!!
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"simple","font":{"enable":true,"family":"Fira Code","url":"https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=JetBrains+Mono:wght@500&display=swap"}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true},"home_banner":{"enable":true,"image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title":"KITA KITA!!","subtitle":{"text":[],"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/kita-17"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"icon":"fa-regular fa-tag","path":"/tags"},"Categories":{"icon":"fa-regular fa-book","path":"/categories"},"About":{"icon":"fa-regular fa-user","path":"/about"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                KITA!!
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-tag"></i>
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-book"></i>
+                                        
+                                        CATEGORIES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/about"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        ABOUT
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                    <i class="fa-regular fa-tag"></i>
+                                
+                                TAGS
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                    <i class="fa-regular fa-book"></i>
+                                
+                                CATEGORIES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/about"  >
+                             
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                ABOUT
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">集合容器</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.png">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">kita17</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2022-10-07</span>
+        <span class="mobile">2022-10-07 00</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-04-13 10:48:17</span>
+            <span class="mobile">2023-04-13 10:48</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/note/">note</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="集合与数组"><a href="#集合与数组" class="headerlink" title="集合与数组"></a>集合与数组</h2><h4 id="数组的不足"><a href="#数组的不足" class="headerlink" title="数组的不足"></a>数组的不足</h4><ol>
+<li>数组长度开始必须指定, 且一旦被指定, 就无法更改</li>
+<li>数组保存的数据必须类型一致</li>
+<li>数组增删元素比较麻烦, 灵活性不够<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Integer[] arr = <span class="keyword">new</span> <span class="title class_">Integer</span>[<span class="number">1</span>];</span><br><span class="line">arr[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//扩容</span></span><br><span class="line">Integer[] arr2 = <span class="keyword">new</span> <span class="title class_">Integer</span>[arr.length + <span class="number">1</span>];</span><br><span class="line"><span class="comment">//拷贝arr数据到arr2</span></span><br><span class="line">copy....</span><br><span class="line"><span class="comment">//添加数据</span></span><br><span class="line">arr2[arr2.length - <span class="number">1</span>] = <span class="number">20</span>;</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><ol>
+<li>可以动态保存任意多个对象</li>
+<li>提供了一些列操作集合对象的方法; <mark style="background: #FFB86CA6;">add</mark> <mark style="background: #FFB8EBA6;">remove</mark> <mark style="background: #ADCCFFA6;">set</mark> <mark style="background: #ABF7F7A6;">get</mark></li>
+</ol>
+<h2 id="集合的框架体系"><a href="#集合的框架体系" class="headerlink" title="集合的框架体系"></a>集合的框架体系</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/03/04/jrbXx69PWdJto7e.png"
+                      alt="集合框架.png"
+                ></p>
+<h4 id="Iterable-迭代器"><a href="#Iterable-迭代器" class="headerlink" title="Iterable 迭代器"></a>Iterable 迭代器</h4><ol>
+<li><code>Iterable</code> 对象称为迭代器, 主要用于遍历 <code>Collection</code> 集合中的元素</li>
+<li>所有实现了 <code>Collection</code> 接口的集合都有一个 <code>iterator()</code> 方法, 返回一个实现了 <code>Iterable</code> 接口的对象</li>
+<li><code>Iterable</code> 仅用于集合遍历, 本身并不存放对象</li>
+</ol>
+<p>简单的使用</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Iterator</span> <span class="variable">iterator</span> <span class="operator">=</span> collection.iterator();  </span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123; <span class="comment">//判断是都有下一个元素  </span></span><br><span class="line">    <span class="type">Object</span> <span class="variable">next</span> <span class="operator">=</span> iterator.next(); <span class="comment">//游标下移并取出元素  </span></span><br><span class="line">    System.out.println(next);  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//循环退出, iterator指向最后一个元素</span></span><br><span class="line"><span class="comment">//如果再次next() 则会报错. 若需再次遍历, 需要重置iterator(), 再次collection.iterator();  </span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="增强for循环"><a href="#增强for循环" class="headerlink" title="增强for循环"></a>增强for循环</h4><blockquote>
+<p>简化版的迭代器遍历</p>
+</blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//底层依然是迭代器</span></span><br><span class="line"><span class="keyword">for</span>(Object obj : collection) &#123;</span><br><span class="line">   <span class="comment">//....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ol>
+<li>List集合中的元素是有序可重复的</li>
+<li>List集合中的每个元素都有对应的顺序索引, 支持索引取出</li>
+<li>常用的实现类: <code>ArrayList</code>  <code>Vector</code> <code>LinkedList</code></li>
+</ol>
+<h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><ol>
+<li>ArrayList 可以加入 <code>null</code></li>
+<li>ArrayList 是由数组来实现数据存储的</li>
+<li>ArrayList基本同等与 <code>Vector</code> 但ArrayList是线程不安全的</li>
+<li>基于数组，需要连续内存</li>
+<li>随机访问快</li>
+<li>尾部插入，删除性能还行，其他部分插入删除都会移动数据，性能较低</li>
+<li>可以利用cpu缓存</li>
+</ol>
+<h5 id="底层结构"><a href="#底层结构" class="headerlink" title="底层结构"></a>底层结构</h5><ul>
+<li>ArrayList中维护了一个 <code>Object</code> 类型的<mark style="background: #BBFABBA6;">数组</mark> <code>elementData</code></li>
+<li>当创建对象时, 如果是使用的无参构造器, 则初始化 <code>elementData</code> 容量为 <mark style="background: #ABF7F7A6;">0</mark> </li>
+<li>添加元素时, 判断是否需要扩容 如果需要则调用 <code>grow</code> 扩容为 <mark style="background: #FFB86CA6;">10</mark> 否则就添加元素</li>
+<li>如果使用的是无参构造器, 且第一次添加需要扩容的话, 就库容 <code>elementData</code> 为 10. 如需再次扩容, 就扩容为<mark style="background: #ADCCFFA6;">1.5倍</mark></li>
+<li>如果使用了指定容量的构造器, 则初始化 <code>elementDta</code> 的大小为 <code>capacity</code> 如需扩容. 则直接扩容为 <mark style="background: #ADCCFFA6;">1.5倍</mark></li>
+</ul>
+<blockquote>
+<p>在扩容时，并不是现容量乘以1.5而是 现容量 &gt;&gt;&gt; 1 再加上现容量得到的1.5倍,防止出现小数<br>例如 现容量 15，那扩容后将是 (15 &gt;&gt;&gt; 1) + 15 &#x3D; 22。<br><mark style="background: #BBFABBA6;">需要注意的是最终的元素个数如果大于计算得到的扩容值，那么最后实际扩容的大小将是元素个数</mark><br>例如：向一个容量为10的集合里再 <mark style="background: #FFF3A3A6;">addAll(1,2,3)</mark> 三个元素，那么此集合将扩容至15。若<mark style="background: #FFF3A3A6;">addAll(1,2,3,4,5,6)</mark> 六个元素，那么此集合将扩容至16</p>
+</blockquote>
+<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><ul>
+<li>基于双向链表，无需连续内存</li>
+<li>随即访问慢（要沿着链表遍历）</li>
+<li>头尾插入删除性能高</li>
+<li>占用内存多</li>
+</ul>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h4><blockquote>
+<p>HashSet 的本质是 HashMap</p>
+</blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//底层维护了一个map属性</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> HashMap&lt;E,Object&gt; map;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>在进行add操作时，底层实际上是对 <code>map</code> 进行了put操作。将我们要存储的值作为map的key放入map</li>
+<li><mark style="background: #FFB86CA6;">map的key是无法重复的，重复的key会被覆盖掉</mark><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//add的传值是map的key，而PRESENT是一个不变的Object常量空对象</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">add</span><span class="params">(E e)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> map.put(e, PRESENT)==<span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><h4 id="底层数据结构"><a href="#底层数据结构" class="headerlink" title="底层数据结构"></a>底层数据结构</h4><ul>
+<li>1.7：数组+链表</li>
+<li>1.8：数组+ (链表 | 红黑树)，当链表元素较多时会转成红黑树，当元素删除一定元素后转成链表</li>
+<li>HashMap 总体是数组+链表的存储结构， 从JDK1.8开始，<mark style="background: #BBFABBA6;">当数组的长度大于64，且链表的长度大于8的时候，会把链表转为红黑树</mark>，<mark style="background: #ADCCFFA6;">若数组长度不够64，但链表长度大于8，会对数组扩容以此来减小链表长度</mark> </li>
+<li>数组的默认长度是16。数组中的每一个元素为一个node，也就是链表的一个节点，node的数据包含: key的hashcode, key, value,指向下一个node节点的指针。</li>
+</ul>
+<blockquote>
+<p>每次扩容都会拿hash与扩容后的数组长度重新计算数组下标， 有些元素就会得到不同结果，从而达到减小链表长度的作用</p>
+</blockquote>
+<h4 id="PUT操作"><a href="#PUT操作" class="headerlink" title="PUT操作"></a>PUT操作</h4><ol>
+<li>map.put(key, value)，首先计算key的hash，得到一个int值。</li>
+<li>如果Node数组为空则初始化Node数组。这里注意，Node数组的长度length始终应该是2的n次方，比如默认的16, 还有32,64等</li>
+<li>用 hash % length  取模运算得到数组下标</li>
+<li>如果Node[hash % length]处为空，用传入的的key, value创建Node对象，直接放入该下标；如果该下标处不为空，且对象为TreeNode类型，证明此下标处的元素们是按照红黑树的结构存储的，将传入的key，value作为新的红黑树的节点插入到红黑树；否则，此处为链表，用next找到链表的末尾，将新的元素插入。如果在遍历链表的过程中发现链表的长度超过了8，此时如果数组长度&lt;64则进行扩容，否则转红黑树</li>
+<li>添加完元素后检查容量是否超过或阈值，超过了就扩容（阈值为当前容量的75%）</li>
+</ol>
+<blockquote>
+<p>上面提到数组的长度length始终是2^n, 在这个前提下，hash &amp; (length-1) 与hash % length是等价的。 而位与运算更快。</p>
+</blockquote>
+<h5 id="1-7与1-8的区别"><a href="#1-7与1-8的区别" class="headerlink" title="1.7与1.8的区别"></a>1.7与1.8的区别</h5><ul>
+<li>插入时的不同<ul>
+<li>1.7里是头插法，每次新加的元素放在链表头部</li>
+<li>1.8里是尾插法，每次新加的元素放在链表尾部</li>
+</ul>
+</li>
+<li>扩容时的不同<ul>
+<li>1.7 是大于等于阈值且没有空位时才扩容</li>
+<li>1.8 时大于阈值就扩容</li>
+</ul>
+</li>
+<li>1.8在扩容计算Node索引时会优化</li>
+</ul>
+<h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h4><h5 id="为什么要使用红黑树"><a href="#为什么要使用红黑树" class="headerlink" title="为什么要使用红黑树"></a>为什么要使用红黑树</h5><p>答：当链表元素很长时我们获取元素需要从头开始检索，如果元素在底端就需要检索多次。性能是比较低的。而使用红黑树可以减少检索次数。</p>
+<h5 id="为什么不一上来就树化"><a href="#为什么不一上来就树化" class="headerlink" title="为什么不一上来就树化"></a>为什么不一上来就树化</h5><p>答：当我们一个链表上的元素只有一个或少数几个时，其性能要比红黑树好的，只有链表长度较长时性能才较高。</p>
+<h5 id="什么时候会树化"><a href="#什么时候会树化" class="headerlink" title="什么时候会树化"></a>什么时候会树化</h5><p>答：当数组的长度大于64，且链表的长度大于8的时候，会把链表转为红黑树。若数组长度不够64，但链表长度大于8，会对数组扩容以此来减小链表长度</p>
+<h5 id="树化阈值为何是8"><a href="#树化阈值为何是8" class="headerlink" title="树化阈值为何是8"></a>树化阈值为何是8</h5><ul>
+<li>红黑树是用来避免Dos攻击（别人恶意提交很多hash一样的数据），防止链表超长时出现性能下降。一般情况下链表长度不会超过8。</li>
+<li>hash值如果足够随机，则hash表内按泊松分布，在负载因子0.75情况下，长度超过8的链表出现概率为0.000000006，选择8是为了让树华概率足够低</li>
+</ul>
+<h5 id="什么时候树会退化成表"><a href="#什么时候树会退化成表" class="headerlink" title="什么时候树会退化成表"></a>什么时候树会退化成表</h5><ol>
+<li>在扩容是拆分树时，如果树元素个数小于等于6就会退化成链表。 </li>
+<li>在移除树节点前检查，若root, root.left  root.right root.left.left有一个为null，也会退化为链表</li>
+</ol>
+<h5 id="索引怎么计算"><a href="#索引怎么计算" class="headerlink" title="索引怎么计算"></a>索引怎么计算</h5><p>每一个对象都提供了hashcode方法获取原始hash值，而原始hash值还需要使用hashmap中的hash方法获取二次hash值。然后用二次hash结果跟数组长度进行取模运算，最后的结果就是对象的索引</p>
+<h5 id="为什么有hashcode了还要提供hash方法"><a href="#为什么有hashcode了还要提供hash方法" class="headerlink" title="为什么有hashcode了还要提供hash方法"></a>为什么有hashcode了还要提供hash方法</h5><p>hash方法会将hashcode右移16位，让hash分布更为均匀，防止链表超长</p>
+<h5 id="数组容量为何是2的n次幂"><a href="#数组容量为何是2的n次幂" class="headerlink" title="数组容量为何是2的n次幂"></a>数组容量为何是2的n次幂</h5><ul>
+<li>在求索引值时，如果<mark style="background: #ABF7F7A6;">数组长度是2的n次幂</mark>则可以使用 按位与 来计算数组下标，[hash &amp; (capacity - 1)] 这种方法效率更高，扩容时 hash % oldCapacity &#x3D; 0 的元素留在原处。否则新位置 &#x3D; 旧位置 +  oldCapacity。</li>
+</ul>
+<h5 id="负载因子为何默认是0-75"><a href="#负载因子为何默认是0-75" class="headerlink" title="负载因子为何默认是0.75"></a>负载因子为何默认是0.75</h5><ol>
+<li>在空间占用与查询时间之间取得较好的平衡</li>
+<li>大于这个值，比较节省空间，但是链表会较长</li>
+<li>小于这个值，空间占用较大，扩容较频繁。但链表会较短</li>
+</ol>
+<h5 id="多线程下操作HashMap会有什么问题"><a href="#多线程下操作HashMap会有什么问题" class="headerlink" title="多线程下操作HashMap会有什么问题"></a>多线程下操作HashMap会有什么问题</h5><ol>
+<li>扩容死链：在jdk1.7中如果多个线程同时去扩容一个HashMap，就会造成一个链表里的元素互相指向头尾没了，如：A的下个元素指向B，B的元素指向A。<ol>
+<li>原因是，在扩容时会有两个线程临时变量 e 和 next，其中e指向当前元素，next指向下个元素。然后进行遍历，将元素取出一个一个地通过头插法放入新数组。</li>
+<li>在并发过程中会出现，线程T1刚获赋予e和next值，还未开始遍历，系统换到了线程T2执行。T2也有e和next。T2按照扩容方法进行扩容后换到T1执行。但此时扩容后的链表元素位置与扩容前是相反的（头插法，将底部元素插入头部）而T1的e和next还是扩容前的值进而形成错误指向。</li>
+</ol>
+</li>
+<li>数据丢失：例如 <mark style="background: #BBFABBA6;">多个线程同时操作HashMap时</mark>。线程A跟线程B同时判断tab[1]的节点为空，可以写入新节点。但因为是并发操作，所以很有可能出现<mark style="background: #ADCCFFA6;">下一个线程覆盖掉上一个线程put的值</mark>。从而造成上一个线程的数据丢失问题。</li>
+</ol>
+<h5 id="key是否为null-作为key的对象有什么要求？"><a href="#key是否为null-作为key的对象有什么要求？" class="headerlink" title="key是否为null ? 作为key的对象有什么要求？"></a>key是否为null ? 作为key的对象有什么要求？</h5><ol>
+<li>hashmap的key可以为null，但其他map就不一定了</li>
+<li>作为key的对象必须重写hashcode与equals，并且<mark style="background: #ADCCFFA6;">key的内容不能修改即key不可变</mark></li>
+<li><mark style="background: #BBFABBA6;">重写hashcode是为了让key有更好的分布性。重写equals的作用是当两个对象的hashcode值一样时，通过equals来判断是都是同个对象</mark></li>
+</ol>
+<blockquote>
+<p>两个对象hashcode相同，不一定equals一样。但两个对象equals一样，那么hashcode就相同</p>
+</blockquote>
+<h5 id="对象的hashcode是如何设计的？-为啥每次乘-31？"><a href="#对象的hashcode是如何设计的？-为啥每次乘-31？" class="headerlink" title="对象的hashcode是如何设计的？ 为啥每次乘 31？"></a>对象的hashcode是如何设计的？ 为啥每次乘 31？</h5><ol>
+<li>hashcode的设计目标是让每个对象的hashcode足够独特，达到均匀的散列效果</li>
+<li>31代入散列公式可以有较好的散列特性，并且31 * h 可以被优化为<ol>
+<li>32 * h - h</li>
+<li>2^5 * h - h</li>
+<li>h &lt;&lt; 5 - h</li>
+</ol>
+</li>
+</ol>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/java/">#java</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/JavaSE/%E5%B9%B6%E5%8F%91%E7%AC%94%E8%AE%B0/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">并发笔记</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/JavaSE/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">设计模式</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">集合容器</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E4%B8%8E%E6%95%B0%E7%BB%84"><span class="nav-text">集合与数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%9A%84%E6%A1%86%E6%9E%B6%E4%BD%93%E7%B3%BB"><span class="nav-text">集合的框架体系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List"><span class="nav-text">List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-text">HashMap</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">kita17</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.1</a>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

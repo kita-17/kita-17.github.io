@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="Hexo Theme Redefine">
-    <meta name="description" content="Hexo Theme Redefine">
+    
     <meta name="author" content="kita17">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
     <!-- preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,20 +17,28 @@
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="JavaWEB笔记-Spring-AOP">
-    <meta property="og:description" content="Hexo Theme Redefine">
-    <meta property="og:url" content="http://kita-17.github.iospring/spring-AOP核心概念/">
     
-    <meta property="og:site_name" content="KITA!!">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="JavaWEB笔记-Spring-AOP">
-    <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo.png">
+        <meta name="description" content="简介AOP: 面向切面编程, 一种编程范式,指导开发者如何组织程序结构 作用: 在不惊动原始设计的基础上进行功能增强 Spring理念: 无入侵式\无侵入式 编程 代理(Proxy): 本质是采用代理模式实现 切入点(PointCut): 匹配连接点的式子, 可以理解成共性功能的方法描述 连接点(JoinPoint): 可以被增强的方法, 可以理解成任意方法 通知(Advice): 要添加的功能,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWEB笔记-Spring-AOP">
+<meta property="og:url" content="http://kita-17.github.io/spring/spring-AOP%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简介AOP: 面向切面编程, 一种编程范式,指导开发者如何组织程序结构 作用: 在不惊动原始设计的基础上进行功能增强 Spring理念: 无入侵式\无侵入式 编程 代理(Proxy): 本质是采用代理模式实现 切入点(PointCut): 匹配连接点的式子, 可以理解成共性功能的方法描述 连接点(JoinPoint): 可以被增强的方法, 可以理解成任意方法 通知(Advice): 要添加的功能,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-04T09:59:23.442Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="note">
+<meta property="article:tag" content="spring">
+<meta property="article:tag" content="aop">
+<meta property="article:tag" content="Aspectj">
+<meta name="twitter:card" content="summary">
+    
     <!--- Icon Part-->
     <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
-    <meta name="theme-color" content="#005080">
+    <meta name="theme-color" content="#A31F34">
     <link rel="shortcut icon" href="/images/logo.png">
     <!--- Page Info-->
     
@@ -50,7 +57,7 @@
     <!--- Font Part-->
     
     
-        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     
     
     
@@ -58,10 +65,10 @@
     <!--- Inject Part-->
     
     <script id="hexo-configurations">
-    let REDEFINE = window.REDEFINE || {};
-    REDEFINE.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.png","favicon":"/images/logo.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"font_sizes":{"title":"2.8rem","subtitle":"1.5rem"},"line_height":1.2,"title":"KITA KITA!!","subtitle":{"enable":false,"list":[]},"custom_font":{"enable":false,"font_family":null,"font_url":null},"description":"KITA KITA!!"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"simple","custom_font":{"enable":true,"font_family":"JetBrains Mono","font_url":"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap"}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.3","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}}};
-    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"kita-17.github.io","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"simple","font":{"enable":true,"family":"Fira Code","url":"https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=JetBrains+Mono:wght@500&display=swap"}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true},"home_banner":{"enable":true,"image":{"light":"/images/banner-light.png","dark":"/images/banner-dark.png"},"title":"KITA KITA!!","subtitle":{"text":[],"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/kita-17"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"icon":"fa-regular fa-tag","path":"/tags"},"Categories":{"icon":"fa-regular fa-book","path":"/categories"},"About":{"icon":"fa-regular fa-user","path":"/about"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
   </script>
     
     <!--- Fontawesome Part-->
@@ -87,8 +94,6 @@
 <body>
 <div class="progress-bar-container">
     
-        <span class="scroll-progress-bar"></span>
-    
 
     
         <span class="pjax-progress-bar"></span>
@@ -103,12 +108,12 @@
 
     
 
-    <div class="page-main-content">
+    <div class="main-content-container">
 
-        <div class="page-main-content-top">
-            <header class="menu-wrapper">
+        <div class="main-content-header">
+            <header class="navbar-container">
     
-    <div class="menu-content">
+    <div class="navbar-content">
         <div class="left">
             
             <a class="logo-title" href="/">
@@ -120,11 +125,11 @@
 
         <div class="right">
             <!-- PC -->
-            <div class="pc">
-                <ul class="menu-list">
+            <div class="desktop">
+                <ul class="navbar-list">
                     
                         
-                            <li class="menu-item">
+                            <li class="navbar-item">
                                 <!-- Menu -->
                                 <a class="" 
                                     href="/"  >
@@ -140,7 +145,7 @@
                             </li>
                     
                         
-                            <li class="menu-item">
+                            <li class="navbar-item">
                                 <!-- Menu -->
                                 <a class="" 
                                     href="/archives"  >
@@ -156,7 +161,7 @@
                             </li>
                     
                         
-                            <li class="menu-item">
+                            <li class="navbar-item">
                                 <!-- Menu -->
                                 <a class="" 
                                     href="/tags"  >
@@ -172,7 +177,7 @@
                             </li>
                     
                         
-                            <li class="menu-item">
+                            <li class="navbar-item">
                                 <!-- Menu -->
                                 <a class="" 
                                     href="/categories"  >
@@ -188,7 +193,7 @@
                             </li>
                     
                         
-                            <li class="menu-item">
+                            <li class="navbar-item">
                                 <!-- Menu -->
                                 <a class="" 
                                     href="/about"  >
@@ -204,7 +209,7 @@
                             </li>
                     
                     
-                        <li class="menu-item search search-popup-trigger">
+                        <li class="navbar-item search search-popup-trigger">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </li>
                     
@@ -215,19 +220,19 @@
                 
                     <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
                 
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Mobile drawer -->
-    <div class="menu-drawer">
-        <ul class="drawer-menu-list">
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
             
                 
-                    <li class="drawer-menu-item flex-center">
+                    <li class="drawer-navbar-item flex-center">
                         <a class="" 
                         href="/"  >
                              
@@ -242,7 +247,7 @@
                     
             
                 
-                    <li class="drawer-menu-item flex-center">
+                    <li class="drawer-navbar-item flex-center">
                         <a class="" 
                         href="/archives"  >
                              
@@ -257,7 +262,7 @@
                     
             
                 
-                    <li class="drawer-menu-item flex-center">
+                    <li class="drawer-navbar-item flex-center">
                         <a class="" 
                         href="/tags"  >
                              
@@ -272,7 +277,7 @@
                     
             
                 
-                    <li class="drawer-menu-item flex-center">
+                    <li class="drawer-navbar-item flex-center">
                         <a class="" 
                         href="/categories"  >
                              
@@ -287,7 +292,7 @@
                     
             
                 
-                    <li class="drawer-menu-item flex-center">
+                    <li class="drawer-navbar-item flex-center">
                         <a class="" 
                         href="/about"  >
                              
@@ -312,7 +317,9 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="main-content-body">
+
+            
 
             <div class="main-content">
 
@@ -339,20 +346,22 @@
                         <div class="author">
                             <span class="name">kita17</span>
                             
+                                <span class="author-label"></span>
+                            
                         </div>
                         <div class="meta-info">
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="pc">2022-10-11</span>
+        <span class="desktop">2022-10-11</span>
         <span class="mobile">2022-10-11 00</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="pc">2023-03-04 21:48:41</span>
-            <span class="mobile">2023-03-04 21:48</span>
+            <span class="desktop">2023-04-04 17:59:23</span>
+            <span class="mobile">2023-04-04 17:59</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -465,7 +474,7 @@
 <div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 抛出异常后返回 &quot;异常&quot;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@AfterThrowing(value = &quot;commonTest()&quot;, throwing = &quot;t&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">commonMethod</span><span class="params">(Throwable t)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <p><strong>环绕通知</strong></p>
-
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Long <span class="title function_">getDataId</span><span class="params">(ProceedingJoinPoint point, Authorization auth)</span> &#123; </span><br><span class="line">	<span class="comment">// 通过joinPoint获取被注解方法  </span></span><br><span class="line">		<span class="type">MethodSignature</span> <span class="variable">methodSignature</span> <span class="operator">=</span> (MethodSignature) point.getSignature();</span><br><span class="line">	<span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> methodSignature.getMethod();  </span><br><span class="line">	<span class="comment">// 使用spring的DefaultParameterNameDiscoverer获取方法形参名数组  </span></span><br><span class="line">	String[] paramNames = nameDiscoverer.getParameterNames(method);  </span><br><span class="line">	<span class="comment">// 解析过后的Spring表达式对象, 获取注解上的 id 值</span></span><br><span class="line">	<span class="type">Expression</span> <span class="variable">storeExpSQL</span> <span class="operator">=</span> parser.parseExpression(auth.id());  </span><br><span class="line">	<span class="comment">// spring的表达式上下文对象  </span></span><br><span class="line">	<span class="type">EvaluationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StandardEvaluationContext</span>();  </span><br><span class="line">	Object[] args = point.getArgs();  </span><br><span class="line">	<span class="comment">// 给上下文赋值  </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; args.length; i++) context.setVariable(Objects.requireNonNull(paramNames)[i], args[i]);  </span><br><span class="line">	<span class="keyword">return</span> (Long) storeExpSQL.getValue(context);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
             </div>
 
             
@@ -504,13 +513,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/spring/spring-%E6%95%B4%E5%90%88mybatis/"
+                            href="/springCloud/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">JavaWEB笔记-Spring整合mybatis</span>
+                                    <span class="post-nav-title-item">微服务笔记</span>
                                     <span class="post-nav-item">Prev posts</span>
                                 </span>
                             </a>
@@ -545,7 +554,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">JavaWEB笔记-Spring-AOP</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E4%BE%8B%E5%AD%90"><span class="nav-text">简单例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5Maven%E5%9D%90%E6%A0%87"><span class="nav-text">导入Maven坐标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E7%9F%A5%E7%B1%BB"><span class="nav-text">通知类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="nav-text">接口实现类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-text">Spring配置类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E5%85%A5%E7%82%B9%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">切入点表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E9%80%9A%E7%9F%A5%E6%95%B0%E6%8D%AE"><span class="nav-text">获取通知数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0"><span class="nav-text">获取参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-text">获取返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%BC%82%E5%B8%B8"><span class="nav-text">获取异常</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E4%BE%8B%E5%AD%90"><span class="nav-text">简单例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E5%85%A5%E7%82%B9%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">切入点表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E9%80%9A%E7%9F%A5%E6%95%B0%E6%8D%AE"><span class="nav-text">获取通知数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0"><span class="nav-text">获取参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-text">获取返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%BC%82%E5%B8%B8"><span class="nav-text">获取异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-text">例子</span></a></li></ol></li></ol>
 
     </div>
 </div>
@@ -558,12 +567,12 @@
                 
 
             </div>
-
-
+            
+            
 
         </div>
 
-        <div class="page-main-content-bottom">
+        <div class="main-content-footer">
             <footer class="footer">
     <div class="info-container">
         <div class="copyright-info">
@@ -575,38 +584,29 @@
             2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">kita17</a>
         </div>
         
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
         <div class="theme-info info-item">
             <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
-                <br> 
-            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.2.3</a>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.1</a>
         </div>
         
         
         
-            <div id="start_time_div" style="display:none">
-                2022/8/17 11:45:14
-            </div>
-            <div>
-                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
-            </div>
         
-        
-        
-            <script async data-pjax>
-                try {
-                    function odometer_init() {
-                    const elements = document.querySelectorAll('.odometer');
-                    elements.forEach(el => {
-                        new Odometer({
-                            el,
-                            format: '( ddd).dd',
-                            duration: 200
-                        });
-                    });
-                    }
-                    odometer_init();
-                } catch (error) {}
-            </script>
         
         
         
@@ -618,7 +618,7 @@
     
         <div class="post-tools">
             <div class="post-tools-container">
-    <ul class="tools-list">
+    <ul class="article-tools-list">
         <!-- TOC aside toggle -->
         
             <li class="right-bottom-tools page-aside-toggle">
@@ -634,9 +634,9 @@
         </div>
     
 
-    <div class="right-bottom-side-tools">
+    <div class="right-side-tools-container">
         <div class="side-tools-container">
-    <ul class="unfolded-tools-list">
+    <ul class="hidden-tools-list">
         <li class="right-bottom-tools tool-font-adjust-plus flex-center">
             <i class="fa-regular fa-magnifying-glass-plus"></i>
         </li>
@@ -657,20 +657,22 @@
         
 
         
-            <li class="right-bottom-tools tool-scroll-to-top flex-center">
-                <i class="fa-regular fa-arrow-up"></i>
-            </li>
-        
 
         <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
             <i class="fa-regular fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="folded-tools-list">
-        <li class="right-bottom-tools tool-toggle-show flex-center">
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
             <i class="fa-regular fa-cog fa-spin"></i>
         </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
         
     </ul>
 </div>
@@ -723,22 +725,22 @@
 
 <script src="/js/main.js"></script>
 
-<script src="/js/layouts/menu-shrink.js"></script>
+<script src="/js/layouts/navbarShrink.js"></script>
 
-<script src="/js/tools/go-top-bottom.js"></script>
+<script src="/js/tools/scrollTopBottom.js"></script>
 
-<script src="/js/tools/dark-light-toggle.js"></script>
-
-
-
-    
-<script src="/js/tools/local-search.js"></script>
-
+<script src="/js/tools/lightDarkSwitch.js"></script>
 
 
 
     
-<script src="/js/tools/code-block.js"></script>
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
 
 
 
@@ -749,16 +751,13 @@
 
 
 
-    
-<script src="/js/tools/runtime.js"></script>
-
-    
-<script src="/js/layouts/odometer.min.js"></script>
-
-    
-<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
 
 
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
 
 
 
@@ -769,7 +768,7 @@
 <div class="post-scripts pjax">
     
         
-<script src="/js/tools/toc-toggle.js"></script>
+<script src="/js/tools/tocToggle.js"></script>
 
 <script src="/js/libs/anime.min.js"></script>
 
@@ -790,7 +789,7 @@
             selectors: [
                 'head title',
                 '.page-container',
-                '.pjax'
+                '.pjax',
             ],
             history: true,
             debug: false,
@@ -803,13 +802,13 @@
         });
 
         document.addEventListener('pjax:send', () => {
-            REDEFINE.utils.pjaxProgressBarStart();
+            Global.utils.pjaxProgressBarStart();
         });
 
         document.addEventListener('pjax:complete', () => {
-            REDEFINE.utils.pjaxProgressBarEnd();
+            Global.utils.pjaxProgressBarEnd();
             window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            REDEFINE.refresh();
+            Global.refresh();
         });
     });
 </script>
