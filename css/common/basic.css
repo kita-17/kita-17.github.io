@@ -416,6 +416,7 @@ body::-webkit-scrollbar {
 ::selection {
   background: var(--selection-color);
   color: #fff;
+  border-radius: 25px;
 }
 ul,
 ol,

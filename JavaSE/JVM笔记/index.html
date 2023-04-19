@@ -30,8 +30,9 @@
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3d3dy5jaG91cGFuZ3hpYS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMTkvMTAvc3RhY2suanBn?x-oss-process=image/format,png">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3d3dy5jaG91cGFuZ3hpYS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMTkvMTAvbWV0aG9kYXJlYS5qcGc?x-oss-process=image/format,png">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3d3dy5jaG91cGFuZ3hpYS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMTkvMTAvcHJvZ3JhbS1jb3VudGVyLmpwZw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://s2.loli.net/2023/04/19/XFImRdpKAGJ5cQy.png">
 <meta property="article:published_time" content="2022-10-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-04-10T05:49:23.075Z">
+<meta property="article:modified_time" content="2023-04-19T02:40:15.195Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="note">
@@ -364,8 +365,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-04-10 13:49:23</span>
-            <span class="mobile">2023-04-10 13:49</span>
+            <span class="desktop">2023-04-19 10:40:15</span>
+            <span class="mobile">2023-04-19 10:40</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -452,7 +453,7 @@
 </ul>
 <h4 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h4><p>当一个类加载器收到类加载的请求时，它首先不会自己去加载这个类。而是将请求交给父加载器去完成，把加载请求依次往上抛，因为<mark style="background: #FFF3A3A6;">所有类加载都应该在顶层的启动类加载器中完成</mark> 当父类加载器在它的搜索范围内找不到该类无法加载时，才会让子类自己去加载。<br>举例说明：我们可以创建一个类 <code>java.lang.String</code> 包名类名都与 Java的 <code>String</code> 类一致</p>
 <div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.lang;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">String</span> &#123;</span><br><span class="line">	String value;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;  </span><br><span class="line">		<span class="type">String</span> <span class="variable">string</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>();   </span><br><span class="line">	&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>上面例子运行后会报找不到main方法的错误。原因是 <code>AppclassLoader</code> 加载 <code>String.class</code> 的请求会向上抛给  <code>ExtentionClassLoader</code> 。然后 <code>ExtentionClassLoader</code> 在自己的加载路径查找是否有这个类。很明显 <code>java.lang.String</code> 是 <code>rt.jar</code> 包下的。所以 <code>ExtentionClassLoader</code> 也找不到该类，所以会把请求抛给 <code>BootstrapClassLoader</code> 。而 <code>BootstrapClassLoader</code> 找到了该类，所以加载，但是官方的<code>java.lang.String</code> 下并没有 <code>main</code> 方法。所以就产生了错误。<br>而对于我们自己定义的类，因包名，类名和Java自带的类不一致，所以 BootstrapClassLoader 和 ExtentionClassLoader 没法在自己的搜索范围内找到，所以就会把请求还给 <code>AppclassLoader</code> 来加载</p>
+<p>上面例子运行后会报找不到main方法的错误。原因是 <code>AppclassLoader</code> 加载 <code>String.class</code> 的请求会向上抛给  <code>ExtentionClassLoader</code> 。然后 ExtentionClassLoader 在自己的加载路径查找是否有这个类。很明显 <code>java.lang.String</code> 是 <code>rt.jar</code> 包下的。所以 ExtentionClassLoader也找不到该类，所以会把请求抛给BootstrapClassLoader 。而 BootstrapClassLoader 找到了该类，所以加载，但是官方的<code>java.lang.String</code> 下并没有 <code>main</code> 方法。所以就产生了错误。<br>而对于我们自己定义的类，因包名，类名和Java自带的类不一致，所以 BootstrapClassLoader 和 ExtentionClassLoader 没法在自己的搜索范围内找到，所以就会把请求还给 <code>AppclassLoader</code> 来加载</p>
 <h3 id="内存结构"><a href="#内存结构" class="headerlink" title="内存结构"></a>内存结构</h3><ul>
 <li>JVM分为五个区域：虚拟机栈、本地方法栈、方法区、堆、程序计数器</li>
 <li>JVM五个区中虚拟机栈、本地方法栈、程序计数器为线程私有，方法区和堆为线程共享区</li>
@@ -479,10 +480,10 @@
 <li>新生代分为 Eden、From Survivor（s0）、ToSurvivor（s1）</li>
 </ul>
 <h5 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h5><blockquote>
-<p>JVM新创建的对象（除了大对象外）会被放在新生代，默认占1&#x2F;3对内存空间。由于JVM会频繁创建对象，所以新生代会频繁触发MinorGC进行垃圾回收。新生代又分为Eden区、SurvivorFrom区和SurvivorTo区<br>新生代的GC过程叫做MinorGC，采用复制算法实现</p>
+<p>JVM新创建的对象（除了大对象外）会被放在新生代，默认占1&#x2F;3堆内存空间。由于JVM会频繁创建对象，所以新生代会频繁触发MinorGC进行垃圾回收。新生代又分为Eden区、SurvivorFrom区和SurvivorTo区<br>新生代的GC过程叫做MinorGC，采用复制算法实现</p>
 </blockquote>
 <ol>
-<li>Eden区：Java新创建的对象首先会被存放在Eden区，如果新创建的对象属于大对象，则直接将其分配到老年代。大队相关的定义和具体的JVM版本、堆大小和垃圾回收策略有关，一般为2KB-128KB，可通过 XX:PretenureSizeThreshold设置其大小。在Eden区的内存空间不足时会触发MinorGC，对新生代进行一次垃圾回收。</li>
+<li>Eden区：Java新创建的对象首先会被存放在Eden区，如果新创建的对象属于大对象，则直接将其分配到老年代。大对象的定义和具体的JVM版本、堆大小和垃圾回收策略有关，一般为2KB-128KB，可通过 XX:PretenureSizeThreshold设置其大小。在Eden区的内存空间不足时会触发MinorGC，对新生代进行一次垃圾回收。</li>
 <li>SurvivorFrom区：保留上一次MinorGC时的幸存者。</li>
 <li>SurvivorTo区：将上一次MinorGC时的幸存者作为这一次MinorGC的扫描者。</li>
 </ol>
@@ -558,8 +559,57 @@
 <li>轻GC：针对新生区</li>
 <li>重GC：针对全局</li>
 </ul>
-<h4 id="常用算法"><a href="#常用算法" class="headerlink" title="常用算法"></a>常用算法</h4><h3 id="堆内存调优"><a href="#堆内存调优" class="headerlink" title="堆内存调优"></a>堆内存调优</h3><h3 id="利用工具排查OOM"><a href="#利用工具排查OOM" class="headerlink" title="利用工具排查OOM"></a>利用工具排查OOM</h3><p>工具：MAT，JProfiler，内存快照工具</p>
-<h3 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h3>
+<h4 id="引用与GC"><a href="#引用与GC" class="headerlink" title="引用与GC"></a>引用与GC</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>强引用</td>
+<td>Java中的默认引用类型。例如Object obj &#x3D; new Object()，只要强引用存在，对象永远不会被回收</td>
+</tr>
+<tr>
+<td>软引用</td>
+<td>内存足够时，软引用不会被回收。只有当系统要发生内存溢出时，才会被回收。适合用于缓存场景</td>
+</tr>
+<tr>
+<td>弱引用</td>
+<td>只要发生垃圾回收，弱引用的对象就会被回收</td>
+</tr>
+<tr>
+<td>虚引用</td>
+<td>能在对象被GC时收到系统通知</td>
+</tr>
+</tbody></table>
+<h4 id="常用算法"><a href="#常用算法" class="headerlink" title="常用算法"></a>常用算法</h4><h5 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h5><p>每个对象中添加引用计数器。每当对象被引用，引用计数器就会加 1；每当引用失效，计数器就会减 1。当对象的引用计数器的值为 0 时，就说明该对象不再被引用，可以被回收了。强调一点，虽然引用计数算法的实现简单，判断效率也很高，但它存在着对象之间相互循环引用的问题（所以在<mark style="background: #FFF3A3A6;">后来的JVM版本中已经不采用这种算法了</mark>）。</p>
+<h5 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h5><p>GC Roots 是该算法的基础，GC Roots 是所有对象的根对象。这些对象作为正常对象的起始点，在垃圾回收时，会从这些 GC Roots 开始向下搜索，当一个对象到 GC Roots 没有任何引用链相连时，就证明此对象不再被引用。目前 HotSpot 虚拟机采用的就是这种算法。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/04/19/XFImRdpKAGJ5cQy.png"
+                      alt="v2-3b4a7ccf3eacc288e7408ac8a6edca52_r.png"
+                ></p>
+<h6 id="可以作为-GC-Roots-的对象："><a href="#可以作为-GC-Roots-的对象：" class="headerlink" title="可以作为 GC Roots 的对象："></a>可以作为 GC Roots 的对象：</h6><ol>
+<li>虚拟机栈中引用的对象</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中 JNI（Native 方法）引用的对象</li>
+<li>Java 虚拟机中内部的引用</li>
+<li>synchronized 持有的对象</li>
+</ol>
+<blockquote>
+<p>PS 还有其他算法，但还没整理完</p>
+</blockquote>
+<h3 id="堆内存调优"><a href="#堆内存调优" class="headerlink" title="堆内存调优"></a>堆内存调优</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">-Xms&lt;size&gt; 设置初始堆大小，默认系统内存的 1 / 64</span><br><span class="line">-Xmx&lt;size&gt; 设置最大堆大小，默认系统内存的 1 / 4</span><br><span class="line">-Xmn&lt;size&gt; 设置新生代大小</span><br><span class="line">-Xss&lt;size&gt; 设置线程堆栈大小，每个线程可使用的内存大小，若设置小值，可生产更多线程，但容易导致栈溢出。若设置大值，会影响到创建栈的数量，导致内存溢出</span><br><span class="line"></span><br><span class="line">-XX:NewRatio=&lt;ratio&gt; 设置新生代和老年代的比值，例如设置成3，表示年轻代与老年代比值为1：3</span><br><span class="line">-XX:SurvivorRatio=&lt;ratio&gt; 新生代中Eden区与两个Survivor区的比值。注意Survivor区有两个。例如设置成3，表示Eden:Survivor=3:2，一个Survivor区占整个新生代的1/5</span><br><span class="line">-XX:MaxTenuringThreshold 设置转入老年代的存活次数。如果是0，则直接跳过新生代进入老年代</span><br><span class="line">-XX:PermSize, -XX:MaxPermSize 分别设置永久代最小大小与最大大小（Java8以前）</span><br><span class="line">-XX:MetaspaceSize -XX:MaxMetaspaceSize 分别设置元空间最小大小与最大大小（Java8以后）</span><br><span class="line">-XX:LargePageSizeInBytes=&lt;size&gt; 设置用于Java堆的大页面尺寸</span><br><span class="line">-XX:MaxHeapFreeRatio=&lt;ratio&gt; GC后Java堆中空闲量占的最大比例</span><br><span class="line">-XX:MinHeapFreeRatio=&lt;ratio&gt; GC后Java堆中空闲量占的最小比例</span><br><span class="line">-XX:MaxNewSize=&lt;size&gt; 新生成对象能占用内存的最大值</span><br><span class="line">-XX:MaxPermSize=&lt;size&gt; 老年代对象能占用内存的最大值</span><br><span class="line"></span><br><span class="line">-XX:+UseSerialGC 设置串行收集器</span><br><span class="line">-XX:+UseParallelGC 设置并行收集器</span><br><span class="line">-XX:+UseParalledlOldGC 设置并行老年代收集器</span><br><span class="line">-XX:+UseConcMarkSweepGC 设置并发收集器</span><br><span class="line"></span><br><span class="line">-XX:+PrintGCDetails    输出详细的GC处理日志</span><br><span class="line">-XX:+PrintGCTimeStamps 输出GC的时间戳信息</span><br><span class="line">-XX:+PrintGCDateStamps 输出GC时间戳信息（日期格式）</span><br><span class="line">-XX:+PrintheapAtGC     在GC处理前后打印堆内存信息</span><br><span class="line">-Xloggc:路径            设置日志信息保存路径</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="Jvm参数相关"><a href="#Jvm参数相关" class="headerlink" title="Jvm参数相关"></a>Jvm参数相关</h4><ul>
+<li>布尔型参数选项：-XX:+ 打开，-XX:- 关闭。（比如-XX:+PrintGCDetails）</li>
+<li>数字型参数选项：通过-XX:&#x3D;设定。数字可以是m&#x2F;M（兆字节），k&#x2F;K（千字节），g&#x2F;G（G字节）。比如：32K表示32768字节。</li>
+<li>字符行参数选项：通过-XX:&#x3D;设定。通常用来指定一个文件、路径，或者一个命令列表。（比如-XX:HeapDumpPath&#x3D;.&#x2F;java_pid.hprof）</li>
+</ul>
+<h3 id="利用工具排查OOM"><a href="#利用工具排查OOM" class="headerlink" title="利用工具排查OOM"></a>利用工具排查OOM</h3><p>工具：MAT，JProfiler，内存快照工具</p>
+
             </div>
 
             
@@ -606,10 +656,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/JavaSE/%E5%B9%B6%E5%8F%91%E7%AC%94%E8%AE%B0/"
+                            href="/JavaSE/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8C%85%E8%A3%85%E7%B1%BB/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">并发笔记</span>
+                                    <span class="post-nav-title-item">数据类型与包装类</span>
                                     <span class="post-nav-item">Next posts</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -631,7 +681,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">jvm笔记</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%92%8C%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%89%98"><span class="nav-text">类加载器和双亲委托</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="nav-text">内存结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GC"><span class="nav-text">GC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98"><span class="nav-text">堆内存调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7%E6%8E%92%E6%9F%A5OOM"><span class="nav-text">利用工具排查OOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JMM"><span class="nav-text">JMM</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%92%8C%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%89%98"><span class="nav-text">类加载器和双亲委托</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="nav-text">内存结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GC"><span class="nav-text">GC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98"><span class="nav-text">堆内存调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7%E6%8E%92%E6%9F%A5OOM"><span class="nav-text">利用工具排查OOM</span></a></li></ol>
 
     </div>
 </div>
